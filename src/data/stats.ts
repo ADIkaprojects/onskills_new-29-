@@ -1,0 +1,16 @@
+export const STATS_DATA = [
+  { text: "12,847 Learners Online Now" },
+  { text: "3,412 Tasks Completed Today" },
+  { text: "React · Node · Python · DevOps · AWS" },
+  { text: "98.4% Assessment Pass Rate" },
+  { text: "ISO 27001 Certified Platform" },
+  { text: "Blockchain-Anchored Certificates" },
+  { text: "3X Career Growth Reported" },
+  { text: "87 Countries Represented" },
+  { text: "500+ Hiring Partners Connected" },
+  { text: "WalkWays · Xone · Base Ground · Proving Ground" },
+  { text: "AI-Powered Skill Matching" },
+  { text: "Industry-Verified Digital Badges" },
+  { text: "Avg. 90-Min Timed Assessments" },
+  { text: "Professional Track Certificates" },
+];
