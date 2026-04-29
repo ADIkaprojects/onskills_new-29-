@@ -43,7 +43,7 @@ const AssessmentCard: FC<AssessmentCardProps> = ({
     <div className="group relative w-full max-w-[540px] cursor-pointer">
       <Card
         className="
-          relative flex h-full w-full flex-col overflow-hidden
+          relative flex h-full min-h-[230px] w-full flex-col overflow-hidden
           rounded-[var(--radius-lg)]
           border border-white/[0.12]
           bg-gradient-to-br from-[#1e293b] to-[#0f172a]
