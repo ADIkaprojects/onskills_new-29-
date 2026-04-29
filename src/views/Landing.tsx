@@ -7,12 +7,20 @@ import { StatsTicker } from "@/components/StatsTicker";
 import { ASSESSMENTS, type Assessment } from "@/data/assessments";
 import { WalkWaysRoadmap } from "@/components/WalkWaysRoadmap";
 import AssessmentCard from "@/components/ui/assessment-card";
-import { AnimatedTabs } from "@/components/ui/animated-tabs";
 import { FAQSection } from "@/components/ui/faq-section";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
-import { FloatingPaths } from "@/components/ui/background-paths";
+import {
+  ArrowRight,
+  BarChart3,
+  ClipboardList,
+  Clock3,
+  FileCheck2,
+  Gauge,
+  Menu,
+  Target,
+  Trophy,
+} from "lucide-react";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -26,7 +34,7 @@ if (typeof window !== "undefined") {
 /* ---------------- HERO ---------------- */
 function Hero() {
   const router = useRouter();
-  const { word, visible } = useTypewriter(["Certify", "Secure", "Upgrade", "Train"], 2200);
+  const { word, visible } = useTypewriter(["Certify", "Shape", "Define", "Upgrade"], 2200);
 
   return (
     <section
@@ -71,6 +79,10 @@ function Hero() {
           0%,100% { opacity: 0.10; transform: scale(1.00); }
           50%      { opacity: 0.20; transform: scale(1.08); }
         }
+        @keyframes hiring-marquee {
+          from { transform: translateX(-50%); }
+          to { transform: translateX(0); }
+        }
       `}</style>
 
       {/* ── Diagonal-fade grid — radiates from top-right corner ── */}
@@ -91,9 +103,23 @@ function Hero() {
         }}
       />
 
-      {/* ── Animated blue path lines ── */}
-      <FloatingPaths position={1} />
-      <FloatingPaths position={-1} />
+      {/* ── Static diagonal line texture (lighter than animated paths) ── */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(24deg, rgba(59,130,246,0.20) 0px, rgba(59,130,246,0.20) 2px, rgba(59,130,246,0) 2px, rgba(59,130,246,0) 14px)",
+          backgroundPosition: "center -40px",
+          filter: "blur(0.6px)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.85) 36%, rgba(0,0,0,0.35) 72%, rgba(0,0,0,0) 100%)",
+          maskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.85) 36%, rgba(0,0,0,0.35) 72%, rgba(0,0,0,0) 100%)",
+          opacity: 0.55,
+          zIndex: 0,
+        }}
+      />
 
       {/* ── Orb system — 5 layered, smooth, mix-blended ── */}
 
@@ -202,7 +228,7 @@ function Hero() {
             animation: "fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.1s forwards",
           }}
         >
-          Skill Certification Reimagined
+          Certification Prep done Right
         </div>
 
         <h1
@@ -259,8 +285,8 @@ function Hero() {
             animation: "fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.4s forwards",
           }}
         >
-          The only platform where skills are earned through structured learning and proven through
-          real-world challenges.
+          Real exam-pattern mock tests and assessments built for every stage whether you're just starting out 
+or pushing for your next big credential. Practice like it's real, perform when it counts.
         </p>
 
         <button
@@ -295,7 +321,7 @@ function Hero() {
 
         {/* Trusted By Logos — FIXED */}
         <div
-          className="mt-10 flex flex-col items-center gap-5"
+          className="mt-10 flex w-full flex-col items-center gap-5"
           style={{
             opacity: 0,
             animation: "fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.7s forwards",
@@ -306,45 +332,87 @@ function Hero() {
               fontFamily: "Inter, sans-serif",
               fontSize: "12.5px",
               color: "var(--color-gray-text)",
-              letterSpacing: "0.06em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
-              opacity: 0.7,
+              opacity: 0.78,
             }}
           >
-            Trusted by teams at
+            Our hiring partners
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-            {[
-              { name: "Airbnb", slug: "airbnb" },
-              { name: "Stripe", slug: "stripe" },
-              { name: "GitHub", slug: "github" },
-              { name: "Atlassian", slug: "atlassian" },
-              { name: "Google", slug: "google" },
-              { name: "Figma", slug: "figma" },
-              { name: "PayPal", slug: "paypal" },
-              { name: "Notion", slug: "notion" },
-              { name: "Spotify", slug: "spotify" },
-            ].map((company) => (
-              <img
-                key={company.slug}
-                src={`https://cdn.simpleicons.org/${company.slug}`}
-                alt={company.name}
-                title={company.name}
-                style={{
-                  height: "36px",
-                  width: "auto",
-                  opacity: 0.4,
-                  filter: "brightness(0)",
-                  transition: "opacity 0.25s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.opacity = "0.75";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.opacity = "0.4";
-                }}
-              />
-            ))}
+          <div
+            className="relative w-full max-w-[900px] overflow-hidden"
+            style={{
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%)",
+              maskImage: "linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%)",
+            }}
+          >
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20"
+              style={{
+                background: "linear-gradient(to right, rgba(247,251,255,0.98), rgba(247,251,255,0))",
+                backdropFilter: "blur(2px)",
+              }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20"
+              style={{
+                background: "linear-gradient(to left, rgba(247,251,255,0.98), rgba(247,251,255,0))",
+                backdropFilter: "blur(2px)",
+              }}
+            />
+            <div className="flex w-max items-center gap-14 py-2" style={{ animation: "hiring-marquee 22s linear infinite" }}>
+              {[0, 1].flatMap((loop) =>
+                [
+                  { name: "blinkit", kind: "blinkit" },
+                  { name: "zepto", kind: "zepto" },
+                  { name: "Fractal", kind: "fractal" },
+                  { name: "boAt", kind: "boat" },
+                  { name: "Deloitte", kind: "deloitte" },
+                  { name: "dentsu", kind: "dentsu" },
+                ].map((company) => (
+                  <div
+                    key={`${company.name}-${loop}`}
+                    className="flex h-16 min-w-[124px] shrink-0 items-center justify-center"
+                    title={company.name}
+                    style={{ opacity: 0.9, filter: "saturate(0.98)" }}
+                  >
+                    {company.kind === "blinkit" && (
+                      <span style={{ display: "inline-grid", placeItems: "center", width: 62, height: 38, borderRadius: 12, background: "#F8D84A", color: "#111827", fontSize: 15, fontWeight: 900, letterSpacing: -0.5 }}>
+                        blinkit
+                      </span>
+                    )}
+                    {company.kind === "zepto" && (
+                      <span style={{ color: "#F2385A", fontSize: 42, fontWeight: 900, letterSpacing: -1.5 }}>
+                        zepto
+                      </span>
+                    )}
+                    {company.kind === "fractal" && (
+                      <span className="flex items-center gap-2" style={{ color: "#244D2E", fontSize: 23, fontWeight: 800 }}>
+                        <span style={{ width: 28, height: 34, borderRadius: 6, background: "linear-gradient(135deg, #D9822B, #5DAA47)", transform: "skew(-12deg)" }} />
+                        Fractal
+                      </span>
+                    )}
+                    {company.kind === "boat" && (
+                      <span style={{ color: "#111827", fontSize: 44, fontWeight: 400, letterSpacing: -2 }}>
+                        bo<span style={{ color: "#E11D2E", fontWeight: 900 }}>A</span>t
+                      </span>
+                    )}
+                    {company.kind === "deloitte" && (
+                      <span style={{ color: "#050505", fontSize: 40, fontWeight: 900, letterSpacing: -1.5 }}>
+                        Deloitte<span style={{ color: "#86BC25" }}>.</span>
+                      </span>
+                    )}
+                    {company.kind === "dentsu" && (
+                      <span style={{ color: "#8C8F96", fontSize: 44, fontWeight: 900, letterSpacing: -1.2 }}>
+                        dentsu
+                      </span>
+                    )}
+                  </div>
+                )),
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -563,27 +631,45 @@ function ProductSection({
   hideMockupOnMobile,
   rawMockup,
   showMockupOnMobile,
+  showMockupFromMd,
+  shiftMockupLeft,
 }: {
   id: string;
   tag: string;
-  heading: string;
+  heading: React.ReactNode;
   body: string;
   features: string[];
   cta: string;
   onCta: () => void;
-  mockup: React.ReactNode;
+  mockup?: React.ReactNode;
   reverse?: boolean;
   hideMockupOnMobile?: boolean;
   /** Strip the navy card shell — lets the mockup own its own visual (e.g. video) */
   rawMockup?: boolean;
   /** Show the mockup on mobile screens too (below the text) */
   showMockupOnMobile?: boolean;
+  /** Show selected product mockups from tablet/desktop widths while keeping phones text-only. */
+  showMockupFromMd?: boolean;
+  /** Nudge the mockup left without changing its size. */
+  shiftMockupLeft?: boolean;
 }) {
   const ref = useScrollReveal();
+  const hasMockup = mockup != null;
+  const layoutClass = hasMockup
+    ? showMockupFromMd
+      ? reverse
+        ? "md:[grid-template-areas:'mock_text'] md:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]"
+        : "md:[grid-template-areas:'text_mock'] md:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]"
+      : reverse
+        ? "lg:[grid-template-areas:'mock_text'] lg:grid-cols-2"
+        : "lg:[grid-template-areas:'text_mock'] lg:grid-cols-2"
+    : "lg:grid-cols-1";
+  const mockupVisibilityClass = showMockupOnMobile ? "block" : showMockupFromMd ? "hidden md:block" : "hidden lg:block";
+
   return (
     <section id={id} ref={ref} className="py-12">
       <div
-        className={`mx-auto grid max-w-[1200px] items-center gap-12 ${reverse ? "lg:[grid-template-areas:'mock_text']" : "lg:[grid-template-areas:'text_mock']"} grid-cols-1 lg:grid-cols-2`}
+        className={`mx-auto grid ${showMockupFromMd ? "max-w-[1180px] gap-10" : "max-w-[1200px] gap-12"} grid-cols-1 items-center ${layoutClass}`}
         style={{ minHeight: 480 }}
       >
         <div className={reverse ? "lg:[grid-area:text]" : "lg:[grid-area:text]"} style={{ gridArea: "text" }}>
@@ -593,7 +679,7 @@ function ProductSection({
             style={{
               fontFamily: "Inter, sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(28px, 4vw, 42px)",
+              fontSize: "clamp(24px, 3.2vw, 34px)",
               color: "var(--color-navy)",
               lineHeight: 1.15,
               letterSpacing: "-0.01em",
@@ -627,37 +713,42 @@ function ProductSection({
             {cta}
           </button>
         </div>
-        <div
-          className={showMockupOnMobile ? "block" : "hidden lg:block"}
-          style={{ gridArea: "mock" }}
-        >
+        {hasMockup && (
           <div
-            className="transition-transform duration-[350ms]"
-            style={
-              rawMockup
-                ? {
-                    borderRadius: "var(--radius-xl)",
-                    overflow: "hidden",
-                    boxShadow: "0 32px 80px rgba(15,23,42,0.20)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    /* Subtle lift on hover — identical feel to the card */
-                    willChange: "transform",
-                  }
-                : {
-                    background: "var(--color-navy)",
-                    borderRadius: "var(--radius-xl)",
-                    padding: 28,
-                    boxShadow: "0 32px 80px rgba(15,23,42,0.20)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    color: "#fff",
-                  }
-            }
-            onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-6px)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+            className={mockupVisibilityClass}
+            style={{
+              gridArea: "mock",
+              transform: shiftMockupLeft ? "translateX(clamp(-64px, -4vw, -30px))" : undefined,
+            }}
           >
-            {mockup}
+            <div
+              className="transition-transform duration-[350ms]"
+              style={
+                rawMockup
+                  ? {
+                      borderRadius: "var(--radius-xl)",
+                      overflow: "hidden",
+                      boxShadow: "0 32px 80px rgba(15,23,42,0.20)",
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      /* Subtle lift on hover — identical feel to the card */
+                      willChange: "transform",
+                    }
+                  : {
+                      background: "var(--color-navy)",
+                      borderRadius: "var(--radius-xl)",
+                      padding: 28,
+                      boxShadow: "0 32px 80px rgba(15,23,42,0.20)",
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      color: "#fff",
+                    }
+              }
+              onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-6px)")}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+            >
+              {mockup}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
@@ -738,7 +829,7 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
   
   useGSAP(() => {
     let allowScroll = true;
-    let scrollTimeout = gsap.delayedCall(1, () => { allowScroll = true; }).pause();
+    const scrollTimeout = gsap.delayedCall(1, () => { allowScroll = true; }).pause();
     const time = 0.5;
     let animating = false;
 
@@ -833,7 +924,7 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
         style={{ alignItems: "start" }}
       >
         <div className="lg:self-start">
-          <TagPill>Base Ground</TagPill>
+          <TagPill>BASE GROUND</TagPill>
           <h2
             className="mt-4"
             style={{
@@ -841,27 +932,32 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
               color: "var(--color-navy)", lineHeight: 1.15, letterSpacing: "-0.01em",
             }}
           >
-            Build Your Foundation<br />Before You Compete.
+            Get the Basics Right. Everything Else Follows.
           </h2>
           <p
             className="mt-4"
             style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "var(--color-gray-text)", lineHeight: 1.65, maxWidth: 480 }}
           >
-            Self-paced. Milestone-driven. Role-specific learning paths curated by experts who&apos;ve been where you want to go.
+            Start with the basics that matter. Base Ground covers core concepts step by step, so you build clarity before moving forward.
           </p>
           <ul className="mt-6 space-y-2.5">
             {[
-              "Expert-curated curriculum",
-              "Self-paced with milestone gates",
-              "Role-specific tracks",
-              "Built-in concept validators",
+              "Beginner-friendly tests with clear explanations",
+              "Topic-wise coverage for complete understanding",
+              "Flexible pace, learn without pressure",
+              "Clear performance insights before you move ahead",
             ].map((f) => (
-              <li key={f} className="flex items-start gap-2.5" style={{ fontFamily: "Inter, sans-serif", fontSize: 15, color: "var(--color-navy)" }}>
+              <li
+                key={f}
+                className="flex items-start gap-2.5"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: 15, color: "var(--color-navy)" }}
+              >
                 <span style={{ color: "var(--color-accent)", fontWeight: 700 }}>✓</span>
                 {f}
               </li>
             ))}
           </ul>
+
           <button
             onClick={onExplore}
             className="story-link mt-8 inline-block"
@@ -877,13 +973,13 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
         <div>
           <div style={{ padding: "2px 0 12px" }}>
             <div style={{ fontFamily: "Inter, sans-serif", color: "var(--color-accent)", fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" }}>
-              Assessments
+              ASSESSMENTS
             </div>
-            <h3 className="mt-2" style={{ fontFamily: "Inter, sans-serif", fontWeight: 800, fontSize: "clamp(22px, 3vw, 32px)", color: "var(--color-navy)", lineHeight: 1.15 }}>
-              Choose Your Proving Ground
+            <h3 className="mt-2" style={{ fontFamily: "Inter, sans-serif", fontWeight: 550, fontSize: "clamp(18px, 2.4vw, 22px)", color: "var(--color-navy)", lineHeight: 1.15 }}>
+              Pick Your Test. Prove You're Ready.
             </h3>
-            <p className="mt-2" style={{ fontFamily: "Inter, sans-serif", fontSize: 15, color: "var(--color-gray-text)" }}>
-              Each assessment is a real challenge. Earn a verified badge when you pass.
+            <p className="mt-2" style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "var(--color-gray-text)" }}>
+              Every assessment here mirrors the real exam, same pressure, <br/> same format, same kind of questions.
             </p>
           </div>
 
@@ -906,74 +1002,313 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
   );
 }
 
-function ProvingGroundMockup() {
+function ProvingGroundDashboard() {
+  const tabs = [
+    {
+      id: "overview",
+      label: "Proving Ground",
+      icon: Target,
+      title: "Performance Trend",
+      subtitle: "Your last five full-length exam attempts",
+      score: "82%",
+      scoreLabel: "Readiness Score",
+      delta: "+6%",
+      accuracy: "76%",
+      rank: "#12",
+      rankLabel: "Top 15%",
+      action: "Start Test",
+      practice: "Full Mock Test",
+      meta: ["90 mins", "High Difficulty"],
+      values: [50, 55, 64, 72, 81],
+      average: [34, 38, 47, 54, 62],
+      insight: "You are exam-ready for timing. Push weak-topic accuracy above 80% before the next attempt.",
+    },
+    {
+      id: "mock-tests",
+      label: "Mock Tests",
+      icon: ClipboardList,
+      title: "Mock Test Queue",
+      subtitle: "Exam-pattern tests matched to your current level",
+      score: "4",
+      scoreLabel: "Available Tests",
+      delta: "2 new",
+      accuracy: "88%",
+      rank: "L4",
+      rankLabel: "Target level",
+      action: "Open Tests",
+      practice: "Cloud Architect Mock",
+      meta: ["65 questions", "Sectional scoring"],
+      values: [42, 48, 57, 68, 74],
+      average: [36, 41, 46, 53, 59],
+      insight: "Next recommended mock test focuses on scenario decisions, service tradeoffs, and time control.",
+    },
+    {
+      id: "previous",
+      label: "Previous Tests",
+      icon: Clock3,
+      title: "Previous Test History",
+      subtitle: "Review score movement and retake signals",
+      score: "5",
+      scoreLabel: "Completed",
+      delta: "+11 pts",
+      accuracy: "18m",
+      rank: "Best",
+      rankLabel: "Time saved",
+      action: "Review Tests",
+      practice: "Retake Missed Sections",
+      meta: ["32 mistakes", "Marked for review"],
+      values: [44, 52, 49, 67, 78],
+      average: [39, 43, 47, 51, 56],
+      insight: "Your strongest jump came after reviewing missed security and networking questions.",
+    },
+    {
+      id: "weak-areas",
+      label: "Weak Areas",
+      icon: BarChart3,
+      title: "Weak Area Recovery",
+      subtitle: "Topics that need focused correction before exam day",
+      score: "3",
+      scoreLabel: "Priority Areas",
+      delta: "Fix first",
+      accuracy: "61%",
+      rank: "Risk",
+      rankLabel: "Networking",
+      action: "Practice Areas",
+      practice: "Targeted Drill Set",
+      meta: ["25 questions", "Adaptive review"],
+      values: [38, 41, 46, 58, 66],
+      average: [35, 39, 43, 49, 55],
+      insight: "Networking, identity, and cost-optimization questions are holding back the final score.",
+    },
+  ] as const;
+
+  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]["id"]>("overview");
+  const active = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
+  const chartPoints = active.values
+    .map((value, index) => `${62 + index * 65},${216 - value * 1.65}`)
+    .join(" ");
+  const averagePoints = active.average
+    .map((value, index) => `${62 + index * 65},${216 - value * 1.65}`)
+    .join(" ");
+
   return (
     <div
+      className="w-full"
       style={{
-        position: "relative",
-        width: "100%",
-        borderRadius: "var(--radius-xl)",
+        background: "#ffffff",
+        border: "1px solid rgba(226,232,240,0.95)",
+        borderRadius: 24,
+        color: "var(--color-navy)",
+        minHeight: 360,
         overflow: "hidden",
-        background: "#050a12",
-        boxShadow: "0 32px 80px -16px rgba(0, 0, 0, 0.5)",
       }}
     >
-      <style>{`
-        @keyframes provingGlow {
-          0% { opacity: 0.35; transform: translate3d(0,0,0) scale(1); }
-          50% { opacity: 0.6; transform: translate3d(18px,-8px,0) scale(1.04); }
-          100% { opacity: 0.35; transform: translate3d(0,0,0) scale(1); }
-        }
-      `}</style>
+      <div className="grid" style={{ gridTemplateColumns: "132px 1fr" }}>
+        <aside
+          style={{
+            borderRight: "1px solid var(--color-border)",
+            padding: "18px 12px",
+            background: "linear-gradient(180deg, #ffffff 0%, #f8fbff 100%)",
+          }}
+        >
+          <Menu size={17} color="#64748B" strokeWidth={2.2} style={{ margin: "0 0 16px 8px" }} />
+          <div className="flex flex-col gap-2">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              const selected = tab.id === active.id;
 
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: -120,
-          background:
-            "radial-gradient(circle at 25% 20%, rgba(29,110,245,0.25), transparent 55%), radial-gradient(circle at 80% 10%, rgba(16,185,129,0.22), transparent 50%), radial-gradient(circle at 70% 80%, rgba(236,72,153,0.18), transparent 55%)",
-          filter: "blur(24px)",
-          animation: "provingGlow 16s ease-in-out infinite",
-        }}
-      />
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  className="flex items-center gap-3 text-left transition-all duration-200"
+                  style={{
+                    border: 0,
+                    borderRadius: 8,
+                    background: selected ? "#EFF6FF" : "transparent",
+                    color: selected ? "var(--color-accent)" : "#334155",
+                    cursor: "pointer",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: 11,
+                    fontWeight: selected ? 700 : 600,
+                    padding: "8px 9px",
+                    boxShadow: selected ? "inset 3px 0 0 var(--color-accent)" : "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!selected) e.currentTarget.style.background = "#F8FAFC";
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!selected) e.currentTarget.style.background = "transparent";
+                  }}
+                  aria-pressed={selected}
+                >
+                  <Icon size={16} strokeWidth={2.1} />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </aside>
 
-      <div
-        style={{
-          position: "relative",
-          height: 500,
-          padding: "26px 24px 22px",
-          display: "grid",
-          gridTemplateRows: "auto 1fr",
-          gap: 20,
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div>
-            <div style={{
-              fontFamily: "IBM Plex Sans, sans-serif",
-              fontSize: 11,
-              letterSpacing: "0.32em",
-              textTransform: "uppercase",
-              color: "rgba(203,213,225,0.54)",
-            }}>
-              Proving Ground
+        <div style={{ padding: "18px 22px 14px" }}>
+          <div className="mb-4 flex items-start justify-between gap-4">
+            <div>
+              <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, letterSpacing: 0, margin: 0 }}>
+                {active.label}
+              </h3>
+              <p style={{ color: "var(--color-gray-text)", fontFamily: "Inter, sans-serif", fontSize: 11, marginTop: 5 }}>
+                Track your performance and improve with every test.
+              </p>
             </div>
-            <div style={{
-              fontFamily: "Fraunces, serif",
-              fontSize: 34,
-              fontWeight: 700,
-              lineHeight: 1.02,
-              letterSpacing: "-0.01em",
-              color: "#e2e8f0",
-              marginTop: 10,
-            }}>
-              Live Assessments
+            <span
+              style={{
+                alignItems: "center",
+                background: "#EFF6FF",
+                borderRadius: 999,
+                color: "var(--color-accent)",
+                display: "inline-flex",
+                fontFamily: "Inter, sans-serif",
+                fontSize: 11,
+                fontWeight: 700,
+                gap: 6,
+                padding: "6px 9px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <Gauge size={14} />
+              Live
+            </span>
+          </div>
+
+          <div className="grid gap-3" style={{ gridTemplateColumns: "1.15fr 0.85fr" }}>
+            <section
+              style={{
+                border: "1px solid var(--color-border)",
+                borderRadius: 12,
+                boxShadow: "0 14px 34px rgba(15,23,42,0.07)",
+                minHeight: 166,
+                padding: 14,
+              }}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 800, margin: 0 }}>
+                    {active.title}
+                  </h4>
+                  <p style={{ color: "var(--color-gray-text)", fontSize: 11, marginTop: 4 }}>{active.subtitle}</p>
+                </div>
+                <div className="flex items-center gap-4" style={{ color: "#64748B", fontSize: 10 }}>
+                  <span className="flex items-center gap-1.5">
+                    <span style={{ width: 16, height: 3, borderRadius: 999, background: "var(--color-accent)" }} />
+                    Your Score
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span style={{ width: 16, height: 2, borderRadius: 999, borderTop: "2px dashed #94A3B8" }} />
+                    Average
+                  </span>
+                </div>
+              </div>
+              <svg viewBox="0 0 380 220" width="100%" height="108" role="img" aria-label={`${active.label} trend chart`}>
+                {[0, 25, 50, 75, 100].map((tick) => (
+                  <g key={tick}>
+                    <line x1="54" x2="350" y1={216 - tick * 1.65} y2={216 - tick * 1.65} stroke="#EEF2F7" />
+                    <text x="10" y={220 - tick * 1.65} fill="#64748B" fontSize="11">{tick}%</text>
+                  </g>
+                ))}
+                <polyline points={averagePoints} fill="none" stroke="#A8B3C5" strokeWidth="2.5" strokeDasharray="7 7" />
+                <polyline points={chartPoints} fill="none" stroke="var(--color-accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                {active.values.map((value, index) => (
+                  <circle key={value + index} cx={62 + index * 65} cy={216 - value * 1.65} r="5" fill="var(--color-accent)" stroke="#fff" strokeWidth="2" />
+                ))}
+                {["T1", "T2", "T3", "T4", "T5"].map((label, index) => (
+                  <text key={label} x={53 + index * 65} y="216" fill="#64748B" fontSize="11">{label}</text>
+                ))}
+              </svg>
+            </section>
+
+            <div className="grid gap-3">
+              {[
+                { icon: Trophy, label: active.scoreLabel, value: active.score, note: active.delta, tint: "#ECFDF5", color: "#10B981" },
+                { icon: Target, label: "Accuracy", value: active.accuracy, note: "+4%", tint: "#EFF6FF", color: "var(--color-accent)" },
+                { icon: FileCheck2, label: "Your Rank", value: active.rank, note: active.rankLabel, tint: "#F0F7FF", color: "#1D4ED8" },
+              ].map((metric) => {
+                const Icon = metric.icon;
+                return (
+                  <article
+                    key={metric.label}
+                    className="flex items-center gap-3"
+                    style={{
+                      border: "1px solid var(--color-border)",
+                      borderRadius: 12,
+                      boxShadow: "0 10px 24px rgba(15,23,42,0.06)",
+                      padding: "10px 12px",
+                    }}
+                  >
+                    <div style={{ width: 36, height: 36, borderRadius: 999, background: metric.tint, color: metric.color, display: "grid", placeItems: "center" }}>
+                      <Icon size={18} strokeWidth={2.1} />
+                    </div>
+                    <div>
+                      <p style={{ color: "#64748B", fontSize: 11, margin: 0 }}>{metric.label}</p>
+                      <strong style={{ display: "block", fontFamily: "Inter, sans-serif", fontSize: 19, lineHeight: 1.1 }}>{metric.value}</strong>
+                      <span style={{ color: metric.color, fontSize: 12, fontWeight: 700 }}>{metric.note}</span>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
-        </div>
 
-        <AnimatedTabs defaultTab="aws" className="max-w-none" />
+          <section
+            className="mt-3 flex items-center justify-between gap-4"
+            style={{
+              border: "1px solid var(--color-border)",
+              borderRadius: 12,
+              boxShadow: "0 14px 34px rgba(15,23,42,0.07)",
+              padding: "10px 13px",
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <div style={{ width: 38, height: 38, borderRadius: 9, background: "#EFF6FF", color: "var(--color-accent)", display: "grid", placeItems: "center" }}>
+                <ClipboardList size={19} />
+              </div>
+              <div>
+                <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 800, margin: 0 }}>{active.practice}</h4>
+                <div className="mt-1.5 flex flex-wrap gap-3" style={{ color: "#64748B", fontSize: 10 }}>
+                  {active.meta.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <button
+              type="button"
+              style={{
+                alignItems: "center",
+                background: "var(--color-accent)",
+                border: 0,
+                borderRadius: 8,
+                boxShadow: "0 12px 28px rgba(37,99,235,0.25)",
+                color: "#fff",
+                cursor: "pointer",
+                display: "inline-flex",
+                fontFamily: "Inter, sans-serif",
+                fontSize: 12,
+                fontWeight: 800,
+                gap: 9,
+                padding: "9px 15px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {active.action}
+              <ArrowRight size={16} />
+            </button>
+          </section>
+
+          <p style={{ color: "#475569", fontSize: 11, lineHeight: 1.4, margin: "8px 2px 0" }}>
+            {active.insight}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -1016,6 +1351,8 @@ function XoneVideoMockup() {
         aspectRatio: "16 / 9",
         background: "var(--color-navy)",      /* fallback while video buffers   */
         overflow: "hidden",                   /* keep children inside the radius */
+        boxShadow:
+          "0 38px 76px rgba(15,23,42,0.20), 0 16px 36px rgba(37,99,235,0.11)",
       }}
     >
       <video
@@ -1059,25 +1396,24 @@ function WalkWaysMiniMockup() {
 
   const TARGET = 42;
 
-  // New SVG icons
   const CheckIcon = () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
   );
-  
+
   const CurrentIcon = () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6" /></svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5.5" /></svg>
   );
 
   const LockIcon = () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="11" width="16" height="10" rx="2" ry="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
   );
 
   const nodes = [
-    { label: "The Spark",      icon: <CheckIcon />,    color: "var(--color-accent)",       ring: "0 0 0 4px rgba(37,99,235,0.25)", bg: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)", textColor: "rgba(255,255,255,0.9)" },
-    { label: "Base Camp",      icon: <CheckIcon />,    color: "var(--color-accent)",       ring: "0 0 0 4px rgba(37,99,235,0.25)", bg: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)", textColor: "rgba(255,255,255,0.9)" },
-    { label: "First Proof",    icon: <CurrentIcon />,  color: "var(--color-warning)",      ring: "0 0 0 4px rgba(245,158,11,0.25)", bg: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", textColor: "var(--color-warning)", isCurrent: true },
-    { label: "Certified",      icon: <LockIcon />,     color: "rgba(255,255,255,0.3)",  ring: "none", bg: "rgba(255,255,255,0.05)", textColor: "rgba(255,255,255,0.3)" },
-    { label: "Professional",   icon: <LockIcon />,     color: "rgba(255,255,255,0.3)",  ring: "none", bg: "rgba(255,255,255,0.05)", textColor: "rgba(255,255,255,0.3)" },
+    { label: "Start", icon: <CheckIcon />, status: "complete" },
+    { label: "Basics", icon: <CheckIcon />, status: "complete" },
+    { label: "Practice", icon: <CurrentIcon />, status: "current" },
+    { label: "Mock", icon: <LockIcon />, status: "locked" },
+    { label: "Interview", icon: <LockIcon />, status: "locked" },
   ];
 
   useEffect(() => {
@@ -1105,204 +1441,218 @@ function WalkWaysMiniMockup() {
   }, []);
 
   return (
-    <div ref={containerRef} className="flex w-full flex-col p-2">
-      {/* Header row */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-[8px] border border-blue-500/20 bg-blue-500/10 text-blue-400">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <div
+      ref={containerRef}
+      className="walkway-path-card relative w-full overflow-hidden rounded-[28px] border border-sky-300/[0.20]"
+      style={{
+        background:
+          "linear-gradient(145deg, #0D4D86 0%, #073F72 42%, #062F58 100%)",
+        boxShadow:
+          "0 30px 80px rgba(15, 23, 42, 0.24), 0 0 0 1px rgba(255,255,255,0.08) inset, 0 1px 0 rgba(255,255,255,0.16) inset",
+        color: "#fff",
+        padding: "clamp(18px, 2.6vw, 28px)",
+      }}
+    >
+      <style>{`
+        .walkway-path-card {
+          transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms ease, border-color 420ms ease;
+          will-change: transform;
+        }
+        .walkway-path-card:hover {
+          transform: translateY(-8px) scale(1.012);
+          border-color: rgba(125, 211, 252, 0.38) !important;
+          box-shadow: 0 36px 86px rgba(14, 116, 144, 0.22), 0 24px 58px rgba(15, 23, 42, 0.26), 0 0 34px rgba(59, 130, 246, 0.18), 0 0 0 1px rgba(255,255,255,0.12) inset, 0 1px 0 rgba(255,255,255,0.18) inset !important;
+        }
+      `}</style>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "repeating-linear-gradient(58deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1px, transparent 1px, transparent 5px)",
+          opacity: 0.42,
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at 48% 26%, rgba(96,165,250,0.28), transparent 34%), radial-gradient(circle at 90% 12%, rgba(125,211,252,0.12), transparent 30%), linear-gradient(180deg, rgba(255,255,255,0.07), transparent 48%)",
+        }}
+      />
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-4">
+          <div
+            className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-[16px] border border-white/[0.12] bg-white/[0.08] text-sky-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] sm:h-[60px] sm:w-[60px]"
+            style={{ backdropFilter: "blur(12px)" }}
+          >
+            <svg width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 7h9a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h12" />
+              <path d="M18 5a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z" />
+              <path d="M2 19a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z" />
+              <path d="M15 5h3" />
+              <path d="M6 19h3" />
+            </svg>
           </div>
-          <span className="text-[15px] font-semibold tracking-wide text-white/90" style={{ fontFamily: "Inter, sans-serif" }}>
-            Your WalkWay
-          </span>
-          {/* "Live" pulse dot */}
-          <div className="ml-1 relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" style={{ animation: triggered ? "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite" : "none" }}></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-500"></span>
+          <h3
+            className="text-[22px] font-extrabold tracking-[-0.02em] text-white sm:text-[28px]"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            Your Path
+          </h3>
+        </div>
+
+        <div className="relative mt-7 overflow-x-auto pb-1 sm:mt-8 sm:overflow-visible">
+          <div className="relative min-w-[560px] sm:min-w-0">
+            <div className="absolute left-[8%] right-[8%] top-[26px] h-[4px] rounded-full bg-slate-950/24" />
+            <div
+              className="absolute left-[8%] top-[26px] h-[4px] rounded-full"
+              style={{
+                width: triggered ? "42%" : "0%",
+                background: "linear-gradient(90deg, #69B8FF 0%, #318BFF 100%)",
+                boxShadow: "0 0 18px rgba(80, 170, 255, 0.62)",
+                transition: "width 1300ms cubic-bezier(0.4,0,0.2,1) 160ms",
+              }}
+            />
+
+            <div className="grid grid-cols-5 items-start">
+              {nodes.map((n, i) => {
+                const delay = 240 + i * 130;
+                const isComplete = n.status === "complete";
+                const isCurrent = n.status === "current";
+                const isLocked = n.status === "locked";
+
+                return (
+                  <div key={n.label} className="relative z-10 flex flex-col items-center">
+                    <div
+                      className="relative flex items-center justify-center rounded-full"
+                      style={{
+                        width: isCurrent ? 58 : 52,
+                        height: isCurrent ? 58 : 52,
+                        color: "#fff",
+                        background: isLocked
+                          ? "rgba(7, 38, 70, 0.78)"
+                          : "linear-gradient(145deg, #60B7FF 0%, #2563EB 100%)",
+                        border: isLocked
+                          ? "2px solid rgba(255,255,255,0.14)"
+                          : "1px solid rgba(255,255,255,0.18)",
+                        boxShadow: isCurrent
+                          ? "0 0 0 7px rgba(96,165,250,0.16), 0 0 0 12px rgba(96,165,250,0.09), 0 12px 24px rgba(37,99,235,0.34), inset 0 2px 0 rgba(255,255,255,0.35)"
+                          : isComplete
+                            ? "0 8px 15px rgba(37,99,235,0.28), inset 0 1px 0 rgba(255,255,255,0.24)"
+                            : "inset 0 1px 0 rgba(255,255,255,0.1)",
+                        opacity: triggered ? 1 : 0,
+                        transform: triggered ? "scale(1)" : "scale(0.78)",
+                        transition: `opacity 350ms ease ${delay}ms, transform 560ms cubic-bezier(0.34,1.56,0.64,1) ${delay}ms`,
+                      }}
+                    >
+                      {isCurrent && (
+                        <div className="absolute inset-2 animate-pulse rounded-full bg-white/10" />
+                      )}
+                      <div
+                        className="relative z-10"
+                        style={{ color: isLocked ? "rgba(255,255,255,0.86)" : "#fff" }}
+                      >
+                        {n.icon}
+                      </div>
+                    </div>
+                    <span
+                      className="mt-3 text-center text-[13px] font-bold tracking-[-0.02em] sm:text-[15px]"
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        color: isCurrent
+                          ? "#45A3FF"
+                          : isLocked
+                            ? "rgba(255,255,255,0.66)"
+                            : "#F8FAFC",
+                        opacity: triggered ? 1 : 0,
+                        transform: triggered ? "translateY(0)" : "translateY(8px)",
+                        transition: `opacity 360ms ease ${delay + 150}ms, transform 360ms ease ${delay + 150}ms`,
+                      }}
+                    >
+                      {n.label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-widest text-white/50">
-          5 Stages
-        </span>
-      </div>
 
-      {/* Stage track — DESKTOP */}
-      <div className="relative mb-8 mt-12 hidden items-start justify-between sm:flex">
-        {/* Ghost track */}
-        <div className="absolute left-[10%] right-[10%] top-5 h-[2px] -translate-y-1/2 overflow-hidden rounded-full bg-white/5" />
-        
-        {/* Animated fill line */}
         <div
-          className="absolute left-[10%] top-5 h-[2px] -translate-y-1/2 rounded-full"
-          style={{
-            background: "linear-gradient(90deg, #3b82f6, #60A5FA)",
-            width: triggered ? "42%" : "0%",
-            transition: "width 1300ms cubic-bezier(0.4,0,0.2,1)",
-            transitionDelay: "150ms",
-            boxShadow: "0 0 12px rgba(59,130,246,0.8)",
-          }}
-        />
-        
-        {nodes.map((n, i) => {
-          const delay = 280 + i * 140;
-          return (
-            <div key={n.label} className="group relative z-10 flex cursor-default flex-col items-center" style={{ flex: 1 }}>
-              <div 
-                className="relative flex items-center justify-center transition-all"
-                style={{
-                  width: 40, height: 40, borderRadius: "12px",
-                  background: triggered ? n.bg : "rgba(255,255,255,0.03)",
-                  color: triggered ? (n.isCurrent ? "#fff" : n.color) : "rgba(255,255,255,0.1)",
-                  boxShadow: triggered ? (n.isCurrent ? "0 0 0 1px rgba(245,158,11,0.5), 0 0 20px rgba(245,158,11,0.3)" : "0 0 0 1px rgba(255,255,255,0.1)") : "0 0 0 1px rgba(255,255,255,0.05)",
-                  transform: triggered ? (n.isCurrent ? "scale(1.1)" : "scale(1)") : "scale(0.8)",
-                  opacity: triggered ? 1 : 0,
-                  transition: `transform 500ms cubic-bezier(0.34,1.56,0.64,1) ${delay}ms, opacity 350ms ease ${delay}ms, background 400ms ease ${delay}ms`,
-                }}
-              >
-                {/* Glow behind current */}
-                {n.isCurrent && triggered && (
-                  <div className="absolute inset-0 animate-pulse rounded-[12px] bg-amber-500/20 blur-md" />
-                )}
-                <div className="relative z-10 text-white drop-shadow-md">
-                  {n.icon}
-                </div>
-              </div>
-              
-              <span 
-                className="mt-4 text-center font-medium tracking-wide" 
-                style={{
-                  fontFamily: "Inter, sans-serif", fontSize: 12,
-                  color: triggered ? n.textColor : "rgba(255,255,255,0)",
-                  opacity: triggered ? 1 : 0,
-                  transform: triggered ? "translateY(0)" : "translateY(10px)",
-                  transition: `opacity 380ms ease ${delay + 160}ms, transform 380ms ease ${delay + 160}ms, color 380ms ease ${delay + 160}ms`,
-                }}
-              >
-                {n.label}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* MOBILE: compact list */}
-      <div className="mt-6 flex flex-col gap-3 sm:hidden">
-        {nodes.map((n, i) => {
-          const delay = 200 + i * 100;
-          const isActive = i < 2;
-          const isCurrent = i === 2;
-          
-          return (
-            <div
-              key={n.label}
-              className="flex items-center gap-4 rounded-xl px-4 py-3"
+          className="mt-6 rounded-[18px] border border-sky-200/[0.14] bg-white/[0.045] p-4 sm:mt-7 sm:p-5"
+          style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.08) inset" }}
+        >
+          <div className="mb-4 flex items-center justify-between gap-5">
+            <h4
+              className="text-[16px] font-extrabold tracking-[-0.02em] text-white sm:text-[18px]"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Overall Progress
+            </h4>
+            <span
+              className="text-[24px] font-extrabold tracking-[-0.04em] text-blue-400 sm:text-[30px]"
               style={{
-                background: isActive ? "linear-gradient(90deg, rgba(37,99,235,0.1), rgba(37,99,235,0.02))" : isCurrent ? "linear-gradient(90deg, rgba(245,158,11,0.15), rgba(245,158,11,0.02))" : "rgba(255,255,255,0.02)",
-                border: `1px solid ${isActive ? "rgba(37,99,235,0.2)" : isCurrent ? "rgba(245,158,11,0.3)" : "rgba(255,255,255,0.05)"}`,
+                fontFamily: "Inter, sans-serif",
                 opacity: triggered ? 1 : 0,
-                transform: triggered ? "translateX(0)" : "translateX(-10px)",
-                transition: `opacity 350ms ease ${delay}ms, transform 350ms ease ${delay}ms`,
+                transform: triggered ? "translateY(0)" : "translateY(6px)",
+                transition: "opacity 400ms ease 760ms, transform 400ms ease 760ms",
               }}
             >
-              <div 
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] shadow-sm"
-                style={{
-                  background: n.bg,
-                  color: "#fff",
-                  boxShadow: isCurrent ? "0 0 12px rgba(245,158,11,0.3)" : "none",
-                }}
-              >
-                {n.icon}
-              </div>
-              <span 
-                className="font-medium tracking-wide"
-                style={{
-                  fontFamily: "Inter, sans-serif", fontSize: 13,
-                  color: isActive || isCurrent ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)",
-                }}
-              >
-                {n.label}
-              </span>
-              {isCurrent && (
-                <span className="ml-auto text-[10px] font-bold uppercase tracking-widest text-amber-500">In Progress</span>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Progress Dashboard Section */}
-      <div className="mt-8 rounded-xl border border-white/5 bg-[#0B1220]/50 p-5 backdrop-blur-sm">
-        <div className="mb-4 flex items-center justify-between">
-          <div className="flex flex-col gap-1">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">Overall Progress</span>
-            <span className="text-[13px] font-semibold text-white/80" style={{ fontFamily: "Inter, sans-serif" }}>Track Milestone</span>
+              {progress}%
+            </span>
           </div>
-          <span
-            className="text-2xl font-bold tracking-tight"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              background: "linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              opacity: triggered ? 1 : 0,
-              transform: triggered ? "translateY(0)" : "translateY(5px)",
-              transition: "opacity 400ms ease 800ms, transform 400ms ease 800ms",
-            }}
-          >
-            {progress}%
-          </span>
+          <div className="relative h-[10px] overflow-hidden rounded-full bg-sky-100/[0.13]">
+            <div
+              className="absolute left-0 top-0 h-full rounded-full"
+              style={{
+                width: triggered ? `${TARGET}%` : "0%",
+                background: "linear-gradient(90deg, #3BA6FF 0%, #247CFF 100%)",
+                boxShadow: "0 0 20px rgba(59,166,255,0.58)",
+                transition: "width 1500ms cubic-bezier(0.2,0.8,0.2,1) 480ms",
+              }}
+            />
+            <div className="absolute inset-x-0 top-0 h-px bg-white/20" />
+          </div>
         </div>
 
-        {/* Bar track */}
-        <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-white/5 shadow-inner">
-          <div
-            className="absolute left-0 top-0 h-full rounded-full"
-            style={{
-              background: "linear-gradient(90deg, #2563EB, #60A5FA, #93C5FD)",
-              width: triggered ? `${TARGET}%` : "0%",
-              transition: "width 1500ms cubic-bezier(0.2, 0.8, 0.2, 1)",
-              transitionDelay: "500ms",
-              boxShadow: "0 0 12px rgba(96,165,250,0.6)",
-            }}
-          />
-          {/* Subtle light reflection on the bar */}
-          <div className="absolute left-0 top-0 h-[1px] w-full bg-white/30" />
-        </div>
-
-        {/* Sub-labels */}
-        <div className="mt-4 flex justify-between px-1">
-          {["Learning", "Practicing", "Certified", "Hired"].map((lbl, i) => (
-            <div key={lbl} className="flex flex-col items-center gap-1.5">
-              <div 
-                className="h-1.5 w-1.5 rounded-full" 
-                style={{
-                  background: i < 2 ? "#60A5FA" : "rgba(255,255,255,0.1)",
-                  boxShadow: i < 2 ? "0 0 6px rgba(96,165,250,0.6)" : "none",
-                  opacity: triggered ? 1 : 0,
-                  transition: `opacity 350ms ease ${700 + i * 80}ms`,
-                }}
-              />
-              <span
-                className="font-medium tracking-wide"
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: 10,
-                  color: i < 2 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.3)",
-                  opacity: triggered ? 1 : 0,
-                  transition: `opacity 350ms ease ${750 + i * 80}ms`,
-                }}
-              >
-                {lbl}
-              </span>
+        <div
+          className="mt-4 grid gap-3.5 rounded-[18px] border border-sky-200/[0.14] bg-white/[0.04] p-4 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:p-5"
+          style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.08) inset" }}
+        >
+          <div className="flex h-[46px] w-[46px] items-center justify-center rounded-[13px] bg-sky-300/10 text-sky-100">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="4" y="5" width="16" height="16" rx="3" />
+              <path d="M8 3v4M16 3v4M4 10h16" />
+              <path d="m9 15 2 2 4-4" />
+            </svg>
+          </div>
+          <div>
+            <div className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-blue-400">
+              Next Step
             </div>
-          ))}
+            <div
+              className="mt-1 text-[16px] font-extrabold tracking-[-0.02em] text-white sm:text-[19px]"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Complete DSA Basics
+            </div>
+          </div>
+          <button
+            type="button"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-[13px] border border-sky-100/[0.14] px-4 text-[13px] font-extrabold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.08]"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            Continue
+            <ArrowRight size={16} strokeWidth={2.6} />
+          </button>
         </div>
       </div>
     </div>
   );
 }
-
 /* ---------------- WHY STATS ---------------- */
 function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement | null>(null);
@@ -1327,6 +1677,270 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
     return () => obs.disconnect();
   }, [to]);
   return <span ref={ref}>{val.toLocaleString()}{suffix}</span>;
+}
+
+function FirstMockTestCTA() {
+  return (
+    <section
+      className="relative overflow-visible"
+      style={{
+        background: `
+          linear-gradient(
+            to bottom,
+            #0A0F1F 0%,
+            #07112C 48%,
+            #0F172A 100%
+          )
+        `,
+        marginTop: -1,
+        minHeight: "112vh",
+        padding: "clamp(64px, 9vh, 92px) max(5vw, 24px) 14vh",
+        zIndex: 1,
+      }}
+    >
+      <style>{`
+        @keyframes mock-card-breathe {
+          0%, 100% { box-shadow: 0 30px 74px rgba(2,6,23,0.32), 0 0 0 1px rgba(255,255,255,0.10) inset; }
+          50% { box-shadow: 0 36px 84px rgba(2,6,23,0.38), 0 0 0 1px rgba(255,255,255,0.16) inset; }
+        }
+        @keyframes mock-card-sheen {
+          0% { transform: translateX(-130%) rotate(12deg); opacity: 0; }
+          18% { opacity: 0.46; }
+          45% { opacity: 0.16; }
+          100% { transform: translateX(130%) rotate(12deg); opacity: 0; }
+        }
+        @keyframes mock-border-orbit {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+        @keyframes mock-mesh-drift {
+          0% { transform: translate3d(-2%, -2%, 0) scale(1); background-position: 12% 18%, 84% 10%, 18% 88%, 90% 76%; }
+          50% { transform: translate3d(2%, 1%, 0) scale(1.04); background-position: 30% 8%, 72% 28%, 8% 72%, 82% 90%; }
+          100% { transform: translate3d(1%, -1%, 0) scale(1.02); background-position: 18% 24%, 92% 16%, 26% 78%, 76% 72%; }
+        }
+        @keyframes mock-wire-drift {
+          0% { transform: translateX(-3%) skewX(-6deg); opacity: 0.52; }
+          50% { transform: translateX(3%) skewX(-6deg); opacity: 0.72; }
+          100% { transform: translateX(-1%) skewX(-6deg); opacity: 0.58; }
+        }
+      `}</style>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 0%, rgba(96,165,250,0.18), transparent 38%), radial-gradient(circle at 12% 62%, rgba(255,255,255,0.08), transparent 30%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0"
+        style={{
+          height: 170,
+          background:
+            "linear-gradient(to bottom, #0A0F1F 0%, rgba(10,15,31,0.72) 42%, rgba(10,15,31,0) 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0"
+        style={{
+          height: 240,
+          background:
+            "linear-gradient(to bottom, rgba(15,23,42,0) 0%, rgba(15,23,42,0.72) 58%, #0F172A 100%)",
+        }}
+      />
+
+      <div
+        className="relative mx-auto max-w-[940px]"
+        style={{
+          position: "sticky",
+          top: "clamp(106px, 16vh, 132px)",
+          zIndex: 1,
+        }}
+      >
+        <div
+          className="relative overflow-hidden text-center"
+          style={{
+            borderRadius: 34,
+            background: "#f5f5f5",
+            minHeight: 288,
+            padding: "clamp(38px, 5.4vw, 62px) clamp(24px, 5vw, 58px)",
+            animation: "mock-card-breathe 7s ease-in-out infinite",
+          }}
+        >
+          <div
+            aria-hidden
+            className="absolute -inset-[12%]"
+            style={{
+              backgroundImage: `
+                radial-gradient(circle at 18% 18%, #fdfdfd 0%, rgba(253,253,253,0) 30%),
+                radial-gradient(circle at 82% 14%, #f4ede5 0%, rgba(244,237,229,0) 34%),
+                radial-gradient(circle at 20% 84%, #e9f2f5 0%, rgba(233,242,245,0) 36%),
+                radial-gradient(circle at 88% 76%, #e7efe8 0%, rgba(231,239,232,0) 34%)
+              `,
+              backgroundColor: "#f5f5f5",
+              backgroundSize: "120% 120%",
+              filter: "blur(16px)",
+              animation: "mock-mesh-drift 12s ease-in-out infinite alternate",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute -inset-[10%]"
+            style={{
+              backgroundImage: `
+                radial-gradient(ellipse at 38% 18%, rgba(255,255,255,0.95), rgba(255,255,255,0) 38%),
+                linear-gradient(118deg, rgba(240,244,248,0.78), rgba(254,246,235,0.58), rgba(230,237,242,0.7))
+              `,
+              opacity: 0.7,
+              filter: "blur(10px)",
+              animation: "mock-wire-drift 10s ease-in-out infinite alternate",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute -inset-[18%]"
+            style={{
+              background:
+                "linear-gradient(132deg, rgba(255,255,255,0.52) 0%, rgba(226,241,255,0.62) 42%, rgba(247,251,255,0.12) 70%)",
+              opacity: 0.45,
+              filter: "blur(18px)",
+              transform: "rotate(-8deg)",
+              animation: "mock-card-sheen 9s ease-in-out infinite",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(120deg, rgba(255,255,255,0.72), rgba(255,255,255,0) 32%, rgba(226,232,240,0.52) 64%, rgba(255,255,255,0.68))",
+              opacity: 0.62,
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute -inset-[2px]"
+            style={{
+              borderRadius: 36,
+              background:
+                "linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.9), rgba(226,232,240,0.9), rgba(255,255,255,0))",
+              backgroundSize: "200% 100%",
+              animation: "mock-border-orbit 8s linear infinite",
+              WebkitMask:
+                "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+              padding: 1,
+              pointerEvents: "none",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute top-0 h-full w-[44%]"
+            style={{
+              left: "10%",
+              background:
+                "linear-gradient(90deg, transparent, rgba(255,255,255,0.86), transparent)",
+              filter: "blur(4px)",
+              animation: "mock-card-sheen 6.5s ease-in-out infinite",
+            }}
+          />
+
+          <div className="relative z-10 mx-auto max-w-[760px]">
+            <div
+              className="mx-auto mb-6 inline-flex items-center gap-2"
+              style={{
+                border: "1px solid rgba(37,99,235,0.14)",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.76)",
+                boxShadow: "0 10px 28px rgba(15,23,42,0.08)",
+                color: "var(--color-accent)",
+                fontFamily: "Inter, sans-serif",
+                fontSize: 11,
+                fontWeight: 800,
+                letterSpacing: 3,
+                padding: "9px 16px",
+                textTransform: "uppercase",
+              }}
+            >
+              <span
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: 999,
+                  background: "var(--color-accent)",
+                  boxShadow: "0 0 16px rgba(37,99,235,0.72)",
+                }}
+              />
+              Ready to prove it?
+            </div>
+
+            <h2
+              style={{
+                color: "var(--color-navy)",
+                fontFamily: "Inter, sans-serif",
+                fontSize: "clamp(34px, 5.8vw, 64px)",
+                fontWeight: 900,
+                letterSpacing: 0,
+                lineHeight: 0.98,
+                margin: 0,
+              }}
+            >
+              First Mock Test.
+              <br />
+              First Reality Check.
+            </h2>
+
+            <p
+              className="mx-auto mt-5"
+              style={{
+                color: "#64748B",
+                fontFamily: "Inter, sans-serif",
+                fontSize: "clamp(15px, 1.75vw, 19px)",
+                fontWeight: 500,
+                lineHeight: 1.55,
+                maxWidth: 720,
+              }}
+            >
+              No guessing, no overthinking. Just sit the test, see your score, and know exactly what to work on next.
+            </p>
+
+            <button
+              type="button"
+              className="mt-8 transition-all duration-300"
+              style={{
+                background: "var(--color-accent)",
+                border: "1px solid rgba(37,99,235,0.18)",
+                borderRadius: 14,
+                boxShadow: "0 18px 44px rgba(37,99,235,0.25)",
+                color: "#fff",
+                cursor: "pointer",
+                fontFamily: "Inter, sans-serif",
+                fontSize: 15,
+                fontWeight: 800,
+                padding: "15px 28px",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "var(--color-accent-hover)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 24px 56px rgba(37,99,235,0.34)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "var(--color-accent)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 18px 44px rgba(37,99,235,0.25)";
+              }}
+            >
+              Start a free trial
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 /* ---------------- FOOTER ---------------- */
@@ -1360,7 +1974,15 @@ function Footer() {
   );
 
   return (
-    <footer style={{ background: "var(--color-navy)", padding: "64px max(5vw, 24px) 0", marginTop: -1 }}>
+    <footer
+      style={{
+        background: "var(--color-navy)",
+        padding: "clamp(76px, 14vh, 122px) max(5vw, 24px) 0",
+        marginTop: "-40vh",
+        position: "relative",
+        zIndex: 5,
+      }}
+    >
       <div className="mx-auto max-w-[1200px]">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
@@ -1473,12 +2095,13 @@ const FloatingAssessmentElements = () => (
     {/* Badge — top-right corner */}
     <div style={{
       position: "absolute", top: "14%", right: "6%",
-      background: "rgba(37,99,235,0.10)",
-      backdropFilter: "blur(12px)",
-      WebkitBackdropFilter: "blur(12px)",
-      border: "1px solid rgba(37,99,235,0.22)",
+      background: "rgba(37,99,235,0.24)",
+      backdropFilter: "blur(20px)",
+      WebkitBackdropFilter: "blur(20px)",
+      border: "1px solid rgba(37,99,235,0.45)",
       borderRadius: 14, padding: "10px 16px",
       display: "flex", alignItems: "center", gap: 9,
+      boxShadow: "0 8px 32px rgba(37,99,235,0.15)",
       animation: "float 9s ease-in-out infinite",
       animationDelay: "0s",
     }}>
@@ -1494,12 +2117,13 @@ const FloatingAssessmentElements = () => (
     {/* Timer — left side */}
     <div style={{
       position: "absolute", top: "38%", left: "3%",
-      background: "rgba(37,99,235,0.10)",
-      backdropFilter: "blur(12px)",
-      WebkitBackdropFilter: "blur(12px)",
-      border: "1px solid rgba(37,99,235,0.20)",
-      borderRadius: 12, padding: "9px 15px",
+      background: "rgba(15,23,42,0.6)",
+      backdropFilter: "blur(24px)",
+      WebkitBackdropFilter: "blur(24px)",
+      border: "1px solid rgba(37,99,235,0.4)",
+      borderRadius: 12, padding: "12px 18px",
       display: "flex", flexDirection: "column", gap: 4,
+      boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
       animation: "float 12s ease-in-out infinite",
       animationDelay: "-4s",
     }}>
@@ -1515,12 +2139,13 @@ const FloatingAssessmentElements = () => (
 
     {/* Score — bottom-right */}
     <div style={{
-      position: "absolute", bottom: "32%", right: "5%",
-      background: "rgba(245,158,11,0.09)",
-      backdropFilter: "blur(12px)",
-      WebkitBackdropFilter: "blur(12px)",
-      border: "1px solid rgba(245,158,11,0.20)",
-      borderRadius: 12, padding: "10px 15px",
+      position: "absolute", bottom: "48%", right: "3%",
+      background: "rgba(15,23,42,0.6)",
+      backdropFilter: "blur(24px)",
+      WebkitBackdropFilter: "blur(24px)",
+      border: "1px solid rgba(245,158,11,0.45)",
+      borderRadius: 12, padding: "12px 18px",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
       animation: "float 11s ease-in-out infinite",
       animationDelay: "-7s",
     }}>
@@ -1538,12 +2163,13 @@ const FloatingAssessmentElements = () => (
     {/* Rank — bottom-left */}
     <div style={{
       position: "absolute", bottom: "15%", left: "4%",
-      background: "rgba(96,165,250,0.09)",
-      backdropFilter: "blur(12px)",
-      WebkitBackdropFilter: "blur(12px)",
-      border: "1px solid rgba(96,165,250,0.18)",
-      borderRadius: 12, padding: "8px 14px",
+      background: "rgba(15,23,42,0.6)",
+      backdropFilter: "blur(24px)",
+      WebkitBackdropFilter: "blur(24px)",
+      border: "1px solid rgba(96,165,250,0.4)",
+      borderRadius: 12, padding: "10px 18px",
       display: "flex", alignItems: "center", gap: 8,
+      boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
       animation: "float 14s ease-in-out infinite",
       animationDelay: "-2s",
     }}>
@@ -1559,12 +2185,13 @@ const FloatingAssessmentElements = () => (
     {/* Live indicator — top-left */}
     <div style={{
       position: "absolute", top: "20%", left: "7%",
-      background: "rgba(239,68,68,0.09)",
-      backdropFilter: "blur(12px)",
-      WebkitBackdropFilter: "blur(12px)",
-      border: "1px solid rgba(239,68,68,0.18)",
-      borderRadius: 99, padding: "7px 14px",
+      background: "rgba(239,68,68,0.22)",
+      backdropFilter: "blur(16px)",
+      WebkitBackdropFilter: "blur(16px)",
+      border: "1px solid rgba(239,68,68,0.45)",
+      borderRadius: 99, padding: "8px 16px",
       display: "flex", alignItems: "center", gap: 7,
+      boxShadow: "0 4px 20px rgba(239,68,68,0.15)",
       animation: "float 10s ease-in-out infinite",
       animationDelay: "-6s",
     }}>
@@ -1804,7 +2431,7 @@ function ExploreSection() {
         position: "relative",
         overflow: "hidden",
         background: "linear-gradient(155deg, #070d1a 0%, #0a1628 45%, #0c1d36 100%)",
-        padding: "200px max(5vw, 40px) 200px",
+        padding: "100px max(5vw, 40px) 160px",
       }}
     >
       {/* ── Canvas: particle knowledge-graph network ── */}
@@ -1823,7 +2450,7 @@ function ExploreSection() {
         aria-hidden
         style={{
           position: "absolute", top: 0, left: 0, right: 0,
-          height: 380,
+          height: 0,
           background: "linear-gradient(to bottom, #ffffff 0%, rgba(219,234,254,0.98) 12%, rgba(147,197,253,0.70) 28%, rgba(59,130,246,0.40) 50%, rgba(37,99,235,0.10) 72%, transparent 100%)",
           pointerEvents: "none", zIndex: 4,
         }}
@@ -1834,8 +2461,12 @@ function ExploreSection() {
         aria-hidden
         style={{
           position: "absolute", bottom: 0, left: 0, right: 0,
-          height: 380,
-          background: "linear-gradient(to top, #ffffff 0%, rgba(219,234,254,0.98) 12%, rgba(147,197,253,0.70) 28%, rgba(59,130,246,0.40) 50%, rgba(37,99,235,0.10) 72%, transparent 100%)",
+          height: 100,
+          background: "linear-gradient(to top, #ffffff 0%, rgba(219,234,254,0.95) 18%, rgba(147,197,253,0.65) 40%, rgba(59,130,246,0.15) 70%, transparent 100%)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          WebkitMaskImage: "linear-gradient(to top, black 0%, black 50%, transparent 100%)",
+          maskImage: "linear-gradient(to top, black 0%, black 50%, transparent 100%)",
           pointerEvents: "none", zIndex: 4,
         }}
       />
@@ -1892,7 +2523,7 @@ function ExploreSection() {
       <div className="relative mx-auto" style={{ maxWidth: 1200, zIndex: 5 }}>
 
         {/* Header */}
-        <section id="products" style={{ marginBottom: 96, opacity: 0, animation: "fadeUp 0.65s cubic-bezier(0.4,0,0.2,1) 0.1s forwards" }}>
+        <section id="products" style={{ marginBottom: 48, opacity: 0, animation: "fadeUp 0.65s cubic-bezier(0.4,0,0.2,1) 0.1s forwards" }}>
           <div className="text-center">
             <div style={{
               display: "inline-block",
@@ -1938,7 +2569,7 @@ function ExploreSection() {
 
         {/* ── Section label: Explore by Track ── */}
         <div style={{
-          display: "flex", alignItems: "center", gap: 14, marginBottom: 40,
+          display: "flex", alignItems: "center", gap: 14, marginBottom: 24,
         }}>
           <span style={{
             fontFamily: "Inter, sans-serif", fontSize: 10.5, fontWeight: 700,
@@ -2022,33 +2653,35 @@ export function Landing() {
 
         <ProductSection
           id="proving-ground"
-          tag="Proving Ground"
-          heading="Where Skills Stop Being Theory."
-          body="Real-world challenges, AI scoring, and verified skill scores employers actually trust."
+          tag="PROVING GROUND"
+          heading="Practice a Full Exam in 90 Minutes, Not Weeks of Guessing."
+          body="At this stage, you're not just studying, you're testing yourself seriously. You'll face the same format, timing, and pressure you'll see in the actual exam."
           features={[
-            "Timed assessments",
-            "AI-assisted + peer evaluation",
-            "Live leaderboard",
-            "Instant verified badge",
+            "Mock tests based on real exam patterns",
+            "Full-length tests with clear result breakdown",
+            "See where you lost marks and what to fix",
+            "Retake tests until you feel fully prepared",
           ]}
           cta="Enter Proving Ground →"
           onCta={() => router.push("/auth")}
-          mockup={<ProvingGroundMockup />}
-          rawMockup
+          mockup={<ProvingGroundDashboard />}
           reverse
+          rawMockup
+          showMockupFromMd
+          shiftMockupLeft
         />
         <div className="mx-auto h-px max-w-[1200px]" style={{ background: "var(--color-border)" }} />
 
         <ProductSection
           id="xone"
-          tag="Xone"
-          heading="Ace Your Next Technical Interview. With AI."
-          body="AI-powered mock interviews that simulate real technical rounds at top companies. Get instant feedback on your code, problem-solving approach, and communication — then chat with your AI interviewer to go deeper."
+          tag="XONE"
+          heading="Interview Practice That Feels Real."
+          body="Xone simulates real interview conditions with relevant questions and clear feedback. Practice, refine your responses, and build confidence before it matters."
           features={[
-            "Timed coding, system design & behavioral rounds",
-            "AI feedback on code quality & approach",
-            "Questions modeled on Google, Meta, Stripe & more",
-            "Chat with your AI interviewer post-round",
+            "Real interview questions, not theory",
+            "Clear, actionable feedback on your responses",
+            "Practice without limits, improve with each attempt",
+            "Builds confidence through repeated, realistic practice",
           ]}
           cta="Start Mock Interview →"
           onCta={() => router.push("/auth")}
@@ -2060,66 +2693,25 @@ export function Landing() {
 
         <ProductSection
           id="walkways-section"
-          tag="WalkWays"
-          heading="The Road from Beginner to Professional. Mapped."
-          body="Guided progression: Base Ground → Proving Ground → Xone, in the exact sequence that takes you from learning to certified to interview-ready."
+          tag="WALKWAYS"
+          heading={<>Stop Figuring It Out Alone.<br />Your AI Career Guide Is Here.</>}
+          body="Most people waste months going in circles... watching videos, reading blogs, still not sure what to do next. WalkWays cuts through all of that. Tell it where you want to go, and it maps out exactly how to get there, certification by certification, step by step."
           features={[
-            "Visual milestone roadmaps",
-            "Adaptive path suggestions",
-            "Community checkpoints",
-            "Professional Track Certificate",
+            "Clear guidance based on how you actually perform",
+            "Roadmaps built around your goals",
+            "Adjusts to your pace as you improve",
+            "Takes you from basics to being fully exam-ready",
           ]}
-          cta="Start Your WalkWay →"
+          cta="Start Your WalkWay, Take Your Demo →"
           onCta={() => router.push("/walkways")}
           mockup={<WalkWaysMiniMockup />}
+          rawMockup
           reverse
         />
 
         <WalkWaysRoadmap />
         
         {/* Smooth Gradient Transition: Light Blue → Dark Blue */}
-        <section
-          className="relative overflow-hidden"
-          style={{
-            background: `
-              linear-gradient(
-                180deg,
-                #F0F6FF     0%,
-                #E8F0FE     8%,
-                #D4E5FB     16%,
-                #B5D4F5     28%,
-                #8DBDE5     42%,
-                #5A9BD8     56%,
-                #3680C9     66%,
-                #1F5BA3     76%,
-                #0F3D7A     84%,
-                #091C4E     92%,
-                #0F172A    100%
-              )
-            `,
-            padding: "80px max(5vw, 24px)",
-            marginTop: -2,
-            position: "relative",
-          }}
-        >
-          {/* Subtle animated gradient overlay for depth */}
-          <div 
-            aria-hidden 
-            className="pointer-events-none absolute inset-0" 
-            style={{
-              background: `
-                linear-gradient(
-                  135deg,
-                  rgba(255,255,255,0.08) 0%,
-                  rgba(255,255,255,0.02) 50%,
-                  rgba(37,99,235,0.04) 100%
-                )
-              `,
-              mixBlendMode: "overlay",
-            }}
-          />
-        </section>
-
         {/* FAQ Section with Deep Dark Background */}
         <section
           className="relative overflow-hidden"
@@ -2127,14 +2719,19 @@ export function Landing() {
             background: `
               linear-gradient(
                 to bottom,
-                #0F172A    0%,
-                #091438   20%,
-                #070D22   50%,
-                #050820   72%,
-                #0A0F1F  100%
+                #F0F6FF 0%,
+                #FFFFFF 4%,
+                #F0F6FF 8%,
+                #D8EBFF 12%,
+                #143C78 18%,
+                #0F172A 27%,
+                #091438 42%,
+                #070D22 66%,
+                #050820 84%,
+                #0A0F1F 100%
               )
             `,
-            marginTop: -1,
+            marginTop: 0,
           }}
         >
           <div aria-hidden className="pointer-events-none absolute" style={{
@@ -2154,11 +2751,21 @@ export function Landing() {
             background: "radial-gradient(ellipse, rgba(96,165,250,0.10) 0%, transparent 65%)",
             filter: "blur(60px)",
           }} />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0"
+            style={{
+              height: 220,
+              background:
+                "linear-gradient(to bottom, rgba(10,15,31,0), rgba(10,15,31,0.7) 48%, #0A0F1F 100%)",
+            }}
+          />
           <FAQSection
             title="Everything you need to know."
             items={FAQS}
           />
         </section>
+        <FirstMockTestCTA />
         <Footer />
       </main>
     </>

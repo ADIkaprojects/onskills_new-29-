@@ -47,8 +47,8 @@ export function WalkWaysRoadmap() {
     <section
       ref={sectionRef}
       style={{
-        padding: "100px max(5vw, 24px)",
-        background: "linear-gradient(135deg, #F0F6FF 0%, var(--color-white) 60%, #F0F6FF 100%)",
+        padding: "88px max(5vw, 24px) 32px",
+        background: "linear-gradient(180deg, #F0F6FF 0%, var(--color-white) 52%, #F0F6FF 100%)",
       }}
     >
       <div className="mx-auto max-w-[1200px]">
@@ -80,14 +80,13 @@ export function WalkWaysRoadmap() {
               lineHeight: 1.15,
             }}
           >
-            Your WalkWay to Becoming a Professional Developer
+            You're Not Lost. You Just Haven't Started Yet.
           </h2>
           <p
             className="mx-auto mt-4 max-w-[640px]"
             style={{ fontFamily: "DM Sans, sans-serif", fontSize: 17, color: "var(--color-gray-text)" }}
           >
-            A structured progression system: master the fundamentals, prove your skills,
-            and unlock real opportunities — every step verified.
+            Every professional you look up to started exactly where you are. OnSkill maps out the whole journey, your first spark, your first proof, and every milestone in between,  until certified isn't just a goal, it's your reality.
           </p>
         </div>
 

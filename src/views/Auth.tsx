@@ -590,15 +590,16 @@ export function Auth() {
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center p-[60px_48px] text-center text-white">
           <h2 style={{ fontFamily: "Sora, sans-serif", fontWeight: 800, fontSize: 38, lineHeight: 1.15 }}>
-            Your skills.
+            Practice Today.
             <br />
-            Verified. Unstoppable.
+             Certify Tomorrow.
           </h2>
           <p
             className="mx-auto mt-4 max-w-[360px]"
             style={{ fontFamily: "DM Sans, sans-serif", fontSize: 16, color: "rgba(255,255,255,0.80)" }}
           >
-            Build a verified, employer-trusted skill profile through structured learning and real-world challenges.
+            Thousands of learners and professionals are already preparing on OnSkill. Your exam 
+prep, your mock tests, your certification journey it all lives herex
           </p>
 
           {/* FLOATING SKILL CARD */}
