@@ -68,7 +68,7 @@ export const FAQSection = ({
       className={cn("relative w-full overflow-hidden", className)}
       style={{
         background: "transparent",
-        padding: "72px max(5vw, 24px) 56px",
+        padding: "176px max(5vw, 24px) 56px",
       }}
     >
       <div
