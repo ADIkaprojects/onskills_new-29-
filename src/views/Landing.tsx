@@ -21,6 +21,7 @@ import {
   Target,
   Trophy,
 } from "lucide-react";
+import { FloatingPaths } from "@/components/ui/background-paths";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -103,23 +104,42 @@ function Hero() {
         }}
       />
 
-      {/* ── Static diagonal line texture (lighter than animated paths) ── */}
+      {/* ── Animated blue path lines (fade toward lower hero) ── */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage:
-            "repeating-linear-gradient(24deg, rgba(59,130,246,0.20) 0px, rgba(59,130,246,0.20) 2px, rgba(59,130,246,0) 2px, rgba(59,130,246,0) 14px)",
-          backgroundPosition: "center -40px",
-          filter: "blur(0.6px)",
           WebkitMaskImage:
-            "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.85) 36%, rgba(0,0,0,0.35) 72%, rgba(0,0,0,0) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 38%, rgba(0,0,0,0.28) 70%, rgba(0,0,0,0) 100%)",
           maskImage:
-            "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.85) 36%, rgba(0,0,0,0.35) 72%, rgba(0,0,0,0) 100%)",
-          opacity: 0.55,
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 38%, rgba(0,0,0,0.28) 70%, rgba(0,0,0,0) 100%)",
+          filter: "blur(0.2px)",
           zIndex: 0,
         }}
-      />
+      >
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+
+        {/* Left origin starts richer and then softly releases */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(100deg, rgba(29,78,216,0.28) 0%, rgba(59,130,246,0.17) 22%, rgba(96,165,250,0.09) 42%, rgba(147,197,253,0.04) 62%, rgba(255,255,255,0) 82%)",
+            mixBlendMode: "multiply",
+          }}
+        />
+
+        {/* Protect headline area with a soft atmospheric fade */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 46% 30% at 50% 32%, rgba(247,251,255,0.84) 0%, rgba(247,251,255,0.54) 45%, rgba(247,251,255,0) 100%)",
+            filter: "blur(14px)",
+          }}
+        />
+      </div>
 
       {/* ── Orb system — 5 layered, smooth, mix-blended ── */}
 
@@ -280,8 +300,8 @@ function Hero() {
             fontFamily: "Inter, sans-serif",
             fontSize: 17,
             color: "var(--color-gray-text)",
-            lineHeight: 1.55,
-            opacity: 0,
+            lineHeight: 1.50,
+            opacity: 0.9,
             animation: "fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.4s forwards",
           }}
         >
@@ -1392,262 +1412,433 @@ function XoneVideoMockup() {
 function WalkWaysMiniMockup() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [triggered, setTriggered] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  const TARGET = 42;
-
-  const CheckIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-  );
-
-  const CurrentIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5.5" /></svg>
-  );
-
-  const LockIcon = () => (
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="11" width="16" height="10" rx="2" ry="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
-  );
-
-  const nodes = [
-    { label: "Start", icon: <CheckIcon />, status: "complete" },
-    { label: "Basics", icon: <CheckIcon />, status: "complete" },
-    { label: "Practice", icon: <CurrentIcon />, status: "current" },
-    { label: "Mock", icon: <LockIcon />, status: "locked" },
-    { label: "Interview", icon: <LockIcon />, status: "locked" },
-  ];
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        setTriggered(true);
-        const start = performance.now();
-        const dur = 1500;
-        const tick = (now: number) => {
-          const t = Math.min(1, (now - start) / dur);
-          const eased = 1 - Math.pow(1 - t, 3);
-          setProgress(Math.round(TARGET * eased));
-          if (t < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        obs.disconnect();
-      },
-      { threshold: 0.35 }
+      ([entry]) => { if (entry.isIntersecting) { setTriggered(true); obs.disconnect(); } },
+      { threshold: 0.2 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
+  type NodeStatus = "complete" | "active" | "locked";
+
+  const phases: {
+    phase: string; color: string; glow: string; nodes: { label: string; sub: string; status: NodeStatus; tag?: string }[];
+  }[] = [
+    {
+      phase: "Phase 1 — Foundation",
+      color: "#34d399", glow: "rgba(52,211,153,0.35)",
+      nodes: [
+        { label: "Python Fundamentals", sub: "OOP, data structures, algorithms", status: "complete", tag: "Done" },
+        { label: "Math & Statistics", sub: "Linear algebra, probability, calculus", status: "complete", tag: "Done" },
+        { label: "SQL & Data Skills", sub: "Queries, joins, aggregations", status: "complete", tag: "Done" },
+      ],
+    },
+    {
+      phase: "Phase 2 — Machine Learning Core",
+      color: "#60a5fa", glow: "rgba(96,165,250,0.28)",
+      nodes: [
+        { label: "Supervised Learning", sub: "Regression, classification, SVMs", status: "complete", tag: "Done" },
+        { label: "Unsupervised Learning", sub: "Clustering, PCA, autoencoders", status: "active", tag: "In Progress" },
+        { label: "Feature Engineering", sub: "Selection, encoding, scaling", status: "locked" },
+      ],
+    },
+    {
+      phase: "Phase 3 — LLM & Deployment",
+      color: "#7dd3fc", glow: "rgba(125,211,252,0.26)",
+      nodes: [
+        { label: "Transformer Basics", sub: "Attention, embeddings, tuning", status: "locked" },
+        { label: "RAG Systems", sub: "Retrieval-augmented generation pipelines", status: "locked" },
+        { label: "API Design for AI", sub: "FastAPI, async, streaming responses", status: "locked" },
+      ],
+    },
+  ];
+
+  const navItems = [
+    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>, label: "Overview", active: false },
+    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>, label: "Roadmap", active: true },
+    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>, label: "Progress", active: false },
+    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>, label: "Resources", active: false },
+  ];
+
+  const stats = [
+    { label: "Completed", value: "4", unit: "modules", color: "#0ea5e9" },
+    { label: "In Progress", value: "1", unit: "module", color: "#60a5fa" },
+    { label: "Remaining", value: "9", unit: "modules", color: "#64748b" },
+  ];
+
   return (
     <div
       ref={containerRef}
-      className="walkway-path-card relative w-full overflow-hidden rounded-[28px] border border-sky-300/[0.20]"
+      className="onskill-mockup-card relative w-full overflow-hidden rounded-[22px] border border-white/[0.10]"
       style={{
-        background:
-          "linear-gradient(145deg, #0D4D86 0%, #073F72 42%, #062F58 100%)",
-        boxShadow:
-          "0 30px 80px rgba(15, 23, 42, 0.24), 0 0 0 1px rgba(255,255,255,0.08) inset, 0 1px 0 rgba(255,255,255,0.16) inset",
-        color: "#fff",
-        padding: "clamp(18px, 2.6vw, 28px)",
+        background: "linear-gradient(165deg, #f8fbff 0%, #eff6ff 52%, #e6f0ff 100%)",
+        boxShadow: "0 24px 60px rgba(30,64,175,0.16), 0 0 0 1px rgba(148,163,184,0.24) inset",
+        fontFamily: "'Inter', sans-serif",
       }}
     >
       <style>{`
-        .walkway-path-card {
-          transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms ease, border-color 420ms ease;
+        .onskill-mockup-card {
+          transition: transform 360ms cubic-bezier(0.22,1,0.36,1), box-shadow 360ms ease, border-color 280ms ease;
           will-change: transform;
         }
-        .walkway-path-card:hover {
-          transform: translateY(-8px) scale(1.012);
-          border-color: rgba(125, 211, 252, 0.38) !important;
-          box-shadow: 0 36px 86px rgba(14, 116, 144, 0.22), 0 24px 58px rgba(15, 23, 42, 0.26), 0 0 34px rgba(59, 130, 246, 0.18), 0 0 0 1px rgba(255,255,255,0.12) inset, 0 1px 0 rgba(255,255,255,0.18) inset !important;
+        .onskill-mockup-card:hover {
+          transform: translateY(-4px) scale(1.006);
+          box-shadow: 0 34px 76px rgba(37,99,235,0.24), 0 14px 34px rgba(59,130,246,0.16), 0 0 0 1px rgba(59,130,246,0.24) inset !important;
         }
+        .rm-scroll::-webkit-scrollbar { width: 8px; }
+        .rm-scroll::-webkit-scrollbar-track { background: rgba(148,163,184,0.18); border-radius: 99px; }
+        .rm-scroll::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, rgba(59,130,246,0.7), rgba(96,165,250,0.9)); border-radius: 99px; border: 1px solid rgba(255,255,255,0.65); }
+        .rm-node-enter { animation: rmNodeIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+        @keyframes rmNodeIn { from { opacity:0; transform: translateX(-12px); } to { opacity:1; transform: translateX(0); } }
+        .rm-phase-enter { animation: rmPhaseIn 0.45s cubic-bezier(0.4,0,0.2,1) both; }
+        @keyframes rmPhaseIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+        .rm-fade-bottom { mask-image: linear-gradient(to bottom, #000 74%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 100%); }
+        @keyframes rmScrollNudge { 0%,100%{ transform: translateY(0); } 50% { transform: translateY(3px); } }
       `}</style>
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "repeating-linear-gradient(58deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1px, transparent 1px, transparent 5px)",
-          opacity: 0.42,
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 48% 26%, rgba(96,165,250,0.28), transparent 34%), radial-gradient(circle at 90% 12%, rgba(125,211,252,0.12), transparent 30%), linear-gradient(180deg, rgba(255,255,255,0.07), transparent 48%)",
-        }}
-      />
 
-      <div className="relative z-10">
-        <div className="flex items-center gap-4">
+      {/* ── Browser chrome ── */}
+      <div
+        style={{
+          background: "rgba(255,255,255,0.82)",
+          borderBottom: "1px solid rgba(148,163,184,0.34)",
+          padding: "10px 14px",
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+        }}
+      >
+        {/* Traffic lights */}
+        <div style={{ display: "flex", gap: 5, flexShrink: 0 }}>
+          {["#ff5f57","#febc2e","#28c840"].map((c) => (
+            <div key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c, opacity: 0.85 }} />
+          ))}
+        </div>
+        {/* URL bar */}
+        <div
+          style={{
+            flex: 1,
+            background: "rgba(241,245,249,0.95)",
+            border: "1px solid rgba(148,163,184,0.34)",
+            borderRadius: 7,
+            padding: "4px 10px",
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+          }}
+        >
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(30,41,59,0.55)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+          </svg>
+          <span style={{ fontSize: 10.5, color: "rgba(30,41,59,0.64)", letterSpacing: "0.01em" }}>
+            onskill.rabbitt.ai
+          </span>
+        </div>
+        {/* Right controls */}
+        <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+          {[
+            <svg key="s" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(30,41,59,0.48)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>,
+            <svg key="b" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(30,41,59,0.48)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>,
+          ]}
+        </div>
+      </div>
+
+      {/* ── App shell ── */}
+      <div style={{ display: "flex", height: 448 }}>
+
+        {/* ── Sidebar ── */}
+        <div
+          style={{
+            width: 144,
+            flexShrink: 0,
+            borderRight: "1px solid rgba(148,163,184,0.30)",
+            background: "linear-gradient(180deg, rgba(239,246,255,0.94) 0%, rgba(231,240,255,0.9) 100%)",
+            display: "flex",
+            flexDirection: "column",
+            padding: "16px 0",
+            gap: 5,
+          }}
+        >
+          {/* Logo mark */}
+          <div style={{ padding: "0 12px 14px", borderBottom: "1px solid rgba(148,163,184,0.26)", marginBottom: 10 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{
+                width: 24, height: 24, borderRadius: 7,
+                background: "rgba(255,255,255,0.95)",
+                border: "1px solid rgba(148,163,184,0.28)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0,
+                overflow: "hidden",
+              }}>
+                <img src="/onskill-logo.png" alt="OnSkill logo" style={{ width: 16, height: 16, objectFit: "contain" }} />
+              </div>
+              <span style={{ fontSize: 11, fontWeight: 700, color: "#1e3a8a", letterSpacing: "-0.01em" }}>OnSkill</span>
+            </div>
+          </div>
+          {navItems.map((item) => (
+            <div
+              key={item.label}
+              style={{
+                display: "flex", alignItems: "center", gap: 8,
+                padding: "8px 12px",
+                borderRadius: 0,
+                background: item.active ? "rgba(37,99,235,0.14)" : "transparent",
+                borderLeft: item.active ? "2px solid #3b82f6" : "2px solid transparent",
+                color: item.active ? "#1d4ed8" : "#64748b",
+                cursor: "default",
+                transition: "all 180ms ease",
+              }}
+            >
+              {item.icon}
+              <span style={{ fontSize: 11, fontWeight: item.active ? 600 : 500 }}>{item.label}</span>
+            </div>
+          ))}
+
+          {/* Stats mini panel */}
+          <div style={{ marginTop: "auto", padding: "12px 10px 0", borderTop: "1px solid rgba(148,163,184,0.26)" }}>
+            {stats.map((s) => (
+              <div key={s.label} style={{ marginBottom: 9 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                  <span style={{ fontSize: 10, color: "#64748b", fontWeight: 500 }}>{s.label}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: s.color }}>{s.value}</span>
+                </div>
+                <div style={{ fontSize: 9, color: "#94a3b8", marginTop: 1 }}>{s.unit}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Main roadmap content ── */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+
+          {/* Top bar */}
+          <div style={{
+            padding: "11px 16px",
+            borderBottom: "1px solid rgba(148,163,184,0.28)",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            background: "rgba(255,255,255,0.72)",
+            flexShrink: 0,
+          }}>
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#0f172a", letterSpacing: "-0.01em" }}>
+                AI Engineer Roadmap
+              </div>
+              <div style={{ fontSize: 10, color: "#64748b", marginTop: 1 }}>
+                4 of 20 modules completed · 18 weeks to mastery
+              </div>
+            </div>
+            <div style={{
+              background: "rgba(37,99,235,0.22)",
+              border: "1px solid rgba(59,130,246,0.32)",
+              borderRadius: 8,
+              padding: "4px 10px",
+              fontSize: 10,
+              fontWeight: 600,
+              color: "#1d4ed8",
+            }}>
+              20% Done
+            </div>
+          </div>
+
+          {/* Overall progress bar */}
+          <div style={{ padding: "8px 16px 0", flexShrink: 0 }}>
+            <div style={{ height: 4, borderRadius: 99, background: "rgba(148,163,184,0.26)", overflow: "hidden" }}>
+              <div style={{
+                height: "100%",
+                width: triggered ? "20%" : "0%",
+                borderRadius: 99,
+                background: "linear-gradient(90deg, #7dd3fc, #60a5fa, #3b82f6)",
+                transition: "width 1600ms cubic-bezier(0.2,0.8,0.2,1) 400ms",
+                boxShadow: "0 0 10px rgba(59,130,246,0.32)",
+              }} />
+            </div>
+          </div>
+
+          {/* Scrollable roadmap tree */}
           <div
-            className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-[16px] border border-white/[0.12] bg-white/[0.08] text-sky-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] sm:h-[60px] sm:w-[60px]"
-            style={{ backdropFilter: "blur(12px)" }}
+            className="rm-scroll rm-fade-bottom"
+            style={{ flex: 1, overflowY: "scroll", padding: "18px 20px 38px", position: "relative" }}
           >
-            <svg width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 7h9a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h12" />
-              <path d="M18 5a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z" />
-              <path d="M2 19a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z" />
-              <path d="M15 5h3" />
-              <path d="M6 19h3" />
-            </svg>
-          </div>
-          <h3
-            className="text-[22px] font-extrabold tracking-[-0.02em] text-white sm:text-[28px]"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            Your Path
-          </h3>
-        </div>
+            {phases.map((phase, pi) => (
+              <div
+                key={phase.phase}
+                className={triggered ? "rm-phase-enter" : ""}
+                style={{
+                  animationDelay: triggered ? `${pi * 80}ms` : "0ms",
+                  marginBottom: 24,
+                  opacity: triggered ? undefined : 0,
+                }}
+              >
+                {/* Phase header */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+                  <div style={{
+                    width: 6, height: 6, borderRadius: "50%",
+                    background: phase.color,
+                    boxShadow: `0 0 8px ${phase.glow}`,
+                    flexShrink: 0,
+                  }} />
+                  <span style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: phase.color }}>
+                    {phase.phase}
+                  </span>
+                  <div style={{ flex: 1, height: 1, background: `linear-gradient(to right, ${phase.color}30, transparent)` }} />
+                </div>
 
-        <div className="relative mt-7 overflow-x-auto pb-1 sm:mt-8 sm:overflow-visible">
-          <div className="relative min-w-[560px] sm:min-w-0">
-            <div className="absolute left-[8%] right-[8%] top-[26px] h-[4px] rounded-full bg-slate-950/24" />
-            <div
-              className="absolute left-[8%] top-[26px] h-[4px] rounded-full"
-              style={{
-                width: triggered ? "42%" : "0%",
-                background: "linear-gradient(90deg, #69B8FF 0%, #318BFF 100%)",
-                boxShadow: "0 0 18px rgba(80, 170, 255, 0.62)",
-                transition: "width 1300ms cubic-bezier(0.4,0,0.2,1) 160ms",
-              }}
-            />
+                {/* Branch tree nodes */}
+                <div style={{ paddingLeft: 18, display: "flex", flexDirection: "column", gap: 10 }}>
+                  {phase.nodes.map((node, ni) => {
+                    const isComplete = node.status === "complete";
+                    const isActive = node.status === "active";
+                    const isLast = ni === phase.nodes.length - 1;
 
-            <div className="grid grid-cols-5 items-start">
-              {nodes.map((n, i) => {
-                const delay = 240 + i * 130;
-                const isComplete = n.status === "complete";
-                const isCurrent = n.status === "current";
-                const isLocked = n.status === "locked";
-
-                return (
-                  <div key={n.label} className="relative z-10 flex flex-col items-center">
-                    <div
-                      className="relative flex items-center justify-center rounded-full"
-                      style={{
-                        width: isCurrent ? 58 : 52,
-                        height: isCurrent ? 58 : 52,
-                        color: "#fff",
-                        background: isLocked
-                          ? "rgba(7, 38, 70, 0.78)"
-                          : "linear-gradient(145deg, #60B7FF 0%, #2563EB 100%)",
-                        border: isLocked
-                          ? "2px solid rgba(255,255,255,0.14)"
-                          : "1px solid rgba(255,255,255,0.18)",
-                        boxShadow: isCurrent
-                          ? "0 0 0 7px rgba(96,165,250,0.16), 0 0 0 12px rgba(96,165,250,0.09), 0 12px 24px rgba(37,99,235,0.34), inset 0 2px 0 rgba(255,255,255,0.35)"
-                          : isComplete
-                            ? "0 8px 15px rgba(37,99,235,0.28), inset 0 1px 0 rgba(255,255,255,0.24)"
-                            : "inset 0 1px 0 rgba(255,255,255,0.1)",
-                        opacity: triggered ? 1 : 0,
-                        transform: triggered ? "scale(1)" : "scale(0.78)",
-                        transition: `opacity 350ms ease ${delay}ms, transform 560ms cubic-bezier(0.34,1.56,0.64,1) ${delay}ms`,
-                      }}
-                    >
-                      {isCurrent && (
-                        <div className="absolute inset-2 animate-pulse rounded-full bg-white/10" />
-                      )}
+                    return (
                       <div
-                        className="relative z-10"
-                        style={{ color: isLocked ? "rgba(255,255,255,0.86)" : "#fff" }}
+                        key={node.label}
+                        className={triggered ? "rm-node-enter" : ""}
+                        style={{
+                          animationDelay: triggered ? `${pi * 80 + ni * 60 + 120}ms` : "0ms",
+                          display: "flex", alignItems: "flex-start", gap: 10, position: "relative",
+                          opacity: triggered ? undefined : 0,
+                        }}
                       >
-                        {n.icon}
+                        {/* Branch line */}
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, paddingTop: 2 }}>
+                          <div style={{
+                            width: 14, height: 1,
+                            background: isComplete ? phase.color : isActive ? phase.color : "rgba(148,163,184,0.55)",
+                            marginTop: 7, marginRight: -1,
+                            alignSelf: "flex-start",
+                            position: "relative",
+                            left: -14,
+                          }} />
+                        </div>
+
+                        {/* Node dot + connector */}
+                        <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
+                          {!isLast && (
+                            <div style={{
+                              position: "absolute", top: 17, left: "50%", transform: "translateX(-50%)",
+                              width: 1, height: "calc(100% + 6px)",
+                              background: isComplete
+                                ? `linear-gradient(to bottom, ${phase.color}60, ${phase.color}20)`
+                                : "rgba(148,163,184,0.45)",
+                            }} />
+                          )}
+                          <div style={{
+                            width: isActive ? 14 : 11,
+                            height: isActive ? 14 : 11,
+                            borderRadius: "50%",
+                            flexShrink: 0,
+                            background: isComplete
+                              ? phase.color
+                              : isActive
+                                ? "transparent"
+                                : "rgba(203,213,225,0.55)",
+                            border: isActive
+                              ? `2px solid ${phase.color}`
+                              : isComplete
+                                ? "none"
+                                : "1.5px solid rgba(148,163,184,0.62)",
+                            boxShadow: isComplete
+                              ? `0 0 10px ${phase.glow}`
+                              : isActive
+                                ? `0 0 0 3px ${phase.color}28, 0 0 14px ${phase.glow}`
+                                : "none",
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            position: "relative", zIndex: 1,
+                          }}>
+                            {isComplete && (
+                              <svg width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            )}
+                            {isActive && (
+                              <div style={{ width: 5, height: 5, borderRadius: "50%", background: phase.color }} />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Node content */}
+                        <div style={{
+                          flex: 1,
+                          background: isActive
+                            ? `linear-gradient(135deg, ${phase.color}14 0%, ${phase.color}08 100%)`
+                            : isComplete
+                              ? "rgba(255,255,255,0.78)"
+                              : "rgba(255,255,255,0.56)",
+                          border: isActive
+                            ? `1px solid ${phase.color}38`
+                            : isComplete
+                              ? "1px solid rgba(148,163,184,0.36)"
+                              : "1px solid rgba(148,163,184,0.28)",
+                          borderRadius: 10,
+                          padding: "10px 12px",
+                          marginBottom: isLast ? 0 : 0,
+                        }}>
+                          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 6 }}>
+                            <span style={{
+                              fontSize: 11.5,
+                              fontWeight: 600,
+                              color: isComplete
+                                ? "#0f172a"
+                                : isActive
+                                  ? "#0f172a"
+                                  : "#64748b",
+                              letterSpacing: "-0.01em",
+                            }}>
+                              {node.label}
+                            </span>
+                            {node.tag && (
+                              <span style={{
+                                fontSize: 8.5, fontWeight: 700, letterSpacing: "0.06em",
+                                padding: "2px 6px", borderRadius: 4, flexShrink: 0,
+                                background: isActive ? `${phase.color}28` : isComplete ? "rgba(52,211,153,0.15)" : "transparent",
+                                color: isActive ? phase.color : isComplete ? "#34d399" : "transparent",
+                                border: isActive ? `1px solid ${phase.color}40` : isComplete ? "1px solid rgba(52,211,153,0.28)" : "none",
+                              }}>
+                                {node.tag}
+                              </span>
+                            )}
+                            {!node.tag && node.status === "locked" && (
+                              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="rgba(100,116,139,0.7)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                            )}
+                          </div>
+                          <div style={{ fontSize: 10, color: "#64748b", marginTop: 3 }}>
+                            {node.sub}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <span
-                      className="mt-3 text-center text-[13px] font-bold tracking-[-0.02em] sm:text-[15px]"
-                      style={{
-                        fontFamily: "Inter, sans-serif",
-                        color: isCurrent
-                          ? "#45A3FF"
-                          : isLocked
-                            ? "rgba(255,255,255,0.66)"
-                            : "#F8FAFC",
-                        opacity: triggered ? 1 : 0,
-                        transform: triggered ? "translateY(0)" : "translateY(8px)",
-                        transition: `opacity 360ms ease ${delay + 150}ms, transform 360ms ease ${delay + 150}ms`,
-                      }}
-                    >
-                      {n.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
 
-        <div
-          className="mt-6 rounded-[18px] border border-sky-200/[0.14] bg-white/[0.045] p-4 sm:mt-7 sm:p-5"
-          style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.08) inset" }}
-        >
-          <div className="mb-4 flex items-center justify-between gap-5">
-            <h4
-              className="text-[16px] font-extrabold tracking-[-0.02em] text-white sm:text-[18px]"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              Overall Progress
-            </h4>
-            <span
-              className="text-[24px] font-extrabold tracking-[-0.04em] text-blue-400 sm:text-[30px]"
-              style={{
-                fontFamily: "Inter, sans-serif",
-                opacity: triggered ? 1 : 0,
-                transform: triggered ? "translateY(0)" : "translateY(6px)",
-                transition: "opacity 400ms ease 760ms, transform 400ms ease 760ms",
-              }}
-            >
-              {progress}%
-            </span>
-          </div>
-          <div className="relative h-[10px] overflow-hidden rounded-full bg-sky-100/[0.13]">
-            <div
-              className="absolute left-0 top-0 h-full rounded-full"
-              style={{
-                width: triggered ? `${TARGET}%` : "0%",
-                background: "linear-gradient(90deg, #3BA6FF 0%, #247CFF 100%)",
-                boxShadow: "0 0 20px rgba(59,166,255,0.58)",
-                transition: "width 1500ms cubic-bezier(0.2,0.8,0.2,1) 480ms",
-              }}
-            />
-            <div className="absolute inset-x-0 top-0 h-px bg-white/20" />
-          </div>
-        </div>
-
-        <div
-          className="mt-4 grid gap-3.5 rounded-[18px] border border-sky-200/[0.14] bg-white/[0.04] p-4 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:p-5"
-          style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.08) inset" }}
-        >
-          <div className="flex h-[46px] w-[46px] items-center justify-center rounded-[13px] bg-sky-300/10 text-sky-100">
-            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="4" y="5" width="16" height="16" rx="3" />
-              <path d="M8 3v4M16 3v4M4 10h16" />
-              <path d="m9 15 2 2 4-4" />
-            </svg>
-          </div>
-          <div>
-            <div className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-blue-400">
-              Next Step
-            </div>
-            <div
-              className="mt-1 text-[16px] font-extrabold tracking-[-0.02em] text-white sm:text-[19px]"
-              style={{ fontFamily: "Inter, sans-serif" }}
-            >
-              Complete DSA Basics
+            {/* Sticky scroll cue */}
+            <div style={{ position: "sticky", bottom: 8, display: "flex", justifyContent: "center", paddingTop: 8, pointerEvents: "none" }}>
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "5px 10px",
+                borderRadius: 999,
+                background: "rgba(239,246,255,0.92)",
+                border: "1px solid rgba(59,130,246,0.30)",
+                boxShadow: "0 8px 18px rgba(37,99,235,0.16)",
+                color: "#1d4ed8",
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+              }}>
+                Scroll
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", animation: "rmScrollNudge 1.6s ease-in-out infinite" }}>
+                  <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+              </div>
             </div>
           </div>
-          <button
-            type="button"
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-[13px] border border-sky-100/[0.14] px-4 text-[13px] font-extrabold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.08]"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
-            Continue
-            <ArrowRight size={16} strokeWidth={2.6} />
-          </button>
         </div>
       </div>
     </div>
@@ -2707,6 +2898,7 @@ export function Landing() {
           mockup={<WalkWaysMiniMockup />}
           rawMockup
           reverse
+          shiftMockupLeft
         />
 
         <WalkWaysRoadmap />
