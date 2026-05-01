@@ -20,6 +20,16 @@ import {
   Menu,
   Target,
   Trophy,
+  TrendingUp,
+  TrendingDown,
+  ChevronDown,
+  Info,
+  Lightbulb,
+  Activity,
+  CheckCircle2,
+  XCircle,
+  LayoutDashboard,
+  Calendar,
 } from "lucide-react";
 import { FloatingPaths } from "@/components/ui/background-paths";
 
@@ -447,39 +457,111 @@ const CARD_HEIGHT = 460; // px — height of each stacking card
 const FAQS = [
   {
     id: 1,
-    question: "What exactly is OnSKILL and who is it for?",
+    question: "What exactly is OnSkill?",
     answer:
-      "OnSKILL is a skill-verification platform for tech professionals. Whether you are a self-taught developer, a bootcamp graduate, or a seasoned engineer, OnSKILL gives you timed assessments, verified badges, and a ranked profile that employers can trust - no resume embellishment required.",
+      "OnSkill is a performance-focused certification exam preparation platform that helps you practice through real exam-pattern mock tests and assessments. Instead of just learning concepts, it helps you understand how well you can apply your knowledge in actual exam conditions.",
   },
   {
     id: 2,
-    question: "How are assessments different from regular online quizzes?",
+    question: "Is OnSkill suitable for both beginners and experienced learners?",
     answer:
-      "Assessments on OnSKILL are timed, proctored, and scored by a combination of AI evaluation and peer review. Each result maps to a percentile ranking and issues a cryptographically signed badge - not just a certificate image anyone can fake.",
+      "Yes, OnSkill is designed for all levels. If you're a beginner, you can build your fundamentals step by step. If you already have knowledge, you can use it as a mock test and practice platform to test your readiness and improve your performance.",
   },
   {
     id: 3,
-    question: "What tracks and technologies are currently available?",
+    question: "What are 4 features in OnSkill, and how do they help in my preparation?",
     answer:
-      "We currently offer six tracks: Frontend, Backend, System Design, DevOps, Data & Algorithms, and AI & ML. Each track contains multiple assessments from beginner to advanced, with new modules added every sprint.",
+      "OnSkill is built around four key parts, each supporting a different stage of your exam preparation journey. Walkways gives you a clear roadmap for certification preparation. Base Ground helps you build fundamentals through structured practice. Proving Ground allows you to take full-length mock tests in a real exam environment. And Xone helps you practice interview questions for technical interview preparation.",
   },
   {
     id: 4,
-    question: "Is the free tier actually useful, or just a teaser?",
+    question: "What does Walkways do in OnSkill?",
     answer:
-      "The free tier gives you full access to beginner-level assessments in every track, your public skill profile, one verified badge, and the global leaderboard. Paid plans unlock advanced assessments, mock interviews via Xone, and priority badge processing.",
+      "Walkways helps you plan your certification exam preparation by providing a clear roadmap based on your goal and current level, so you always know what to focus on next.",
   },
   {
     id: 5,
-    question: "How does the global ranking work?",
+    question: "What is Base Ground used for?",
     answer:
-      "Your rank is calculated from a weighted skill score across all completed assessments - time taken, accuracy, and difficulty all factor in. Rankings update in real time after every submission, so improving your score immediately moves you up the leaderboard.",
+      "Base Ground helps you build strong fundamentals for certification exam preparation through structured practice before moving on to advanced mock tests.",
   },
   {
     id: 6,
-    question: "Can I use my OnSKILL badges on LinkedIn or my resume?",
+    question: "What is Proving Ground in OnSkill?",
     answer:
-      "Yes. Every badge comes with a shareable URL, an Open Badges 2.0 compliant JSON file, and a LinkedIn 'Add to Profile' direct link. Recruiters can click through to verify authenticity on our public badge registry at any time.",
+      "Proving Ground is where you take full-length online mock tests in a real exam-like environment to test your performance under actual exam conditions.",
+  },
+  {
+    id: 7,
+    question: "What is Xone used for?",
+    answer:
+      "Xone is designed for interview preparation, allowing you to practice real-world interview questions and improve how you respond in technical interviews.",
+  },
+  {
+    id: 8,
+    question: "How is OnSkill different from other learning platforms?",
+    answer:
+      "Most platforms focus on teaching concepts. OnSkill focuses on performance-based learning through mock tests, assessments, and real exam simulations, helping you prepare more effectively for certification exams.",
+  },
+  {
+    id: 9,
+    question: "Can I use OnSkill alongside my current study material?",
+    answer:
+      "Yes, OnSkill works as a practice and mock test platform alongside your existing study material, helping you test your knowledge and improve your exam performance.",
+  },
+  {
+    id: 10,
+    question: "What kind of exams can I prepare for using OnSkill?",
+    answer:
+      "OnSkill is designed for certification exams and technical assessments that require structured preparation, time-bound practice, and real-world application.",
+  },
+  {
+    id: 11,
+    question: "How does OnSkill help me improve if I don’t score well in a test?",
+    answer:
+      "OnSkill provides detailed performance insights after every test, showing your weak areas, topic wise mistakes, and progress through visual analysis. This helps you improve your exam performance step by step instead of guessing what to study next.",
+  },
+  {
+    id: 12,
+    question: "How do I know which areas I should focus on while preparing?",
+    answer:
+      "OnSkill identifies your weak and strong areas based on your test performance, helping you focus your exam preparation strategy on the topics that need the most improvement.",
+  },
+  {
+    id: 13,
+    question: "Can I retake tests or practice multiple times?",
+    answer:
+      "Yes, you can take mock tests multiple times. Repeated practice helps you improve your performance in real exams and track your progress.",
+  },
+  {
+    id: 14,
+    question: "Will I be able to track my progress over time?",
+    answer:
+      "Yes, OnSkill allows you to track your performance over time with clear insights, helping you measure improvement in your mock test scores and exam readiness.",
+  },
+  {
+    id: 15,
+    question: "How does OnSkill help with interview preparation?",
+    answer:
+      "OnSkill supports technical interview preparation by allowing you to practice real interview questions in realistic scenarios, improving how you answer and perform.",
+  },
+  {
+    id: 16,
+    question: "Is OnSkill suitable for working professionals as well?",
+    answer:
+      "Yes, OnSkill is flexible and works well for working professionals who want to improve their certification exam preparation and interview readiness without spending long hours studying.",
+  },
+  {
+    id: 17,
+    question: "How does Walkways guide me if I don’t have a clear plan for my exam preparation?",
+    answer:
+      "Walkways creates a structured roadmap for your certification exam preparation, helping you move step by step without confusion and focus on the right areas.",
+  },
+  {
+    id: 18,
+    question: "Will practicing on OnSkill actually help me perform better in real exams or interviews?",
+    answer:
+      "Yes, since OnSkill provides real exam-like mock tests and interview practice, it helps you get used to the format, timing, and difficulty level, improving your actual performance.",
   },
 ];
 
@@ -687,7 +769,12 @@ function ProductSection({
   const mockupVisibilityClass = showMockupOnMobile ? "block" : showMockupFromMd ? "hidden md:block" : "hidden lg:block";
 
   return (
-    <section id={id} ref={ref} className="py-12">
+    <section
+      id={id}
+      ref={ref}
+      className="py-12"
+      style={{ scrollMarginTop: 170 }}
+    >
       <div
         className={`mx-auto grid ${showMockupFromMd ? "max-w-[1180px] gap-10" : "max-w-[1200px] gap-12"} grid-cols-1 items-center ${layoutClass}`}
         style={{ minHeight: 480 }}
@@ -936,6 +1023,7 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
       style={{
         padding: "52px max(5vw, 24px) 8px",
         overflow: "hidden",
+        scrollMarginTop: 170,
       }}
     >
       <div
@@ -962,10 +1050,10 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
           </p>
           <ul className="mt-6 space-y-2.5">
             {[
-              "Beginner-friendly tests with clear explanations",
-              "Topic-wise coverage for complete understanding",
-              "Flexible pace, learn without pressure",
-              "Clear performance insights before you move ahead",
+              "50+ beginner-level assessments",
+              "100% syllabus coverage, topic by topic",
+              "Self-paced, no time penalties",
+              "Topic-level score breakdown, every attempt",
             ].map((f) => (
               <li
                 key={f}
@@ -1005,7 +1093,13 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
 
           <div
             ref={cardsContainerRef}
-            style={{ position: "relative", height: 600, width: "100%", marginTop: 14, transformStyle: "preserve-3d" }}
+            style={{
+              position: "relative",
+              height: "clamp(440px, 52vw, 500px)",
+              width: "100%",
+              marginTop: 14,
+              transformStyle: "preserve-3d",
+            }}
           >
             {ASSESSMENTS.map((assessment, i) => (
               <div
@@ -1022,12 +1116,10 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
   );
 }
 
-function ProvingGroundDashboard() {
-  const tabs = [
-    {
+function ProvingGroundOverview() {
+  const active = {
       id: "overview",
       label: "Proving Ground",
-      icon: Target,
       title: "Performance Trend",
       subtitle: "Your last five full-length exam attempts",
       score: "82%",
@@ -1042,74 +1134,463 @@ function ProvingGroundDashboard() {
       values: [50, 55, 64, 72, 81],
       average: [34, 38, 47, 54, 62],
       insight: "You are exam-ready for timing. Push weak-topic accuracy above 80% before the next attempt.",
-    },
-    {
-      id: "mock-tests",
-      label: "Mock Tests",
-      icon: ClipboardList,
-      title: "Mock Test Queue",
-      subtitle: "Exam-pattern tests matched to your current level",
-      score: "4",
-      scoreLabel: "Available Tests",
-      delta: "2 new",
-      accuracy: "88%",
-      rank: "L4",
-      rankLabel: "Target level",
-      action: "Open Tests",
-      practice: "Cloud Architect Mock",
-      meta: ["65 questions", "Sectional scoring"],
-      values: [42, 48, 57, 68, 74],
-      average: [36, 41, 46, 53, 59],
-      insight: "Next recommended mock test focuses on scenario decisions, service tradeoffs, and time control.",
-    },
-    {
-      id: "previous",
-      label: "Previous Tests",
-      icon: Clock3,
-      title: "Previous Test History",
-      subtitle: "Review score movement and retake signals",
-      score: "5",
-      scoreLabel: "Completed",
-      delta: "+11 pts",
-      accuracy: "18m",
-      rank: "Best",
-      rankLabel: "Time saved",
-      action: "Review Tests",
-      practice: "Retake Missed Sections",
-      meta: ["32 mistakes", "Marked for review"],
-      values: [44, 52, 49, 67, 78],
-      average: [39, 43, 47, 51, 56],
-      insight: "Your strongest jump came after reviewing missed security and networking questions.",
-    },
-    {
-      id: "weak-areas",
-      label: "Weak Areas",
-      icon: BarChart3,
-      title: "Weak Area Recovery",
-      subtitle: "Topics that need focused correction before exam day",
-      score: "3",
-      scoreLabel: "Priority Areas",
-      delta: "Fix first",
-      accuracy: "61%",
-      rank: "Risk",
-      rankLabel: "Networking",
-      action: "Practice Areas",
-      practice: "Targeted Drill Set",
-      meta: ["25 questions", "Adaptive review"],
-      values: [38, 41, 46, 58, 66],
-      average: [35, 39, 43, 49, 55],
-      insight: "Networking, identity, and cost-optimization questions are holding back the final score.",
-    },
-  ] as const;
-
-  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]["id"]>("overview");
-  const active = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
+  };
   const chartPoints = active.values
     .map((value, index) => `${62 + index * 65},${216 - value * 1.65}`)
     .join(" ");
   const averagePoints = active.average
     .map((value, index) => `${62 + index * 65},${216 - value * 1.65}`)
     .join(" ");
+
+  return (
+    <div style={{ padding: "18px 22px 14px", height: "100%", display: "flex", flexDirection: "column" }}>
+      <div className="mb-4 flex items-start justify-between gap-4">
+        <div>
+          <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, letterSpacing: 0, margin: 0 }}>
+            {active.label}
+          </h3>
+          <p style={{ color: "var(--color-gray-text)", fontFamily: "Inter, sans-serif", fontSize: 11, marginTop: 5 }}>
+            Track your performance and improve with every test.
+          </p>
+        </div>
+        <span
+          style={{
+            alignItems: "center",
+            background: "#EFF6FF",
+            borderRadius: 999,
+            color: "var(--color-accent)",
+            display: "inline-flex",
+            fontFamily: "Inter, sans-serif",
+            fontSize: 11,
+            fontWeight: 700,
+            gap: 6,
+            padding: "6px 9px",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <Gauge size={14} />
+          Live
+        </span>
+      </div>
+
+      <div className="grid gap-3" style={{ gridTemplateColumns: "1.15fr 0.85fr" }}>
+        <section
+          style={{
+            border: "1px solid var(--color-border)",
+            borderRadius: 12,
+            boxShadow: "0 14px 34px rgba(15,23,42,0.07)",
+            minHeight: 166,
+            padding: 14,
+          }}
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 800, margin: 0 }}>
+                {active.title}
+              </h4>
+              <p style={{ color: "var(--color-gray-text)", fontSize: 11, marginTop: 4 }}>{active.subtitle}</p>
+            </div>
+            <div className="flex items-center gap-4" style={{ color: "#64748B", fontSize: 10 }}>
+              <span className="flex items-center gap-1.5">
+                <span style={{ width: 16, height: 3, borderRadius: 999, background: "var(--color-accent)" }} />
+                Your Score
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span style={{ width: 16, height: 2, borderRadius: 999, borderTop: "2px dashed #94A3B8" }} />
+                Average
+              </span>
+            </div>
+          </div>
+          <svg viewBox="0 0 380 220" width="100%" height="108" role="img" aria-label={`${active.label} trend chart`}>
+            {[0, 25, 50, 75, 100].map((tick) => (
+              <g key={tick}>
+                <line x1="54" x2="350" y1={216 - tick * 1.65} y2={216 - tick * 1.65} stroke="#EEF2F7" />
+                <text x="10" y={220 - tick * 1.65} fill="#64748B" fontSize="11">{tick}%</text>
+              </g>
+            ))}
+            <polyline points={averagePoints} fill="none" stroke="#A8B3C5" strokeWidth="2.5" strokeDasharray="7 7" />
+            <polyline points={chartPoints} fill="none" stroke="var(--color-accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+            {active.values.map((value, index) => (
+              <circle key={value + index} cx={62 + index * 65} cy={216 - value * 1.65} r="5" fill="var(--color-accent)" stroke="#fff" strokeWidth="2" />
+            ))}
+            {["T1", "T2", "T3", "T4", "T5"].map((label, index) => (
+              <text key={label} x={53 + index * 65} y="216" fill="#64748B" fontSize="11">{label}</text>
+            ))}
+          </svg>
+        </section>
+
+        <div className="grid gap-3">
+          {[
+            { icon: Trophy, label: active.scoreLabel, value: active.score, note: active.delta, tint: "#ECFDF5", color: "#10B981" },
+            { icon: Target, label: "Accuracy", value: active.accuracy, note: "+4%", tint: "#EFF6FF", color: "var(--color-accent)" },
+            { icon: FileCheck2, label: "Your Rank", value: active.rank, note: active.rankLabel, tint: "#F0F7FF", color: "#1D4ED8" },
+          ].map((metric) => {
+            const Icon = metric.icon;
+            return (
+              <article
+                key={metric.label}
+                className="flex items-center gap-3"
+                style={{
+                  border: "1px solid var(--color-border)",
+                  borderRadius: 12,
+                  boxShadow: "0 10px 24px rgba(15,23,42,0.06)",
+                  padding: "10px 12px",
+                }}
+              >
+                <div style={{ width: 36, height: 36, borderRadius: 999, background: metric.tint, color: metric.color, display: "grid", placeItems: "center" }}>
+                  <Icon size={18} strokeWidth={2.1} />
+                </div>
+                <div>
+                  <p style={{ color: "#64748B", fontSize: 11, margin: 0 }}>{metric.label}</p>
+                  <strong style={{ display: "block", fontFamily: "Inter, sans-serif", fontSize: 19, lineHeight: 1.1 }}>{metric.value}</strong>
+                  <span style={{ color: metric.color, fontSize: 12, fontWeight: 700 }}>{metric.note}</span>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+
+      <section
+        className="mt-auto pt-3 flex items-center justify-between gap-4"
+      >
+        <div className="flex items-center gap-4 w-full" style={{
+          border: "1px solid var(--color-border)",
+          borderRadius: 12,
+          boxShadow: "0 14px 34px rgba(15,23,42,0.07)",
+          padding: "10px 13px",
+          display: "flex",
+          justifyContent: "space-between"
+        }}>
+          <div className="flex items-center gap-3">
+            <div style={{ width: 38, height: 38, borderRadius: 9, background: "#EFF6FF", color: "var(--color-accent)", display: "grid", placeItems: "center" }}>
+              <ClipboardList size={19} />
+            </div>
+            <div>
+              <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 800, margin: 0 }}>{active.practice}</h4>
+              <div className="mt-1.5 flex flex-wrap gap-3" style={{ color: "#64748B", fontSize: 10 }}>
+                {active.meta.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            style={{
+              alignItems: "center",
+              background: "var(--color-accent)",
+              border: 0,
+              borderRadius: 8,
+              boxShadow: "0 12px 28px rgba(37,99,235,0.25)",
+              color: "#fff",
+              cursor: "pointer",
+              display: "inline-flex",
+              fontFamily: "Inter, sans-serif",
+              fontSize: 12,
+              fontWeight: 800,
+              gap: 9,
+              padding: "9px 15px",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {active.action}
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      </section>
+
+      <p style={{ color: "#475569", fontSize: 11, lineHeight: 1.4, margin: "8px 2px 0" }}>
+        {active.insight}
+      </p>
+    </div>
+  );
+}
+
+function MockTestsView() {
+  const tests = [
+    { bg: "#FEF3C7", color: "#D97706", tag: "JS", name: "JavaScript Full Mock Test", meta: "90 mins • 100 Questions • High Difficulty" },
+    { bg: "#EDE9FE", color: "#7C3AED", tag: "DSA", name: "DSA Full Mock Test", meta: "90 mins • 100 Questions • High Difficulty" },
+    { bg: "#D1FAE5", color: "#059669", tag: "Apt", name: "Aptitude Full Mock Test", meta: "60 mins • 60 Questions • Medium Difficulty" },
+    { bg: "#DBEAFE", color: "#2563EB", tag: "CS", name: "Computer Science Mock Test", meta: "90 mins • 100 Questions • High Difficulty" },
+  ];
+
+  return (
+    <div style={{ padding: "18px 22px 14px", height: "100%", display: "flex", flexDirection: "column" }}>
+      <div className="flex items-start justify-between">
+        <div>
+          <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, margin: 0, color: "var(--color-navy)" }}>Mock Tests</h3>
+          <p style={{ color: "#64748B", fontSize: 11, marginTop: 4 }}>Take full-length tests and track your real exam readiness.</p>
+        </div>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#EFF6FF", color: "#2563EB", padding: "6px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#2563EB", animation: "blink 1.5s infinite" }} /> Live
+        </span>
+      </div>
+
+      <div className="mt-5 grid grid-cols-4 gap-3">
+        {[
+          { label: "Tests Attempted", val: "12", sub: "This Month", icon: ClipboardList, bg: "#EFF6FF", col: "#2563EB" },
+          { label: "Average Score", val: "72%", sub: "This Month", icon: TrendingUp, bg: "#ECFDF5", col: "#10B981" },
+          { label: "Best Score", val: "88%", sub: "JS Mock Test", icon: Trophy, bg: "#F3E8FF", col: "#9333EA" },
+          { label: "Average Time", val: "78 min", sub: "Per Test", icon: Clock3, bg: "#FFFBEB", col: "#F59E0B" },
+        ].map((s, i) => (
+          <div key={i} style={{ border: "1px solid #E2E8F0", borderRadius: 12, padding: "12px", display: "flex", flexDirection: "column", gap: 8, boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+              <div style={{ width: 32, height: 32, borderRadius: "50%", background: s.bg, color: s.col, display: "grid", placeItems: "center" }}>
+                <s.icon size={16} strokeWidth={2.5} />
+              </div>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ fontSize: 10, color: "#64748B", fontWeight: 500 }}>{s.label}</div>
+              </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: "auto" }}>
+              <span style={{ fontSize: 20, fontWeight: 800, color: "var(--color-navy)" }}>{s.val}</span>
+            </div>
+            <div style={{ fontSize: 10, color: "#94A3B8" }}>{s.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 flex-1 flex flex-col" style={{ border: "1px solid #E2E8F0", borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 6px rgba(0,0,0,0.02)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 16px", borderBottom: "1px solid #E2E8F0", background: "#F8FAFC" }}>
+          <h4 style={{ fontWeight: 700, fontSize: 12, color: "var(--color-navy)" }}>Available Mock Tests</h4>
+          <button style={{ fontSize: 11, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}>All Tests <ChevronDown size={14}/></button>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {tests.map((t, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", padding: "10px 16px", borderBottom: i < tests.length - 1 ? "1px solid #F1F5F9" : "none" }}>
+              <div style={{ width: 32, height: 32, borderRadius: 8, background: t.bg, color: t.color, fontWeight: 800, fontSize: 12, display: "grid", placeItems: "center", marginRight: 14 }}>{t.tag}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 700, fontSize: 13, color: "var(--color-navy)" }}>{t.name}</div>
+                <div style={{ fontSize: 10, color: "#64748B", marginTop: 2 }}>{t.meta}</div>
+              </div>
+              <button style={{ padding: "6px 12px", border: "1px solid #E2E8F0", borderRadius: 6, fontSize: 11, fontWeight: 700, color: "#2563EB", display: "flex", alignItems: "center", gap: 6, background: "#fff", transition: "all 0.2s" }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#2563EB"; e.currentTarget.style.color = "#1D4ED8"; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E2E8F0"; e.currentTarget.style.color = "#2563EB"; }}>
+                Start Test <ArrowRight size={14} strokeWidth={2.5}/>
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="mt-4" style={{ padding: "10px 14px", background: "#F8FAFC", borderRadius: 8, fontSize: 11, color: "#64748B", display: "flex", gap: 8, alignItems: "center", border: "1px solid #F1F5F9" }}>
+        <Info size={14} color="#3B82F6" strokeWidth={2.5} />
+        Simulates the real exam environment. Review your performance after each test.
+      </div>
+    </div>
+  );
+}
+
+function PreviousTestsView() {
+  const tests = [
+    { tag: "JS", name: "JavaScript Full Mock Test", score: "88%", scoreCol: "#10B981", acc: "80%", time: "82 mins", date: "18 May, 2025" },
+    { tag: "</>", name: "DSA Full Mock Test", score: "74%", scoreCol: "#2563EB", acc: "72%", time: "91 mins", date: "16 May, 2025" },
+    { tag: "@", name: "Aptitude Full Mock Test", score: "60%", scoreCol: "#F59E0B", acc: "68%", time: "65 mins", date: "14 May, 2025" },
+    { tag: "CS", name: "Computer Science Mock Test", score: "81%", scoreCol: "#10B981", acc: "78%", time: "85 mins", date: "12 May, 2025" },
+    { tag: "JS", name: "JavaScript Full Mock Test", score: "69%", scoreCol: "#2563EB", acc: "66%", time: "88 mins", date: "10 May, 2025" },
+  ];
+
+  return (
+    <div style={{ padding: "18px 22px 14px", height: "100%", display: "flex", flexDirection: "column" }}>
+      <div className="flex items-start justify-between">
+        <div>
+          <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, margin: 0, color: "var(--color-navy)" }}>Previous Tests</h3>
+          <p style={{ color: "#64748B", fontSize: 11, marginTop: 4 }}>Review your past performance and track your improvement.</p>
+        </div>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#EFF6FF", color: "#2563EB", padding: "6px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#2563EB", animation: "blink 1.5s infinite" }} /> Live
+        </span>
+      </div>
+
+      <div className="mt-5 grid grid-cols-[1fr_2.5fr] gap-4" style={{ background: "#F8FAFC", borderRadius: 12, padding: "16px", border: "1px solid #E2E8F0" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", borderRight: "1px solid #E2E8F0", paddingRight: 16 }}>
+          <div style={{ width: 64, height: 64, borderRadius: "50%", background: "conic-gradient(#2563EB 72%, #E2E8F0 0)", display: "grid", placeItems: "center", position: "relative" }}>
+            <div style={{ width: 52, height: 52, borderRadius: "50%", background: "#F8FAFC", display: "grid", placeItems: "center", fontSize: 16, fontWeight: 800, color: "var(--color-navy)" }}>
+              72%
+            </div>
+          </div>
+          <div style={{ fontSize: 10, color: "#64748B", fontWeight: 600, marginTop: 8 }}>Average Score</div>
+        </div>
+        
+        <div className="grid grid-cols-3 gap-3 items-center">
+          {[
+            { icon: ClipboardList, val: "12", label: "Tests Attempted", bg: "#EFF6FF", col: "#2563EB" },
+            { icon: TrendingUp, val: "5", label: "Tests Improved", bg: "#ECFDF5", col: "#10B981" },
+            { icon: TrendingDown, val: "2", label: "Tests Declined", bg: "#FEF2F2", col: "#EF4444" },
+          ].map((s, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ width: 36, height: 36, borderRadius: 8, background: s.bg, color: s.col, display: "grid", placeItems: "center" }}>
+                <s.icon size={18} strokeWidth={2.5} />
+              </div>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: "var(--color-navy)", lineHeight: 1.1 }}>{s.val}</div>
+                <div style={{ fontSize: 10, color: "#64748B", marginTop: 2 }}>{s.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-5 flex-1 flex flex-col" style={{ border: "1px solid #E2E8F0", borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 6px rgba(0,0,0,0.02)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 16px", borderBottom: "1px solid #E2E8F0" }}>
+          <h4 style={{ fontWeight: 700, fontSize: 12, color: "var(--color-navy)" }}>Test History</h4>
+          <button style={{ fontSize: 11, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}>All Tests <ChevronDown size={14}/></button>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1.5fr 0.5fr 0.5fr 0.8fr 1fr 0.2fr", padding: "10px 16px", fontSize: 10, fontWeight: 600, color: "#94A3B8", borderBottom: "1px solid #E2E8F0" }}>
+          <div>Test Name</div>
+          <div>Score</div>
+          <div>Accuracy</div>
+          <div>Time Taken</div>
+          <div>Date</div>
+          <div></div>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+          {tests.map((t, i) => (
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1.5fr 0.5fr 0.5fr 0.8fr 1fr 0.2fr", alignItems: "center", padding: "10px 16px", borderBottom: i < tests.length - 1 ? "1px solid #F1F5F9" : "none", fontSize: 11 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ width: 24, height: 24, borderRadius: 6, background: "#F1F5F9", color: "#64748B", fontWeight: 800, fontSize: 9, display: "grid", placeItems: "center", ...(t.tag === 'JS' ? { background: '#FEF3C7', color: '#D97706'} : t.tag === '</>' ? {background: '#EDE9FE', color: '#7C3AED'} : t.tag === '@' ? {background: '#D1FAE5', color: '#059669'} : {background: '#DBEAFE', color: '#2563EB'}) }}>{t.tag}</div>
+                <span style={{ fontWeight: 600, color: "#475569" }}>{t.name}</span>
+              </div>
+              <div style={{ fontWeight: 800, color: t.scoreCol }}>{t.score}</div>
+              <div style={{ color: "#475569", fontWeight: 500 }}>{t.acc}</div>
+              <div style={{ color: "#64748B", display: "flex", alignItems: "center", gap: 4 }}><Clock3 size={12}/> {t.time}</div>
+              <div style={{ color: "#64748B" }}>{t.date}</div>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}><ChevronDown size={14} color="#94A3B8" style={{ transform: "rotate(-90deg)" }} /></div>
+            </div>
+          ))}
+          <div style={{ marginTop: "auto", padding: "10px", display: "flex", justifyContent: "center", borderTop: "1px solid #E2E8F0" }}>
+            <button style={{ color: "#2563EB", fontSize: 11, fontWeight: 700, display: "flex", alignItems: "center", gap: 4, background: "transparent", border: "none", cursor: "pointer" }}>
+              Load More <ChevronDown size={14} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WeakAreasView() {
+  const topics = [
+    { name: "JavaScript", val: 85, col: "#10B981" },
+    { name: "Data Structures", val: 72, col: "#2563EB" },
+    { name: "Algorithms", val: 58, col: "#F59E0B" },
+    { name: "DBMS", val: 45, col: "#EF4444" },
+    { name: "Operating Systems", val: 38, col: "#8B5CF6" },
+    { name: "Computer Networks", val: 30, col: "#F97316" },
+  ];
+  
+  return (
+    <div style={{ padding: "18px 22px 14px", height: "100%", display: "flex", flexDirection: "column" }}>
+      <div className="flex items-start justify-between">
+        <div>
+          <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, margin: 0, color: "var(--color-navy)" }}>Weak Areas</h3>
+          <p style={{ color: "#64748B", fontSize: 11, marginTop: 4 }}>Focus on your weak topics and improve your performance.</p>
+        </div>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#EFF6FF", color: "#2563EB", padding: "6px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#2563EB", animation: "blink 1.5s infinite" }} /> Live
+        </span>
+      </div>
+
+      <div className="mt-4 flex-1 grid gap-4" style={{ gridTemplateRows: "1.1fr 0.9fr" }}>
+        
+        {/* Performance by Topic Bar Chart */}
+        <div style={{ border: "1px solid #E2E8F0", borderRadius: 12, padding: "14px 16px", display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+            <h4 style={{ fontWeight: 700, fontSize: 12, color: "var(--color-navy)" }}>Performance by Topic</h4>
+            <button style={{ fontSize: 10, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}><Calendar size={12}/> This Month <ChevronDown size={12}/></button>
+          </div>
+          <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: "10%", padding: "0 5%", position: "relative" }}>
+            {/* Grid lines */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 20, display: "flex", flexDirection: "column", justifyContent: "space-between", zIndex: 0 }}>
+              {[100, 75, 50, 25, 0].map(val => (
+                <div key={val} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ width: 24, fontSize: 9, color: "#94A3B8", textAlign: "right" }}>{val}%</div>
+                  <div style={{ flex: 1, height: 1, background: val === 50 ? "#E2E8F0" : "#F1F5F9", borderTop: val === 50 ? "1px dashed #CBD5E1" : "none" }}></div>
+                </div>
+              ))}
+            </div>
+            {/* Avg line */}
+            <div style={{ position: "absolute", top: "40%", left: 32, right: 0, borderTop: "1px dashed #94A3B8", zIndex: 1 }}></div>
+            <div style={{ position: "absolute", top: "35%", right: 0, fontSize: 9, color: "#64748B", fontWeight: 600 }}>Avg 60%</div>
+
+            {/* Bars */}
+            {topics.map((t, i) => (
+              <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, flex: 1, zIndex: 2, height: "100%", justifyContent: "flex-end" }}>
+                <div style={{ fontSize: 10, fontWeight: 800, color: "var(--color-navy)", marginBottom: 2 }}>{t.val}%</div>
+                <div style={{ width: "100%", maxWidth: 28, background: t.col, height: `calc(${t.val}% - 20px)`, borderRadius: "4px 4px 0 0", transition: "height 1s ease-out" }}></div>
+                <div style={{ fontSize: 9, color: "#64748B", textAlign: "center", whiteSpace: "nowrap" }}>{t.name.split(" ").map(w=><div key={w}>{w}</div>)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Lower section */}
+        <div className="grid grid-cols-2 gap-4">
+          <div style={{ border: "1px solid #E2E8F0", borderRadius: 12, padding: "14px 16px" }}>
+            <h4 style={{ fontWeight: 700, fontSize: 12, color: "var(--color-navy)", marginBottom: 12 }}>Accuracy by Topic</h4>
+            <div style={{ width: "100%", height: 120, position: "relative", display: "grid", placeItems: "center" }}>
+              <svg viewBox="0 0 100 100" style={{ width: "100%", height: "100%", overflow: "visible" }}>
+                <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="none" stroke="#E2E8F0" strokeWidth="1" />
+                <polygon points="50,25 75,38 75,62 50,75 25,62 25,38" fill="none" stroke="#E2E8F0" strokeWidth="1" />
+                <polygon points="50,40 60,46 60,54 50,60 40,54 40,46" fill="none" stroke="#E2E8F0" strokeWidth="1" />
+                <line x1="50" y1="50" x2="50" y2="10" stroke="#E2E8F0" strokeWidth="1" />
+                <line x1="50" y1="50" x2="90" y2="30" stroke="#E2E8F0" strokeWidth="1" />
+                <line x1="50" y1="50" x2="90" y2="70" stroke="#E2E8F0" strokeWidth="1" />
+                <line x1="50" y1="50" x2="50" y2="90" stroke="#E2E8F0" strokeWidth="1" />
+                <line x1="50" y1="50" x2="10" y2="70" stroke="#E2E8F0" strokeWidth="1" />
+                <line x1="50" y1="50" x2="10" y2="30" stroke="#E2E8F0" strokeWidth="1" />
+                <polygon points="50,15 78,35 60,65 50,80 20,60 30,35" fill="rgba(37,99,235,0.1)" stroke="#3B82F6" strokeWidth="1.5" />
+                <circle cx="50" cy="15" r="2" fill="#3B82F6" />
+                <circle cx="78" cy="35" r="2" fill="#3B82F6" />
+                <circle cx="60" cy="65" r="2" fill="#3B82F6" />
+                <circle cx="50" cy="80" r="2" fill="#3B82F6" />
+                <circle cx="20" cy="60" r="2" fill="#3B82F6" />
+                <circle cx="30" cy="35" r="2" fill="#3B82F6" />
+                <text x="50" y="5" fontSize="5" fill="#64748B" textAnchor="middle">JavaScript</text>
+                <text x="95" y="30" fontSize="5" fill="#64748B" textAnchor="start">Data Structures</text>
+                <text x="95" y="75" fontSize="5" fill="#64748B" textAnchor="start">Algorithms</text>
+                <text x="50" y="98" fontSize="5" fill="#64748B" textAnchor="middle">DBMS</text>
+                <text x="5" y="75" fontSize="5" fill="#64748B" textAnchor="end">Operating Systems</text>
+                <text x="5" y="30" fontSize="5" fill="#64748B" textAnchor="end">Computer Networks</text>
+              </svg>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <h4 style={{ fontWeight: 700, fontSize: 12, color: "var(--color-navy)", marginBottom: 12 }}>Topics to Improve</h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {[...topics].reverse().map((t, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 10 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: t.col }} />
+                  <div style={{ width: 100, color: "#475569", fontWeight: 500 }}>{t.name}</div>
+                  <div style={{ flex: 1, height: 4, background: "#F1F5F9", borderRadius: 99 }}>
+                    <div style={{ height: "100%", width: `${t.val}%`, background: t.col, borderRadius: 99 }} />
+                  </div>
+                  <div style={{ fontWeight: 700, color: t.col, width: 24, textAlign: "right" }}>{t.val}%</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-auto" style={{ padding: "8px 12px", background: "#EFF6FF", borderRadius: 8, fontSize: 10, color: "#475569", display: "flex", gap: 8, alignItems: "flex-start", border: "1px solid #DBEAFE" }}>
+              <Lightbulb size={14} color="#3B82F6" style={{ flexShrink: 0, marginTop: 2 }} />
+              Focus more on Computer Networks and Operating Systems to improve your overall performance.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+function ProvingGroundDashboard() {
+  const tabs = [
+    { id: "overview", label: "Proving Ground", icon: Target },
+    { id: "mock-tests", label: "Mock Tests", icon: ClipboardList },
+    { id: "previous", label: "Previous Tests", icon: Clock3 },
+    { id: "weak-areas", label: "Weak Areas", icon: BarChart3 },
+  ] as const;
+
+  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]["id"]>("overview");
+  const dashboardHeight = 520;
 
   return (
     <div
@@ -1119,11 +1600,12 @@ function ProvingGroundDashboard() {
         border: "1px solid rgba(226,232,240,0.95)",
         borderRadius: 24,
         color: "var(--color-navy)",
-        minHeight: 360,
+        height: dashboardHeight,
         overflow: "hidden",
+        boxShadow: "0 32px 80px rgba(15,23,42,0.2)"
       }}
     >
-      <div className="grid" style={{ gridTemplateColumns: "132px 1fr" }}>
+      <div className="grid h-full" style={{ gridTemplateColumns: "132px 1fr", height: dashboardHeight }}>
         <aside
           style={{
             borderRight: "1px solid var(--color-border)",
@@ -1135,8 +1617,7 @@ function ProvingGroundDashboard() {
           <div className="flex flex-col gap-2">
             {tabs.map((tab) => {
               const Icon = tab.icon;
-              const selected = tab.id === active.id;
-
+              const selected = tab.id === activeTab;
               return (
                 <button
                   key={tab.id}
@@ -1171,163 +1652,47 @@ function ProvingGroundDashboard() {
           </div>
         </aside>
 
-        <div style={{ padding: "18px 22px 14px" }}>
-          <div className="mb-4 flex items-start justify-between gap-4">
-            <div>
-              <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, letterSpacing: 0, margin: 0 }}>
-                {active.label}
-              </h3>
-              <p style={{ color: "var(--color-gray-text)", fontFamily: "Inter, sans-serif", fontSize: 11, marginTop: 5 }}>
-                Track your performance and improve with every test.
-              </p>
-            </div>
-            <span
-              style={{
-                alignItems: "center",
-                background: "#EFF6FF",
-                borderRadius: 999,
-                color: "var(--color-accent)",
-                display: "inline-flex",
-                fontFamily: "Inter, sans-serif",
-                fontSize: 11,
-                fontWeight: 700,
-                gap: 6,
-                padding: "6px 9px",
-                whiteSpace: "nowrap",
-              }}
-            >
-              <Gauge size={14} />
-              Live
-            </span>
-          </div>
-
-          <div className="grid gap-3" style={{ gridTemplateColumns: "1.15fr 0.85fr" }}>
-            <section
-              style={{
-                border: "1px solid var(--color-border)",
-                borderRadius: 12,
-                boxShadow: "0 14px 34px rgba(15,23,42,0.07)",
-                minHeight: 166,
-                padding: 14,
-              }}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 800, margin: 0 }}>
-                    {active.title}
-                  </h4>
-                  <p style={{ color: "var(--color-gray-text)", fontSize: 11, marginTop: 4 }}>{active.subtitle}</p>
-                </div>
-                <div className="flex items-center gap-4" style={{ color: "#64748B", fontSize: 10 }}>
-                  <span className="flex items-center gap-1.5">
-                    <span style={{ width: 16, height: 3, borderRadius: 999, background: "var(--color-accent)" }} />
-                    Your Score
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <span style={{ width: 16, height: 2, borderRadius: 999, borderTop: "2px dashed #94A3B8" }} />
-                    Average
-                  </span>
-                </div>
-              </div>
-              <svg viewBox="0 0 380 220" width="100%" height="108" role="img" aria-label={`${active.label} trend chart`}>
-                {[0, 25, 50, 75, 100].map((tick) => (
-                  <g key={tick}>
-                    <line x1="54" x2="350" y1={216 - tick * 1.65} y2={216 - tick * 1.65} stroke="#EEF2F7" />
-                    <text x="10" y={220 - tick * 1.65} fill="#64748B" fontSize="11">{tick}%</text>
-                  </g>
-                ))}
-                <polyline points={averagePoints} fill="none" stroke="#A8B3C5" strokeWidth="2.5" strokeDasharray="7 7" />
-                <polyline points={chartPoints} fill="none" stroke="var(--color-accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                {active.values.map((value, index) => (
-                  <circle key={value + index} cx={62 + index * 65} cy={216 - value * 1.65} r="5" fill="var(--color-accent)" stroke="#fff" strokeWidth="2" />
-                ))}
-                {["T1", "T2", "T3", "T4", "T5"].map((label, index) => (
-                  <text key={label} x={53 + index * 65} y="216" fill="#64748B" fontSize="11">{label}</text>
-                ))}
-              </svg>
-            </section>
-
-            <div className="grid gap-3">
-              {[
-                { icon: Trophy, label: active.scoreLabel, value: active.score, note: active.delta, tint: "#ECFDF5", color: "#10B981" },
-                { icon: Target, label: "Accuracy", value: active.accuracy, note: "+4%", tint: "#EFF6FF", color: "var(--color-accent)" },
-                { icon: FileCheck2, label: "Your Rank", value: active.rank, note: active.rankLabel, tint: "#F0F7FF", color: "#1D4ED8" },
-              ].map((metric) => {
-                const Icon = metric.icon;
-                return (
-                  <article
-                    key={metric.label}
-                    className="flex items-center gap-3"
-                    style={{
-                      border: "1px solid var(--color-border)",
-                      borderRadius: 12,
-                      boxShadow: "0 10px 24px rgba(15,23,42,0.06)",
-                      padding: "10px 12px",
-                    }}
-                  >
-                    <div style={{ width: 36, height: 36, borderRadius: 999, background: metric.tint, color: metric.color, display: "grid", placeItems: "center" }}>
-                      <Icon size={18} strokeWidth={2.1} />
-                    </div>
-                    <div>
-                      <p style={{ color: "#64748B", fontSize: 11, margin: 0 }}>{metric.label}</p>
-                      <strong style={{ display: "block", fontFamily: "Inter, sans-serif", fontSize: 19, lineHeight: 1.1 }}>{metric.value}</strong>
-                      <span style={{ color: metric.color, fontSize: 12, fontWeight: 700 }}>{metric.note}</span>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-
-          <section
-            className="mt-3 flex items-center justify-between gap-4"
+        <div className="h-full bg-white relative overflow-hidden">
+          <div
             style={{
-              border: "1px solid var(--color-border)",
-              borderRadius: 12,
-              boxShadow: "0 14px 34px rgba(15,23,42,0.07)",
-              padding: "10px 13px",
+              display: activeTab === "overview" ? "block" : "none",
+              position: "absolute",
+              inset: 0,
+              overflowY: "auto",
             }}
           >
-            <div className="flex items-center gap-3">
-              <div style={{ width: 38, height: 38, borderRadius: 9, background: "#EFF6FF", color: "var(--color-accent)", display: "grid", placeItems: "center" }}>
-                <ClipboardList size={19} />
-              </div>
-              <div>
-                <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 800, margin: 0 }}>{active.practice}</h4>
-                <div className="mt-1.5 flex flex-wrap gap-3" style={{ color: "#64748B", fontSize: 10 }}>
-                  {active.meta.map((item) => (
-                    <span key={item}>{item}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <button
-              type="button"
-              style={{
-                alignItems: "center",
-                background: "var(--color-accent)",
-                border: 0,
-                borderRadius: 8,
-                boxShadow: "0 12px 28px rgba(37,99,235,0.25)",
-                color: "#fff",
-                cursor: "pointer",
-                display: "inline-flex",
-                fontFamily: "Inter, sans-serif",
-                fontSize: 12,
-                fontWeight: 800,
-                gap: 9,
-                padding: "9px 15px",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {active.action}
-              <ArrowRight size={16} />
-            </button>
-          </section>
-
-          <p style={{ color: "#475569", fontSize: 11, lineHeight: 1.4, margin: "8px 2px 0" }}>
-            {active.insight}
-          </p>
+            <ProvingGroundOverview />
+          </div>
+          <div
+            style={{
+              display: activeTab === "mock-tests" ? "block" : "none",
+              position: "absolute",
+              inset: 0,
+              overflowY: "auto",
+            }}
+          >
+            <MockTestsView />
+          </div>
+          <div
+            style={{
+              display: activeTab === "previous" ? "block" : "none",
+              position: "absolute",
+              inset: 0,
+              overflowY: "auto",
+            }}
+          >
+            <PreviousTestsView />
+          </div>
+          <div
+            style={{
+              display: activeTab === "weak-areas" ? "block" : "none",
+              position: "absolute",
+              inset: 0,
+              overflowY: "auto",
+            }}
+          >
+            <WeakAreasView />
+          </div>
         </div>
       </div>
     </div>
@@ -2782,7 +3147,7 @@ function ExploreSection() {
                 background: "rgba(255,255,255,0.045)",
                 backdropFilter: "blur(18px)",
                 WebkitBackdropFilter: "blur(18px)",
-                border: "1px solid rgba(255,255,255,0.09)",
+                border: "1px solid rgba(255,255,255,0.18)",
                 borderRadius: "var(--radius-lg)",
                 padding: "34px 16px",
                 display: "flex", flexDirection: "column",
@@ -2791,21 +3156,24 @@ function ExploreSection() {
                 transition: "transform 260ms cubic-bezier(0.4,0,0.2,1), background 260ms ease, border-color 260ms ease, box-shadow 260ms ease",
                 willChange: "transform",
                 opacity: 0,
+                boxShadow: "0 14px 34px rgba(0, 0, 0, 0.4)",
                 animation: `fadeUp 0.55s cubic-bezier(0.4,0,0.2,1) ${0.35 + i * 0.07}s forwards`,
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget;
-                el.style.background = "rgba(37,99,235,0.14)";
-                el.style.borderColor = "rgba(37,99,235,0.38)";
-                el.style.transform = "translateY(-5px)";
-                el.style.boxShadow = "0 18px 48px rgba(0,0,0,0.38), 0 0 0 1px rgba(37,99,235,0.22)";
+                el.style.zIndex = "10";
+                el.style.background = "rgba(34, 211, 238, 0.08)";
+                el.style.borderColor = "rgba(34, 211, 238, 0.35)";
+                el.style.transform = "translateY(-8px) scale(1.1)";
+                el.style.boxShadow = "0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(34, 211, 238, 0.15)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget;
+                el.style.zIndex = "1";
                 el.style.background = "rgba(255,255,255,0.045)";
-                el.style.borderColor = "rgba(255,255,255,0.09)";
-                el.style.transform = "translateY(0)";
-                el.style.boxShadow = "none";
+                el.style.borderColor = "rgba(255,255,255,0.18)";
+                el.style.transform = "translateY(0) scale(1)";
+                el.style.boxShadow = "0 14px 34px rgba(0, 0, 0, 0.4)";
               }}
             >
               <div style={{ color: "rgba(255,255,255,0.72)" }}>{t.icon}</div>
@@ -2848,10 +3216,10 @@ export function Landing() {
           heading="Practice a Full Exam in 90 Minutes, Not Weeks of Guessing."
           body="At this stage, you're not just studying, you're testing yourself seriously. You'll face the same format, timing, and pressure you'll see in the actual exam."
           features={[
-            "Mock tests based on real exam patterns",
-            "Full-length tests with clear result breakdown",
-            "See where you lost marks and what to fix",
-            "Retake tests until you feel fully prepared",
+            "25+ exam-pattern mock tests, 90-min timed",
+            "Visual graphs & section-wise analytics",
+            "Topic-level error breakdown & insights",
+            "Unlimited retakes, track improvement every attempt",
           ]}
           cta="Enter Proving Ground →"
           onCta={() => router.push("/auth")}

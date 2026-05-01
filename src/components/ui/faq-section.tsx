@@ -32,7 +32,34 @@ export const FAQSection = ({
 }: FAQSectionProps) => {
   const [activeId, setActiveId] = useState<string | number | null>(null);
   const [isTouch, setIsTouch] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+
   const sectionRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
+
+  const ITEMS_PER_PAGE = 6;
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+
+  const handlePrev = () => {
+    setCurrentPage((prev) => {
+      if (prev > 0) {
+        setActiveId(null);
+        return prev - 1;
+      }
+      return prev;
+    });
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => {
+      if (prev < totalPages - 1) {
+        setActiveId(null);
+        return prev + 1;
+      }
+      return prev;
+    });
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -61,6 +88,35 @@ export const FAQSection = ({
 
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (!containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".faq-row",
+        { opacity: 0, x: 20 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.4,
+          ease: "power2.out",
+          stagger: 0.05,
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [currentPage]);
+
+  const visibleItems = items.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
 
   return (
     <section
@@ -154,8 +210,9 @@ export const FAQSection = ({
           )}
         </div>
 
-        <div className="space-y-3">
-          {items.map((item, idx) => {
+        <div ref={containerRef} className="space-y-3">
+          {visibleItems.map((item, idx) => {
+            const actualIdx = currentPage * ITEMS_PER_PAGE + idx;
             const isActive = activeId === item.id;
 
             return (
@@ -233,7 +290,7 @@ export const FAQSection = ({
                             : "rgba(96,165,250,0.30)",
                         }}
                       >
-                        {String(idx + 1).padStart(2, "0")}
+                        {String(actualIdx + 1).padStart(2, "0")}
                       </span>
 
                       <h3
@@ -319,6 +376,59 @@ export const FAQSection = ({
             );
           })}
         </div>
+
+        {totalPages > 1 && (
+          <div className="mt-10 flex items-center justify-between px-2 sm:px-0">
+            <button
+              onClick={handlePrev}
+              disabled={currentPage === 0}
+              className={cn(
+                "group flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300",
+                currentPage === 0
+                  ? "border-[rgba(96,165,250,0.05)] bg-[rgba(9,28,78,0.15)] text-[rgba(96,165,250,0.2)] cursor-not-allowed"
+                  : "border-[rgba(96,165,250,0.2)] bg-[rgba(9,28,78,0.4)] text-[#60A5FA] hover:bg-[rgba(37,99,235,0.2)] hover:border-[rgba(37,99,235,0.5)] hover:text-[#93C5FD] hover:shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+              )}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={cn("transition-transform duration-300", currentPage !== 0 && "group-hover:-translate-x-1")}>
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+            </button>
+
+            <div className="flex gap-2.5">
+              {Array.from({ length: totalPages }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setActiveId(null);
+                    setCurrentPage(idx);
+                  }}
+                  className={cn(
+                    "h-2 rounded-full transition-all duration-500",
+                    currentPage === idx
+                      ? "w-8 bg-gradient-to-r from-[#2563EB] to-[#60A5FA] shadow-[0_0_12px_rgba(37,99,235,0.5)]"
+                      : "w-2 bg-[rgba(96,165,250,0.15)] hover:bg-[rgba(96,165,250,0.35)]"
+                  )}
+                  aria-label={`Go to page ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNext}
+              disabled={currentPage === totalPages - 1}
+              className={cn(
+                "group flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300",
+                currentPage === totalPages - 1
+                  ? "border-[rgba(96,165,250,0.05)] bg-[rgba(9,28,78,0.15)] text-[rgba(96,165,250,0.2)] cursor-not-allowed"
+                  : "border-[rgba(96,165,250,0.2)] bg-[rgba(9,28,78,0.4)] text-[#60A5FA] hover:bg-[rgba(37,99,235,0.2)] hover:border-[rgba(37,99,235,0.5)] hover:text-[#93C5FD] hover:shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+              )}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={cn("transition-transform duration-300", currentPage !== totalPages - 1 && "group-hover:translate-x-1")}>
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
 
       <style>{`

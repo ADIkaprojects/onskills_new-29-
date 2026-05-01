@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   experimental: {
     cssChunking: "strict",
   },
+  serverExternalPackages: ["pdf-parse"],
 };
 
 export default nextConfig;
