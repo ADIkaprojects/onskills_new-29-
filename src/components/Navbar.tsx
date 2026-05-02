@@ -92,7 +92,7 @@ export function Navbar() {
           <div className="ml-auto hidden items-center gap-3 md:flex">
             <button
               onClick={() => router.push("/auth")}
-              className="rounded-[10px] px-4 py-2 transition-all duration-[250ms]"
+              className="rounded-full px-4 py-2 transition-all duration-[250ms]"
               style={{
                 border: "1px solid var(--color-border)",
                 fontFamily: "DM Sans, sans-serif",
@@ -113,24 +113,24 @@ export function Navbar() {
             </button>
             <button
               onClick={() => router.push("/auth")}
-              className="rounded-[10px] px-5 py-2.5 transition-all duration-[250ms]"
+              className="rounded-full px-5 py-2.5 transition-all duration-[250ms]"
               style={{
                 background: "var(--color-accent)",
                 color: "#fff",
                 fontFamily: "Sora, sans-serif",
                 fontWeight: 600,
                 fontSize: 14,
-                boxShadow: "0 4px 16px rgba(29,110,245,0.25)",
+                boxShadow: "0 4px 16px rgba(0,80,230,0.25)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "var(--color-accent-hover)";
                 e.currentTarget.style.transform = "scale(1.02)";
-                e.currentTarget.style.boxShadow = "0 8px 24px rgba(29,110,245,0.35)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,80,230,0.35)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "var(--color-accent)";
                 e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow = "0 4px 16px rgba(29,110,245,0.25)";
+                e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,80,230,0.25)";
               }}
             >
               Sign Up
@@ -203,15 +203,15 @@ export function Navbar() {
               <div className="flex gap-3 p-4">
                 <button
                   onClick={() => router.push("/auth")}
-                  className="flex-1 rounded-[10px] py-3"
+                  className="flex-1 rounded-full py-3"
                   style={{ border: "1px solid var(--color-border)", fontFamily: "DM Sans, sans-serif", fontWeight: 500, fontSize: 14 }}
                 >
                   Login
                 </button>
                 <button
                   onClick={() => router.push("/auth")}
-                  className="flex-1 rounded-[10px] py-3"
-                  style={{ background: "var(--color-accent)", color: "#fff", fontFamily: "Sora, sans-serif", fontWeight: 600, fontSize: 14 }}
+                  className="flex-1 rounded-full py-3"
+                  style={{ background: "var(--color-accent)", color: "#fff", fontFamily: "Sora, sans-serif", fontWeight: 600, fontSize: 14, boxShadow: "0 6px 20px rgba(0,80,230,0.2)" }}
                 >
                   Sign Up
                 </button>

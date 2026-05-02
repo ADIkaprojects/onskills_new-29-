@@ -4,10 +4,10 @@
   --color-bg: #F8FAFC;
   --color-navy: #0F172A;
   --color-navy-mid: #1E293B;
-  --color-accent: #2563EB;
-  --color-accent-hover: #1D4ED8;
-  --color-accent-light: #EFF6FF;
-  --color-accent-glow: rgba(37, 99, 235, 0.15);
+  --color-accent: #0050E6;
+  --color-accent-hover: #0046C9;
+  --color-accent-light: #EAF2FF;
+  --color-accent-glow: rgba(0, 80, 230, 0.15);
   --color-gray-text: #6B7280;
   --color-gray-light: #9CA3AF;
   --color-border: #E2E8F0;
@@ -23,10 +23,10 @@
   --color-bg: #F8FAFC;
   --color-navy: #0F172A;
   --color-navy-mid: #1E293B;
-  --color-accent: #2563EB;
-  --color-accent-hover: #1D4ED8;
-  --color-accent-light: #EFF6FF;
-  --color-accent-glow: rgba(37, 99, 235, 0.15);
+  --color-accent: #0050E6;
+  --color-accent-hover: #0046C9;
+  --color-accent-light: #EAF2FF;
+  --color-accent-glow: rgba(0, 80, 230, 0.15);
   --color-gray-text: #6B7280;
   --color-gray-light: #9CA3AF;
   --color-border: #E2E8F0;
@@ -112,7 +112,7 @@ h1, h2, h3, h4, .font-display {
 * { border-color: #E2E8F0; }
 
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 2px solid #2563EB;
+  outline: 2px solid #0050E6;
   outline-offset: 2px;
 }
 
@@ -212,6 +212,18 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.skill-assessment-scale {
+  --mock-scale: 0.78;
+  width: calc(720px * var(--mock-scale));
+  height: calc(460px * var(--mock-scale));
+}
+.skill-assessment-scale__inner {
+  width: 720px;
+  height: 460px;
+  transform: scale(var(--mock-scale));
+  transform-origin: top left;
+}
 
 .pg-select {
   background: rgba(255, 255, 255, 0.08);

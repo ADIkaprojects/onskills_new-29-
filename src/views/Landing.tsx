@@ -6,8 +6,12 @@ import { Navbar } from "@/components/Navbar";
 import { StatsTicker } from "@/components/StatsTicker";
 import { ASSESSMENTS, type Assessment } from "@/data/assessments";
 import { WalkWaysRoadmap } from "@/components/WalkWaysRoadmap";
+import { UserDashboardSection } from "@/components/UserDashboardSection";
 import AssessmentCard from "@/components/ui/assessment-card";
 import { FAQSection } from "@/components/ui/faq-section";
+import { MagicText } from "@/components/ui/magic-text";
+import { ShinyButton } from "@/components/ui/shiny-button";
+import ProvingGroundInteractiveMockup from "../components/mockups/ProvingGroundInteractiveMockup";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
@@ -243,29 +247,12 @@ function Hero() {
       />
 
       <div className="relative z-10 mx-auto flex max-w-[960px] flex-col items-center text-center">
-        <div
-          className="inline-flex items-center gap-2"
-          style={{
-            background: "var(--color-white)",
-            border: "1px solid var(--color-border)",
-            borderRadius: 999,
-            padding: "7px 16px",
-            boxShadow: "0 2px 8px rgba(15,23,42,0.04)",
-            fontFamily: "Inter, sans-serif",
-            fontSize: 13,
-            color: "var(--color-navy)",
-            opacity: 0,
-            animation: "fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.1s forwards",
-          }}
-        >
-          Certification Prep done Right
-        </div>
 
         <h1
-          className="mt-7"
+          className="mt-16"
           style={{
             fontFamily: "Inter, sans-serif",
-            fontWeight: 800,
+            fontWeight: 500,
             fontSize: "clamp(34px, 7.5vw, 96px)",
             lineHeight: 1.0,
             letterSpacing: "-0.02em",
@@ -315,39 +302,16 @@ function Hero() {
             animation: "fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.4s forwards",
           }}
         >
-          Real exam-pattern mock tests and assessments built for every stage whether you're just starting out 
-or pushing for your next big credential. Practice like it's real, perform when it counts.
+          Real exam-pattern mock tests and assessments built for every stage whether you're just starting out
+          or pushing for your next big credential. Practice like it's real, perform when it counts.
         </p>
 
-        <button
+        <ShinyButton
           onClick={() => router.push("/auth")}
-          className="mt-10 transition-all duration-[250ms]"
-          style={{
-            background: "var(--color-accent)",
-            color: "#fff",
-            border: "none",
-            borderRadius: "var(--radius-md)",
-            padding: "16px 40px",
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 600,
-            fontSize: 16,
-            boxShadow: "0 4px 20px rgba(37,99,235,0.30)",
-            opacity: 0,
-            animation: "fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) 0.55s forwards",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "var(--color-accent-hover)";
-            e.currentTarget.style.transform = "scale(1.03) translateY(-2px)";
-            e.currentTarget.style.boxShadow = "0 12px 32px rgba(37,99,235,0.40)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "var(--color-accent)";
-            e.currentTarget.style.transform = "scale(1) translateY(0)";
-            e.currentTarget.style.boxShadow = "0 4px 20px rgba(37,99,235,0.30)";
-          }}
+          className="mt-10 opacity-0 shadow-[0_4px_20px_rgba(37,99,235,0.30)] animate-[fadeUp_0.6s_cubic-bezier(0.4,0,0.2,1)_0.55s_forwards]"
         >
           Let's Explore →
-        </button>
+        </ShinyButton>
 
         {/* Trusted By Logos — FIXED */}
         <div
@@ -574,7 +538,7 @@ function AssessmentIcon({ name }: { name: string }) {
   if (n.includes("javascript")) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <rect x="2" y="2" width="20" height="20" rx="3" fill="#F7DF1E"/>
+        <rect x="2" y="2" width="20" height="20" rx="3" fill="#F7DF1E" />
         <text x="5" y="17" fontFamily="monospace" fontSize="9" fontWeight="800" fill="#222">JS</text>
       </svg>
     );
@@ -584,12 +548,12 @@ function AssessmentIcon({ name }: { name: string }) {
   if (n.includes("react")) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="2" fill="currentColor"/>
-        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+        <circle cx="12" cy="12" r="2" fill="currentColor" />
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" strokeWidth="1.5" fill="none" />
         <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" strokeWidth="1.5" fill="none"
-          transform="rotate(60 12 12)"/>
+          transform="rotate(60 12 12)" />
         <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" strokeWidth="1.5" fill="none"
-          transform="rotate(120 12 12)"/>
+          transform="rotate(120 12 12)" />
       </svg>
     );
   }
@@ -598,9 +562,9 @@ function AssessmentIcon({ name }: { name: string }) {
   if (n.includes("system")) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3L22 8 12 13 2 8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" fill="none"/>
-        <path d="M2 12l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-        <path d="M2 16l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+        <path d="M12 3L22 8 12 13 2 8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" fill="none" />
+        <path d="M2 12l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+        <path d="M2 16l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
       </svg>
     );
   }
@@ -610,11 +574,11 @@ function AssessmentIcon({ name }: { name: string }) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path d="M12 2C8 2 7 4 7 6v2h5v1H6C4 9 2 10 2 13s2 4 4 4h2v-2.5C8 13 9 12 12 12h4c2 0 3-1 3-3V6c0-2-1-4-4-4h-3z"
-          fill="currentColor" opacity="0.8"/>
-        <circle cx="9.5" cy="5.5" r="1" fill="#fff"/>
+          fill="currentColor" opacity="0.8" />
+        <circle cx="9.5" cy="5.5" r="1" fill="#fff" />
         <path d="M12 22c4 0 5-2 5-4v-2h-5v-1h6c2 0 4-1 4-4s-2-4-4-4h-2v2.5C16 11 15 12 12 12H8c-2 0-3 1-3 3v3c0 2 1 4 4 4h3z"
-          fill="currentColor" opacity="0.55"/>
-        <circle cx="14.5" cy="18.5" r="1" fill="#fff"/>
+          fill="currentColor" opacity="0.55" />
+        <circle cx="14.5" cy="18.5" r="1" fill="#fff" />
       </svg>
     );
   }
@@ -624,12 +588,12 @@ function AssessmentIcon({ name }: { name: string }) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path d="M12 12c-2-2.5-4-4-6-4a4 4 0 000 8c2 0 4-1.5 6-4z"
-          stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
+          stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
         <path d="M12 12c2 2.5 4 4 6 4a4 4 0 000-8c-2 0-4 1.5-6 4z"
-          stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
+          stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
         {/* Arrow heads */}
-        <path d="M7 5.5l1.5 2.5-2.5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <path d="M17 18.5l-1.5-2.5 2.5-.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        <path d="M7 5.5l1.5 2.5-2.5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M17 18.5l-1.5-2.5 2.5-.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
     );
   }
@@ -639,9 +603,9 @@ function AssessmentIcon({ name }: { name: string }) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path d="M12 19l-7-7 3-3 4 4 7-9 3 2z"
-          stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" fill="none"/>
-        <circle cx="12" cy="19" r="1.5" fill="currentColor"/>
-        <path d="M5 12V5h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+          stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" fill="none" />
+        <circle cx="12" cy="19" r="1.5" fill="currentColor" />
+        <path d="M5 12V5h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
       </svg>
     );
   }
@@ -651,8 +615,8 @@ function AssessmentIcon({ name }: { name: string }) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path d="M12 2l9 5v10l-9 5-9-5V7z"
-          stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" fill="none"/>
-        <path d="M12 7v5l4 2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+          stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" fill="none" />
+        <path d="M12 7v5l4 2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
       </svg>
     );
   }
@@ -662,8 +626,8 @@ function AssessmentIcon({ name }: { name: string }) {
     return (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
         <path d="M18 10a6 6 0 00-11.5-2A4 4 0 105 16h13a4 4 0 000-8v2z"
-          stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-        <path d="M13 12l-2 3h3l-2 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+          stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M13 12l-2 3h3l-2 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
     );
   }
@@ -671,10 +635,10 @@ function AssessmentIcon({ name }: { name: string }) {
   /* Fallback — stacked blocks (generic "skill") */
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8" fill="none"/>
-      <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8" fill="none"/>
-      <rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8" fill="none"/>
-      <rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8" fill="none"/>
+      <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8" fill="none" />
+      <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8" fill="none" />
+      <rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8" fill="none" />
+      <rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8" fill="none" />
     </svg>
   );
 }
@@ -732,6 +696,7 @@ function ProductSection({
   reverse,
   hideMockupOnMobile,
   rawMockup,
+  rawMockupUnframed,
   showMockupOnMobile,
   showMockupFromMd,
   shiftMockupLeft,
@@ -748,6 +713,8 @@ function ProductSection({
   hideMockupOnMobile?: boolean;
   /** Strip the navy card shell — lets the mockup own its own visual (e.g. video) */
   rawMockup?: boolean;
+  /** For raw mockups that provide their own visual card and should not get a shared shell wrapper. */
+  rawMockupUnframed?: boolean;
   /** Show the mockup on mobile screens too (below the text) */
   showMockupOnMobile?: boolean;
   /** Show selected product mockups from tablet/desktop widths while keeping phones text-only. */
@@ -760,7 +727,7 @@ function ProductSection({
   const layoutClass = hasMockup
     ? showMockupFromMd
       ? reverse
-        ? "md:[grid-template-areas:'mock_text'] md:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]"
+        ? "md:[grid-template-areas:'mock_text'] md:grid-cols-[680px_minmax(340px,1fr)]"
         : "md:[grid-template-areas:'text_mock'] md:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]"
       : reverse
         ? "lg:[grid-template-areas:'mock_text'] lg:grid-cols-2"
@@ -773,13 +740,43 @@ function ProductSection({
       id={id}
       ref={ref}
       className="py-12"
-      style={{ scrollMarginTop: 170 }}
+      style={{
+        scrollMarginTop: 170,
+        ...(showMockupFromMd && reverse ? { overflow: "hidden" } : {}),
+      }}
     >
       <div
         className={`mx-auto grid ${showMockupFromMd ? "max-w-[1180px] gap-10" : "max-w-[1200px] gap-12"} grid-cols-1 items-center ${layoutClass}`}
-        style={{ minHeight: 480 }}
+        style={{
+          minHeight: 480,
+          ...(showMockupFromMd && reverse
+            ? {
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              position: "relative",
+              width: "100%",
+            }
+            : {}),
+        }}
       >
-        <div className={reverse ? "lg:[grid-area:text]" : "lg:[grid-area:text]"} style={{ gridArea: "text" }}>
+        <div
+          className={`${reverse ? "lg:[grid-area:text]" : "lg:[grid-area:text]"} ${showMockupFromMd && reverse ? "md:min-w-[300px] md:pl-8" : ""}`}
+          style={{
+            gridArea: "text",
+            ...(showMockupFromMd && reverse
+              ? {
+                minWidth: 340,
+                paddingLeft: 48,
+                paddingTop: 'clamp(32px, 6vw, 72px)',
+                position: "relative",
+                zIndex: 20,
+                order: 2,
+                flex: "1 1 auto",
+              }
+              : {}),
+          }}
+        >
           <TagPill>{tag}</TagPill>
           <h2
             className="mt-4"
@@ -825,6 +822,13 @@ function ProductSection({
             className={mockupVisibilityClass}
             style={{
               gridArea: "mock",
+              ...(showMockupFromMd && reverse
+                ? {
+                  order: 1,
+                  flex: "0 0 auto",
+                  width: 680,
+                }
+                : {}),
               transform: shiftMockupLeft ? "translateX(clamp(-64px, -4vw, -30px))" : undefined,
             }}
           >
@@ -832,7 +836,12 @@ function ProductSection({
               className="transition-transform duration-[350ms]"
               style={
                 rawMockup
-                  ? {
+                  ? rawMockupUnframed
+                    ? {
+                      overflow: "visible",
+                      willChange: "transform",
+                    }
+                    : {
                       borderRadius: "var(--radius-xl)",
                       overflow: "hidden",
                       boxShadow: "0 32px 80px rgba(15,23,42,0.20)",
@@ -841,13 +850,13 @@ function ProductSection({
                       willChange: "transform",
                     }
                   : {
-                      background: "var(--color-navy)",
-                      borderRadius: "var(--radius-xl)",
-                      padding: 28,
-                      boxShadow: "0 32px 80px rgba(15,23,42,0.20)",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                      color: "#fff",
-                    }
+                    background: "var(--color-navy)",
+                    borderRadius: "var(--radius-xl)",
+                    padding: 28,
+                    boxShadow: "0 32px 80px rgba(15,23,42,0.20)",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    color: "#fff",
+                  }
               }
               onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-6px)")}
               onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
@@ -933,7 +942,7 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const numCards = ASSESSMENTS.length;
-  
+
   useGSAP(() => {
     let allowScroll = true;
     const scrollTimeout = gsap.delayedCall(1, () => { allowScroll = true; }).pause();
@@ -961,7 +970,7 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
       });
       tl.fromTo(
         `.assessment-card-gsap:nth-child(${i + 2})`,
-        { 
+        {
           y: () => window.innerHeight,
           z: i + 1, // Pop it in front immediately
         },
@@ -1021,7 +1030,7 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
       id="base-ground"
       ref={containerRef}
       style={{
-        padding: "52px max(5vw, 24px) 8px",
+        padding: "72px max(6vw, 24px) 8px",
         overflow: "hidden",
         scrollMarginTop: 170,
       }}
@@ -1040,31 +1049,15 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
               color: "var(--color-navy)", lineHeight: 1.15, letterSpacing: "-0.01em",
             }}
           >
-            Get the Basics Right. Everything Else Follows.
+             Start From Scratch.<br/> End Up Certified. 
           </h2>
           <p
             className="mt-4"
             style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "var(--color-gray-text)", lineHeight: 1.65, maxWidth: 480 }}
           >
-            Start with the basics that matter. Base Ground covers core concepts step by step, so you build clarity before moving forward.
+            Recruiters don't ask how long you studied. They ask what you're certified 
+in. Get the basics right on Onskill and give them an answer worth hiring for.
           </p>
-          <ul className="mt-6 space-y-2.5">
-            {[
-              "50+ beginner-level assessments",
-              "100% syllabus coverage, topic by topic",
-              "Self-paced, no time penalties",
-              "Topic-level score breakdown, every attempt",
-            ].map((f) => (
-              <li
-                key={f}
-                className="flex items-start gap-2.5"
-                style={{ fontFamily: "Inter, sans-serif", fontSize: 15, color: "var(--color-navy)" }}
-              >
-                <span style={{ color: "var(--color-accent)", fontWeight: 700 }}>✓</span>
-                {f}
-              </li>
-            ))}
-          </ul>
 
           <button
             onClick={onExplore}
@@ -1087,7 +1080,7 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
               Pick Your Test. Prove You're Ready.
             </h3>
             <p className="mt-2" style={{ fontFamily: "Inter, sans-serif", fontSize: 16, color: "var(--color-gray-text)" }}>
-              Every assessment here mirrors the real exam, same pressure, <br/> same format, same kind of questions.
+              Every assessment here mirrors the real exam, same pressure, <br /> same format, same kind of questions.
             </p>
           </div>
 
@@ -1118,22 +1111,22 @@ function BaseGroundWithAssessments({ onExplore }: { onExplore: () => void }) {
 
 function ProvingGroundOverview() {
   const active = {
-      id: "overview",
-      label: "Proving Ground",
-      title: "Performance Trend",
-      subtitle: "Your last five full-length exam attempts",
-      score: "82%",
-      scoreLabel: "Readiness Score",
-      delta: "+6%",
-      accuracy: "76%",
-      rank: "#12",
-      rankLabel: "Top 15%",
-      action: "Start Test",
-      practice: "Full Mock Test",
-      meta: ["90 mins", "High Difficulty"],
-      values: [50, 55, 64, 72, 81],
-      average: [34, 38, 47, 54, 62],
-      insight: "You are exam-ready for timing. Push weak-topic accuracy above 80% before the next attempt.",
+    id: "overview",
+    label: "Base Ground",
+    title: "Performance Trend",
+    subtitle: "Your last five full-length exam attempts",
+    score: "82%",
+    scoreLabel: "Readiness Score",
+    delta: "+6%",
+    accuracy: "76%",
+    rank: "#12",
+    rankLabel: "Top 15%",
+    action: "Start Test",
+    practice: "Full Mock Test",
+    meta: ["90 mins", "High Difficulty"],
+    values: [50, 55, 64, 72, 81],
+    average: [34, 38, 47, 54, 62],
+    insight: "You are exam-ready for timing. Push weak-topic accuracy above 80% before the next attempt.",
   };
   const chartPoints = active.values
     .map((value, index) => `${62 + index * 65},${216 - value * 1.65}`)
@@ -1319,7 +1312,7 @@ function MockTestsView() {
     <div style={{ padding: "18px 22px 14px", height: "100%", display: "flex", flexDirection: "column" }}>
       <div className="flex items-start justify-between">
         <div>
-          <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, margin: 0, color: "var(--color-navy)" }}>Mock Tests</h3>
+          <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, margin: 0, color: "var(--color-navy)" }}>Proving Ground</h3>
           <p style={{ color: "#64748B", fontSize: 11, marginTop: 4 }}>Take full-length tests and track your real exam readiness.</p>
         </div>
         <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#EFF6FF", color: "#2563EB", padding: "6px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700 }}>
@@ -1354,7 +1347,7 @@ function MockTestsView() {
       <div className="mt-5 flex-1 flex flex-col" style={{ border: "1px solid #E2E8F0", borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 6px rgba(0,0,0,0.02)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 16px", borderBottom: "1px solid #E2E8F0", background: "#F8FAFC" }}>
           <h4 style={{ fontWeight: 700, fontSize: 12, color: "var(--color-navy)" }}>Available Mock Tests</h4>
-          <button style={{ fontSize: 11, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}>All Tests <ChevronDown size={14}/></button>
+          <button style={{ fontSize: 11, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}>All Tests <ChevronDown size={14} /></button>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           {tests.map((t, i) => (
@@ -1365,13 +1358,13 @@ function MockTestsView() {
                 <div style={{ fontSize: 10, color: "#64748B", marginTop: 2 }}>{t.meta}</div>
               </div>
               <button style={{ padding: "6px 12px", border: "1px solid #E2E8F0", borderRadius: 6, fontSize: 11, fontWeight: 700, color: "#2563EB", display: "flex", alignItems: "center", gap: 6, background: "#fff", transition: "all 0.2s" }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#2563EB"; e.currentTarget.style.color = "#1D4ED8"; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E2E8F0"; e.currentTarget.style.color = "#2563EB"; }}>
-                Start Test <ArrowRight size={14} strokeWidth={2.5}/>
+                Start Test <ArrowRight size={14} strokeWidth={2.5} />
               </button>
             </div>
           ))}
         </div>
       </div>
-      
+
       <div className="mt-4" style={{ padding: "10px 14px", background: "#F8FAFC", borderRadius: 8, fontSize: 11, color: "#64748B", display: "flex", gap: 8, alignItems: "center", border: "1px solid #F1F5F9" }}>
         <Info size={14} color="#3B82F6" strokeWidth={2.5} />
         Simulates the real exam environment. Review your performance after each test.
@@ -1410,7 +1403,7 @@ function PreviousTestsView() {
           </div>
           <div style={{ fontSize: 10, color: "#64748B", fontWeight: 600, marginTop: 8 }}>Average Score</div>
         </div>
-        
+
         <div className="grid grid-cols-3 gap-3 items-center">
           {[
             { icon: ClipboardList, val: "12", label: "Tests Attempted", bg: "#EFF6FF", col: "#2563EB" },
@@ -1433,7 +1426,7 @@ function PreviousTestsView() {
       <div className="mt-5 flex-1 flex flex-col" style={{ border: "1px solid #E2E8F0", borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 6px rgba(0,0,0,0.02)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 16px", borderBottom: "1px solid #E2E8F0" }}>
           <h4 style={{ fontWeight: 700, fontSize: 12, color: "var(--color-navy)" }}>Test History</h4>
-          <button style={{ fontSize: 11, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}>All Tests <ChevronDown size={14}/></button>
+          <button style={{ fontSize: 11, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}>All Tests <ChevronDown size={14} /></button>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1.5fr 0.5fr 0.5fr 0.8fr 1fr 0.2fr", padding: "10px 16px", fontSize: 10, fontWeight: 600, color: "#94A3B8", borderBottom: "1px solid #E2E8F0" }}>
           <div>Test Name</div>
@@ -1447,12 +1440,12 @@ function PreviousTestsView() {
           {tests.map((t, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1.5fr 0.5fr 0.5fr 0.8fr 1fr 0.2fr", alignItems: "center", padding: "10px 16px", borderBottom: i < tests.length - 1 ? "1px solid #F1F5F9" : "none", fontSize: 11 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <div style={{ width: 24, height: 24, borderRadius: 6, background: "#F1F5F9", color: "#64748B", fontWeight: 800, fontSize: 9, display: "grid", placeItems: "center", ...(t.tag === 'JS' ? { background: '#FEF3C7', color: '#D97706'} : t.tag === '</>' ? {background: '#EDE9FE', color: '#7C3AED'} : t.tag === '@' ? {background: '#D1FAE5', color: '#059669'} : {background: '#DBEAFE', color: '#2563EB'}) }}>{t.tag}</div>
+                <div style={{ width: 24, height: 24, borderRadius: 6, fontWeight: 800, fontSize: 9, display: "grid", placeItems: "center", ...(t.tag === 'JS' ? { background: '#FEF3C7', color: '#D97706' } : t.tag === '</>' ? { background: '#EDE9FE', color: '#7C3AED' } : t.tag === '@' ? { background: '#D1FAE5', color: '#059669' } : { background: '#DBEAFE', color: '#2563EB' }) }}>{t.tag}</div>
                 <span style={{ fontWeight: 600, color: "#475569" }}>{t.name}</span>
               </div>
               <div style={{ fontWeight: 800, color: t.scoreCol }}>{t.score}</div>
               <div style={{ color: "#475569", fontWeight: 500 }}>{t.acc}</div>
-              <div style={{ color: "#64748B", display: "flex", alignItems: "center", gap: 4 }}><Clock3 size={12}/> {t.time}</div>
+              <div style={{ color: "#64748B", display: "flex", alignItems: "center", gap: 4 }}><Clock3 size={12} /> {t.time}</div>
               <div style={{ color: "#64748B" }}>{t.date}</div>
               <div style={{ display: "flex", justifyContent: "flex-end" }}><ChevronDown size={14} color="#94A3B8" style={{ transform: "rotate(-90deg)" }} /></div>
             </div>
@@ -1477,12 +1470,12 @@ function WeakAreasView() {
     { name: "Operating Systems", val: 38, col: "#8B5CF6" },
     { name: "Computer Networks", val: 30, col: "#F97316" },
   ];
-  
+
   return (
     <div style={{ padding: "18px 22px 14px", height: "100%", display: "flex", flexDirection: "column" }}>
       <div className="flex items-start justify-between">
         <div>
-          <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, margin: 0, color: "var(--color-navy)" }}>Weak Areas</h3>
+          <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: 21, fontWeight: 800, margin: 0, color: "var(--color-navy)" }}>Xone</h3>
           <p style={{ color: "#64748B", fontSize: 11, marginTop: 4 }}>Focus on your weak topics and improve your performance.</p>
         </div>
         <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#EFF6FF", color: "#2563EB", padding: "6px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700 }}>
@@ -1491,12 +1484,12 @@ function WeakAreasView() {
       </div>
 
       <div className="mt-4 flex-1 grid gap-4" style={{ gridTemplateRows: "1.1fr 0.9fr" }}>
-        
+
         {/* Performance by Topic Bar Chart */}
         <div style={{ border: "1px solid #E2E8F0", borderRadius: 12, padding: "14px 16px", display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
             <h4 style={{ fontWeight: 700, fontSize: 12, color: "var(--color-navy)" }}>Performance by Topic</h4>
-            <button style={{ fontSize: 10, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}><Calendar size={12}/> This Month <ChevronDown size={12}/></button>
+            <button style={{ fontSize: 10, color: "#475569", display: "flex", alignItems: "center", gap: 4, background: "#fff", border: "1px solid #E2E8F0", padding: "4px 8px", borderRadius: 6, fontWeight: 600 }}><Calendar size={12} /> This Month <ChevronDown size={12} /></button>
           </div>
           <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: "10%", padding: "0 5%", position: "relative" }}>
             {/* Grid lines */}
@@ -1517,7 +1510,7 @@ function WeakAreasView() {
               <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, flex: 1, zIndex: 2, height: "100%", justifyContent: "flex-end" }}>
                 <div style={{ fontSize: 10, fontWeight: 800, color: "var(--color-navy)", marginBottom: 2 }}>{t.val}%</div>
                 <div style={{ width: "100%", maxWidth: 28, background: t.col, height: `calc(${t.val}% - 20px)`, borderRadius: "4px 4px 0 0", transition: "height 1s ease-out" }}></div>
-                <div style={{ fontSize: 9, color: "#64748B", textAlign: "center", whiteSpace: "nowrap" }}>{t.name.split(" ").map(w=><div key={w}>{w}</div>)}</div>
+                <div style={{ fontSize: 9, color: "#64748B", textAlign: "center", whiteSpace: "nowrap" }}>{t.name.split(" ").map(w => <div key={w}>{w}</div>)}</div>
               </div>
             ))}
           </div>
@@ -1581,16 +1574,361 @@ function WeakAreasView() {
   );
 }
 
+const STAT_NUMBER_FORMATTER = new Intl.NumberFormat("en-US");
+
+type ImpactStatCardProps = {
+  target: number;
+  delay: number;
+  accent: string;
+  accentLight: string;
+  accentDeep: string;
+  blob: string;
+  particles: Array<{ top: string; left: string; size: number; opacity: number }>;
+  label: string;
+  isVisible: boolean;
+};
+
+function ImpactStatCard({
+  target,
+  delay,
+  accent,
+  accentLight,
+  accentDeep,
+  blob,
+  particles,
+  label,
+  isVisible,
+}: ImpactStatCardProps) {
+  const [count, setCount] = useState(0);
+  const hasAnimatedRef = useRef(false);
+
+  useEffect(() => {
+    if (!isVisible || hasAnimatedRef.current) return;
+    hasAnimatedRef.current = true;
+
+    const duration = 1050;
+    let animationFrameId = 0;
+    const timeoutId = window.setTimeout(() => {
+      const startTime = performance.now();
+
+      const step = (now: number) => {
+        const progress = Math.min(1, (now - startTime) / duration);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        setCount(Math.round(target * eased));
+
+        if (progress < 1) {
+          animationFrameId = window.requestAnimationFrame(step);
+        } else {
+          setCount(target);
+        }
+      };
+
+      animationFrameId = window.requestAnimationFrame(step);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.cancelAnimationFrame(animationFrameId);
+    };
+  }, [delay, isVisible, target]);
+
+  return (
+    <article
+      className="relative overflow-hidden"
+      style={{
+        minHeight: 180,
+        borderRadius: 16,
+        border: `1px solid ${accentDeep}18`,
+        background: `${accentLight}14`,
+        backdropFilter: "blur(18px)",
+        WebkitBackdropFilter: "blur(18px)",
+        boxShadow: "0 18px 48px rgba(15,23,42,0.10), 0 4px 12px rgba(37,99,235,0.04)",
+      }}
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-8 bottom-[-18px] h-16"
+        style={{
+          background: `radial-gradient(ellipse at center, ${accentLight}33 0%, rgba(15,23,42,0.08) 55%, rgba(15,23,42,0) 80%)`,
+          filter: "blur(18px)",
+          opacity: 0.9,
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: "radial-gradient(circle at 78% 20%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0) 54%)",
+          opacity: 0.8,
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute"
+        style={{
+          width: 250,
+          height: 250,
+          top: -62,
+          right: -42,
+          borderRadius: "50%",
+          background: blob,
+          filter: "blur(18px)",
+          opacity: 0.6,
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: "#ffffff",
+          backgroundImage: "radial-gradient(circle at top center, rgba(70, 130, 180, 0.5), transparent 70%)",
+          filter: "blur(80px)",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.75,
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(45deg, transparent 49%, #8e9093 49%, #818181 51%, transparent 51%),
+            linear-gradient(-45deg, transparent 49%, #6d6d6e 49%, #919397 51%, transparent 51%)
+          `,
+          backgroundSize: "40px 40px",
+          opacity: 0.32,
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 80% at 100% 0%, #000 50%, transparent 90%)",
+          maskImage:
+            "radial-gradient(ellipse 80% 80% at 100% 0%, #000 50%, transparent 90%)",
+        }}
+      />
+      {particles.map((particle, index) => (
+        <span
+          key={`${label}-${index}`}
+          aria-hidden
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            top: particle.top,
+            left: particle.left,
+            width: particle.size,
+            height: particle.size,
+            background: accent,
+            opacity: particle.opacity,
+            boxShadow: `0 0 18px ${accentLight}`,
+          }}
+        />
+      ))}
+
+      <div className="relative z-10 flex h-full flex-col items-start justify-start px-4 pt-5 pb-4 text-left">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            gap: 4,
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 500,
+            fontSize: "clamp(30px, 3.6vw, 44px)",
+            lineHeight: 0.9,
+            letterSpacing: "-0.03em",
+            color: "#000",
+            textShadow: `0 2px 8px rgba(0,0,0,0.06)`,
+            whiteSpace: "nowrap",
+            filter: "none",
+            marginTop: 6,
+          }}
+        >
+          <span>{STAT_NUMBER_FORMATTER.format(count)}</span>
+          <span style={{ fontSize: "0.56em", lineHeight: 1, marginTop: 7, color: "#000" }}>
+            +
+          </span>
+        </div>
+        <div
+          style={{
+            width: 34,
+            height: 2,
+            borderRadius: 999,
+            marginTop: 18,
+            marginRight: "auto",
+            background: `linear-gradient(90deg, ${accentLight} 0%, ${accent} 100%)`,
+            boxShadow: `0 0 16px ${accentLight}`,
+          }}
+        />
+        <p
+          style={{
+            margin: "20px 0 0",
+            maxWidth: 230,
+            fontFamily: "Inter, sans-serif",
+            fontSize: 19,
+            lineHeight: 1.32,
+            fontWeight: 700,
+            color: "#1E293B",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          {label}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function StatisticsImpactSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.34,
+        rootMargin: "0px 0px -12% 0px",
+      },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  const cards: ImpactStatCardProps[] = [
+    {
+      target: 12450,
+      delay: 0,
+      accent: "#3B82F6",
+      accentLight: "#60A5FA",
+      accentDeep: "#2563EB",
+      blob: "radial-gradient(circle at 35% 35%, rgba(191,219,254,0.88) 0%, rgba(96,165,250,0.38) 34%, rgba(59,130,246,0.16) 58%, rgba(255,255,255,0) 74%)",
+      particles: [
+        { top: "16%", left: "11%", size: 8, opacity: 0.26 },
+        { top: "18%", left: "24%", size: 5, opacity: 0.42 },
+        { top: "31%", left: "15%", size: 6, opacity: 0.22 },
+        { top: "28%", left: "33%", size: 4, opacity: 0.34 },
+        { top: "44%", left: "18%", size: 7, opacity: 0.18 },
+      ],
+      label: "Mock tests across every skill & difficulty level",
+      isVisible,
+    },
+    {
+      target: 75830,
+      delay: 150,
+      accent: "#7C3AED",
+      accentLight: "#A78BFA",
+      accentDeep: "#6D28D9",
+      blob: "radial-gradient(circle at 35% 35%, rgba(237,233,254,0.9) 0%, rgba(196,181,253,0.48) 34%, rgba(124,58,237,0.18) 58%, rgba(255,255,255,0) 74%)",
+      particles: [
+        { top: "16%", left: "10%", size: 8, opacity: 0.24 },
+        { top: "17%", left: "26%", size: 5, opacity: 0.42 },
+        { top: "29%", left: "14%", size: 6, opacity: 0.22 },
+        { top: "24%", left: "34%", size: 4, opacity: 0.34 },
+        { top: "42%", left: "20%", size: 7, opacity: 0.18 },
+      ],
+      label: "Assessments taken daily by ambitious learners like you",
+      isVisible,
+    },
+    {
+      target: 1250,
+      delay: 300,
+      accent: "#06B6D4",
+      accentLight: "#67E8F9",
+      accentDeep: "#0891B2",
+      blob: "radial-gradient(circle at 35% 35%, rgba(207,250,254,0.9) 0%, rgba(103,232,249,0.44) 34%, rgba(6,182,212,0.18) 58%, rgba(255,255,255,0) 74%)",
+      particles: [
+        { top: "16%", left: "11%", size: 8, opacity: 0.24 },
+        { top: "18%", left: "28%", size: 5, opacity: 0.42 },
+        { top: "31%", left: "15%", size: 6, opacity: 0.22 },
+        { top: "26%", left: "35%", size: 4, opacity: 0.34 },
+        { top: "43%", left: "19%", size: 7, opacity: 0.18 },
+      ],
+      label: "Trusted by these many industry experts",
+      isVisible,
+    },
+  ];
+
+  return (
+    <>
+      <section
+        ref={sectionRef}
+        id="impact-stats"
+        aria-labelledby="impact-stats-heading"
+        className="relative overflow-hidden"
+        style={{
+          background: "linear-gradient(180deg, #F7FBFF 0%, #F3F8FF 52%, #F9FBFF 100%)",
+          padding: "clamp(88px, 8vw, 120px) 24px",
+        }}
+      >
+        <div aria-hidden className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, rgba(37,99,235,0.05) 1px, transparent 0)", backgroundSize: "24px 24px", opacity: 0.45 }} />
+        <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-center justify-center text-center">
+          <div className="mb-4 flex items-center justify-center gap-4 text-[#2563EB]">
+            <span className="h-px w-8 bg-current opacity-90" aria-hidden />
+            <span
+              className="text-xs font-bold uppercase tracking-[0.28em]"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Don't fall behind
+            </span>
+            <span className="h-px w-8 bg-current opacity-90" aria-hidden />
+          </div>
+
+          <h2
+            id="impact-stats-heading"
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(46px, 5.2vw, 52px)",
+              lineHeight: 1.04,
+              letterSpacing: "-0.05em",
+              margin: 0,
+              color: "#0F172A",
+            }}
+          >
+            Want to <span style={{ color: "#2563EB" }}>know more?</span>
+          </h2>
+
+          <p
+            style={{
+              margin: "18px 0 0",
+              fontFamily: "Inter, sans-serif",
+              fontSize: 18,
+              lineHeight: 1.5,
+              color: "#64748B",
+              fontWeight: 400,
+            }}
+          >
+            Explore how we are making real impact.
+          </p>
+
+          <div className="mt-14 grid w-full grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 xl:gap-7">
+            {cards.map((card) => (
+              <ImpactStatCard key={card.label} {...card} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <div className="w-full" style={{ height: 1, background: "var(--color-border)" }} aria-hidden />
+    </>
+  );
+}
+
 function ProvingGroundDashboard() {
   const tabs = [
-    { id: "overview", label: "Proving Ground", icon: Target },
-    { id: "mock-tests", label: "Mock Tests", icon: ClipboardList },
+    { id: "overview", label: "Base Ground", icon: Target },
+    { id: "mock-tests", label: "Proving Ground", icon: ClipboardList },
     { id: "previous", label: "Previous Tests", icon: Clock3 },
-    { id: "weak-areas", label: "Weak Areas", icon: BarChart3 },
+    { id: "weak-areas", label: "Xone", icon: BarChart3 },
   ] as const;
 
   const [activeTab, setActiveTab] = useState<(typeof tabs)[number]["id"]>("overview");
   const dashboardHeight = 520;
+
 
   return (
     <div
@@ -1606,6 +1944,7 @@ function ProvingGroundDashboard() {
       }}
     >
       <div className="grid h-full" style={{ gridTemplateColumns: "132px 1fr", height: dashboardHeight }}>
+
         <aside
           style={{
             borderRight: "1px solid var(--color-border)",
@@ -1614,6 +1953,7 @@ function ProvingGroundDashboard() {
           }}
         >
           <Menu size={17} color="#64748B" strokeWidth={2.2} style={{ margin: "0 0 16px 8px" }} />
+
           <div className="flex flex-col gap-2">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -1638,6 +1978,7 @@ function ProvingGroundDashboard() {
                   }}
                   onMouseEnter={(e) => {
                     if (!selected) e.currentTarget.style.background = "#F8FAFC";
+
                   }}
                   onMouseLeave={(e) => {
                     if (!selected) e.currentTarget.style.background = "transparent";
@@ -1794,40 +2135,40 @@ function WalkWaysMiniMockup() {
   const phases: {
     phase: string; color: string; glow: string; nodes: { label: string; sub: string; status: NodeStatus; tag?: string }[];
   }[] = [
-    {
-      phase: "Phase 1 — Foundation",
-      color: "#34d399", glow: "rgba(52,211,153,0.35)",
-      nodes: [
-        { label: "Python Fundamentals", sub: "OOP, data structures, algorithms", status: "complete", tag: "Done" },
-        { label: "Math & Statistics", sub: "Linear algebra, probability, calculus", status: "complete", tag: "Done" },
-        { label: "SQL & Data Skills", sub: "Queries, joins, aggregations", status: "complete", tag: "Done" },
-      ],
-    },
-    {
-      phase: "Phase 2 — Machine Learning Core",
-      color: "#60a5fa", glow: "rgba(96,165,250,0.28)",
-      nodes: [
-        { label: "Supervised Learning", sub: "Regression, classification, SVMs", status: "complete", tag: "Done" },
-        { label: "Unsupervised Learning", sub: "Clustering, PCA, autoencoders", status: "active", tag: "In Progress" },
-        { label: "Feature Engineering", sub: "Selection, encoding, scaling", status: "locked" },
-      ],
-    },
-    {
-      phase: "Phase 3 — LLM & Deployment",
-      color: "#7dd3fc", glow: "rgba(125,211,252,0.26)",
-      nodes: [
-        { label: "Transformer Basics", sub: "Attention, embeddings, tuning", status: "locked" },
-        { label: "RAG Systems", sub: "Retrieval-augmented generation pipelines", status: "locked" },
-        { label: "API Design for AI", sub: "FastAPI, async, streaming responses", status: "locked" },
-      ],
-    },
-  ];
+      {
+        phase: "Phase 1 — Foundation",
+        color: "#34d399", glow: "rgba(52,211,153,0.35)",
+        nodes: [
+          { label: "Python Fundamentals", sub: "OOP, data structures, algorithms", status: "complete", tag: "Done" },
+          { label: "Math & Statistics", sub: "Linear algebra, probability, calculus", status: "complete", tag: "Done" },
+          { label: "SQL & Data Skills", sub: "Queries, joins, aggregations", status: "complete", tag: "Done" },
+        ],
+      },
+      {
+        phase: "Phase 2 — Machine Learning Core",
+        color: "#60a5fa", glow: "rgba(96,165,250,0.28)",
+        nodes: [
+          { label: "Supervised Learning", sub: "Regression, classification, SVMs", status: "complete", tag: "Done" },
+          { label: "Unsupervised Learning", sub: "Clustering, PCA, autoencoders", status: "active", tag: "In Progress" },
+          { label: "Feature Engineering", sub: "Selection, encoding, scaling", status: "locked" },
+        ],
+      },
+      {
+        phase: "Phase 3 — LLM & Deployment",
+        color: "#7dd3fc", glow: "rgba(125,211,252,0.26)",
+        nodes: [
+          { label: "Transformer Basics", sub: "Attention, embeddings, tuning", status: "locked" },
+          { label: "RAG Systems", sub: "Retrieval-augmented generation pipelines", status: "locked" },
+          { label: "API Design for AI", sub: "FastAPI, async, streaming responses", status: "locked" },
+        ],
+      },
+    ];
 
   const navItems = [
-    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>, label: "Overview", active: false },
-    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>, label: "Roadmap", active: true },
-    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>, label: "Progress", active: false },
-    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>, label: "Resources", active: false },
+    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>, label: "Overview", active: false },
+    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4" /></svg>, label: "Roadmap", active: true },
+    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" /></svg>, label: "Progress", active: false },
+    { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>, label: "Resources", active: false },
   ];
 
   const stats = [
@@ -1879,7 +2220,7 @@ function WalkWaysMiniMockup() {
       >
         {/* Traffic lights */}
         <div style={{ display: "flex", gap: 5, flexShrink: 0 }}>
-          {["#ff5f57","#febc2e","#28c840"].map((c) => (
+          {["#ff5f57", "#febc2e", "#28c840"].map((c) => (
             <div key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c, opacity: 0.85 }} />
           ))}
         </div>
@@ -1897,7 +2238,7 @@ function WalkWaysMiniMockup() {
           }}
         >
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(30,41,59,0.55)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+            <rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" />
           </svg>
           <span style={{ fontSize: 10.5, color: "rgba(30,41,59,0.64)", letterSpacing: "0.01em" }}>
             onskill.rabbitt.ai
@@ -1906,8 +2247,8 @@ function WalkWaysMiniMockup() {
         {/* Right controls */}
         <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
           {[
-            <svg key="s" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(30,41,59,0.48)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>,
-            <svg key="b" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(30,41,59,0.48)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>,
+            <svg key="s" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(30,41,59,0.48)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>,
+            <svg key="b" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(30,41,59,0.48)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>,
           ]}
         </div>
       </div>
@@ -1945,19 +2286,19 @@ function WalkWaysMiniMockup() {
             </div>
           </div>
           {navItems.map((item) => (
-            <div
-              key={item.label}
-              style={{
-                display: "flex", alignItems: "center", gap: 8,
-                padding: "8px 12px",
-                borderRadius: 0,
-                background: item.active ? "rgba(37,99,235,0.14)" : "transparent",
-                borderLeft: item.active ? "2px solid #3b82f6" : "2px solid transparent",
-                color: item.active ? "#1d4ed8" : "#64748b",
-                cursor: "default",
-                transition: "all 180ms ease",
-              }}
-            >
+              <div
+                key={item.label}
+                style={{
+                  display: "flex", alignItems: "center", gap: 8,
+                  padding: "8px 12px",
+                  borderRadius: 0,
+                  background: item.active ? "rgba(59,130,246,0.06)" : "transparent",
+                  borderLeft: item.active ? "2px solid transparent" : "2px solid transparent",
+                  color: item.active ? "#1d4ed8" : "#64748b",
+                  cursor: "default",
+                  transition: "all 180ms ease",
+                }}
+              >
               {item.icon}
               <span style={{ fontSize: 11, fontWeight: item.active ? 600 : 500 }}>{item.label}</span>
             </div>
@@ -2116,7 +2457,7 @@ function WalkWaysMiniMockup() {
                             position: "relative", zIndex: 1,
                           }}>
                             {isComplete && (
-                              <svg width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                              <svg width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                             )}
                             {isActive && (
                               <div style={{ width: 5, height: 5, borderRadius: "50%", background: phase.color }} />
@@ -2166,7 +2507,7 @@ function WalkWaysMiniMockup() {
                               </span>
                             )}
                             {!node.tag && node.status === "locked" && (
-                              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="rgba(100,116,139,0.7)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="rgba(100,116,139,0.7)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
                             )}
                           </div>
                           <div style={{ fontSize: 10, color: "#64748b", marginTop: 3 }}>
@@ -2199,7 +2540,7 @@ function WalkWaysMiniMockup() {
               }}>
                 Scroll
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" style={{ display: "inline-block", animation: "rmScrollNudge 1.6s ease-in-out infinite" }}>
-                  <path d="M12 5v14M5 12l7 7 7-7"/>
+                  <path d="M12 5v14M5 12l7 7 7-7" />
                 </svg>
               </div>
             </div>
@@ -2406,34 +2747,6 @@ function FirstMockTestCTA() {
           />
 
           <div className="relative z-10 mx-auto max-w-[760px]">
-            <div
-              className="mx-auto mb-6 inline-flex items-center gap-2"
-              style={{
-                border: "1px solid rgba(37,99,235,0.14)",
-                borderRadius: 999,
-                background: "rgba(255,255,255,0.76)",
-                boxShadow: "0 10px 28px rgba(15,23,42,0.08)",
-                color: "var(--color-accent)",
-                fontFamily: "Inter, sans-serif",
-                fontSize: 11,
-                fontWeight: 800,
-                letterSpacing: 3,
-                padding: "9px 16px",
-                textTransform: "uppercase",
-              }}
-            >
-              <span
-                style={{
-                  width: 7,
-                  height: 7,
-                  borderRadius: 999,
-                  background: "var(--color-accent)",
-                  boxShadow: "0 0 16px rgba(37,99,235,0.72)",
-                }}
-              />
-              Ready to prove it?
-            </div>
-
             <h2
               style={{
                 color: "var(--color-navy)",
@@ -2662,8 +2975,8 @@ const FloatingAssessmentElements = () => (
       animationDelay: "0s",
     }}>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ color: "#2563EB", flexShrink: 0 }}>
-        <circle cx="12" cy="8" r="6" stroke="currentColor" strokeWidth="1.8"/>
-        <path d="M9.5 8l2 2 3-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="12" cy="8" r="6" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M9.5 8l2 2 3-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
       <span style={{ fontFamily: "Inter, sans-serif", fontSize: 12, fontWeight: 600, color: "#2563EB", whiteSpace: "nowrap" }}>
         Badge Earned
@@ -2686,8 +2999,8 @@ const FloatingAssessmentElements = () => (
       <span style={{ fontFamily: "Inter, sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>Assessment</span>
       <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ color: "#60A5FA" }}>
-          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-          <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+          <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
         <span style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 700, color: "#fff", letterSpacing: "0.04em" }}>88:42</span>
       </div>
@@ -2730,7 +3043,7 @@ const FloatingAssessmentElements = () => (
       animationDelay: "-2s",
     }}>
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{ color: "#60A5FA" }}>
-        <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
+        <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
       </svg>
       <div>
         <div style={{ fontFamily: "Inter, sans-serif", fontSize: 10, color: "rgba(255,255,255,0.35)", letterSpacing: 1.5, textTransform: "uppercase" }}>Global Rank</div>
@@ -2856,8 +3169,8 @@ function ExploreSection() {
       id: "base-ground",
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
       name: "Base Ground",
@@ -2870,9 +3183,9 @@ function ExploreSection() {
       id: "proving-ground",
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="8" r="6" stroke="currentColor" strokeWidth="1.8"/>
-          <path d="M9.5 8l2 2 3-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8 13.9L7 23l5-2.5 5 2.5-1-9.1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="12" cy="8" r="6" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M9.5 8l2 2 3-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M8 13.9L7 23l5-2.5 5 2.5-1-9.1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
       name: "Proving Ground",
@@ -2885,10 +3198,10 @@ function ExploreSection() {
       id: "xone",
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="3" width="20" height="13" rx="2" stroke="currentColor" strokeWidth="1.8"/>
-          <path d="M7 8h4M7 11h3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-          <circle cx="17" cy="8.5" r="2" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M8 21h8M12 16v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+          <rect x="2" y="3" width="20" height="13" rx="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M7 8h4M7 11h3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="17" cy="8.5" r="2" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M8 21h8M12 16v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       ),
       name: "Xone",
@@ -2901,12 +3214,12 @@ function ExploreSection() {
       id: "walkways",
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <circle cx="5" cy="5" r="2" stroke="currentColor" strokeWidth="1.8"/>
-          <circle cx="19" cy="5" r="2" stroke="currentColor" strokeWidth="1.8"/>
-          <circle cx="5" cy="19" r="2" stroke="currentColor" strokeWidth="1.8"/>
-          <circle cx="19" cy="19" r="2" stroke="currentColor" strokeWidth="1.8"/>
-          <path d="M7 5h10M5 7v10M19 7v10M7 19h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-          <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.8"/>
+          <circle cx="5" cy="5" r="2" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="19" cy="5" r="2" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="5" cy="19" r="2" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="19" cy="19" r="2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M7 5h10M5 7v10M19 7v10M7 19h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.8" />
         </svg>
       ),
       name: "WalkWays",
@@ -2922,8 +3235,8 @@ function ExploreSection() {
       name: "Frontend",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <polyline points="16 18 22 12 16 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          <polyline points="8 6 2 12 8 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          <polyline points="16 18 22 12 16 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <polyline points="8 6 2 12 8 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
     },
@@ -2931,12 +3244,12 @@ function ExploreSection() {
       name: "Backend",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="3" width="20" height="4.5" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>
-          <rect x="2" y="9.75" width="20" height="4.5" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>
-          <rect x="2" y="16.5" width="20" height="4.5" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>
-          <circle cx="6" cy="5.25" r="1" fill="currentColor"/>
-          <circle cx="6" cy="12" r="1" fill="currentColor"/>
-          <circle cx="6" cy="18.75" r="1" fill="currentColor"/>
+          <rect x="2" y="3" width="20" height="4.5" rx="1.5" stroke="currentColor" strokeWidth="1.8" />
+          <rect x="2" y="9.75" width="20" height="4.5" rx="1.5" stroke="currentColor" strokeWidth="1.8" />
+          <rect x="2" y="16.5" width="20" height="4.5" rx="1.5" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="6" cy="5.25" r="1" fill="currentColor" />
+          <circle cx="6" cy="12" r="1" fill="currentColor" />
+          <circle cx="6" cy="18.75" r="1" fill="currentColor" />
         </svg>
       ),
     },
@@ -2944,9 +3257,9 @@ function ExploreSection() {
       name: "System Design",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3L22 8 12 13 2 8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
-          <path d="M2 13l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-          <path d="M2 17l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+          <path d="M12 3L22 8 12 13 2 8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M2 13l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M2 17l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       ),
     },
@@ -2954,10 +3267,10 @@ function ExploreSection() {
       name: "DevOps",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <path d="M12 12c-2-2.5-4-4-6-4a4 4 0 000 8c2 0 4-1.5 6-4z" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
-          <path d="M12 12c2 2.5 4 4 6 4a4 4 0 000-8c-2 0-4 1.5-6 4z" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
-          <path d="M7.5 5.5l1.5 2-2 .5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M16.5 18.5l-1.5-2 2-.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 12c-2-2.5-4-4-6-4a4 4 0 000 8c2 0 4-1.5 6-4z" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+          <path d="M12 12c2 2.5 4 4 6 4a4 4 0 000-8c-2 0-4 1.5-6 4z" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+          <path d="M7.5 5.5l1.5 2-2 .5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M16.5 18.5l-1.5-2 2-.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
     },
@@ -2965,7 +3278,7 @@ function ExploreSection() {
       name: "Data & Algo",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
+          <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
         </svg>
       ),
     },
@@ -2973,8 +3286,8 @@ function ExploreSection() {
       name: "AI & ML",
       icon: (
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8"/>
-          <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5.636 5.636l1.768 1.768M16.596 16.596l1.768 1.768M16.596 7.404l1.768-1.768M5.636 18.364l1.768-1.768" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5.636 5.636l1.768 1.768M16.596 16.596l1.768 1.768M16.596 7.404l1.768-1.768M5.636 18.364l1.768-1.768" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       ),
     },
@@ -3026,7 +3339,6 @@ function ExploreSection() {
           pointerEvents: "none", zIndex: 4,
         }}
       />
-
       {/* ── Floating assessment ambient micro-cards ── */}
       <FloatingAssessmentElements />
 
@@ -3075,119 +3387,30 @@ function ExploreSection() {
         }} />
       </div>
 
-      {/* ── Content ── */}
-      <div className="relative mx-auto" style={{ maxWidth: 1200, zIndex: 5 }}>
-
-        {/* Header */}
-        <section id="products" style={{ marginBottom: 48, opacity: 0, animation: "fadeUp 0.65s cubic-bezier(0.4,0,0.2,1) 0.1s forwards" }}>
-          <div className="text-center">
-            <div style={{
-              display: "inline-block",
-              background: "rgba(37,99,235,0.16)",
-              border: "1px solid rgba(37,99,235,0.32)",
-              borderRadius: 999,
-              padding: "6px 20px",
-              fontFamily: '"DM Sans", sans-serif',
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: "3px",
-              textTransform: "uppercase" as const,
-              color: "#93BFFF",
-              marginBottom: 22,
-            }}>
-              Our Platform
-            </div>
-            <h2 style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(36px, 5vw, 56px)",
-              color: "#fff",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-            }}>
-              Everything You Need. One Ecosystem.
-            </h2>
-            <p style={{
-              marginTop: 16,
-              fontFamily: '"Inter", sans-serif',
-              fontSize: 18,
-              color: "rgba(255,255,255,0.45)",
-              maxWidth: 640,
-              margin: "20px auto 0",
-              lineHeight: 1.8,
-            }}>
-              A comprehensive platform designed to build, verify, and accelerate your tech career.
-            </p>
-          </div>
-        </section>
-
-
-
-        {/* ── Section label: Explore by Track ── */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: 14, marginBottom: 24,
-        }}>
-          <span style={{
-            fontFamily: "Inter, sans-serif", fontSize: 10.5, fontWeight: 700,
-            letterSpacing: "3.5px", textTransform: "uppercase" as const,
-            color: "rgba(255,255,255,0.30)",
-          }}>
-            Explore by Track
-          </span>
-          <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)" }} />
-        </div>
-
-        {/* ── Tech track cards ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
-          {tracks.map((t, i) => (
-            <button
-              key={t.name}
-              onClick={() => router.push("/auth")}
-              style={{
-                background: "rgba(255,255,255,0.045)",
-                backdropFilter: "blur(18px)",
-                WebkitBackdropFilter: "blur(18px)",
-                border: "1px solid rgba(255,255,255,0.18)",
-                borderRadius: "var(--radius-lg)",
-                padding: "34px 16px",
-                display: "flex", flexDirection: "column",
-                alignItems: "center", gap: 16,
-                cursor: "pointer",
-                transition: "transform 260ms cubic-bezier(0.4,0,0.2,1), background 260ms ease, border-color 260ms ease, box-shadow 260ms ease",
-                willChange: "transform",
-                opacity: 0,
-                boxShadow: "0 14px 34px rgba(0, 0, 0, 0.4)",
-                animation: `fadeUp 0.55s cubic-bezier(0.4,0,0.2,1) ${0.35 + i * 0.07}s forwards`,
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget;
-                el.style.zIndex = "10";
-                el.style.background = "rgba(34, 211, 238, 0.08)";
-                el.style.borderColor = "rgba(34, 211, 238, 0.35)";
-                el.style.transform = "translateY(-8px) scale(1.1)";
-                el.style.boxShadow = "0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(34, 211, 238, 0.15)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget;
-                el.style.zIndex = "1";
-                el.style.background = "rgba(255,255,255,0.045)";
-                el.style.borderColor = "rgba(255,255,255,0.18)";
-                el.style.transform = "translateY(0) scale(1)";
-                el.style.boxShadow = "0 14px 34px rgba(0, 0, 0, 0.4)";
-              }}
-            >
-              <div style={{ color: "rgba(255,255,255,0.72)" }}>{t.icon}</div>
-              <span style={{
-                fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: 13,
-                color: "rgba(255,255,255,0.78)", textAlign: "center", lineHeight: 1.3,
-              }}>
-                {t.name}
-              </span>
-            </button>
-          ))}
-        </div>
-
+      {/* Place this inside the existing orb section, as a sibling to the aria-hidden orb div */}
+      <div style={{ position: "relative", zIndex: 2 }} className="mx-auto max-w-[1000px] px-6 md:px-16 py-0 text-white text-center">
+        <MagicText
+          segments={[
+            {
+              text: "Skill isn't what you know, it's what you can prove." , 
+            },
+            {
+              text:"A lot of people prepare, but still feel unsure when it's time to perform. Not because they lack knowledge but because they've never tested it under real conditions.",
+              newline: true,
+           },
+            {
+              text:"That's the gap most platforms ignore.",
+              newline: true,
+            },
+            {
+              text: "OnSkill is built to close it turning practice into something you can measure, improve, and rely on when it actually matters.",
+              glow: true,
+              newline: true,
+            },
+          ]}
+        />
       </div>
+
     </section>
   );
 }
@@ -3213,19 +3436,17 @@ export function Landing() {
         <ProductSection
           id="proving-ground"
           tag="PROVING GROUND"
-          heading="Practice a Full Exam in 90 Minutes, Not Weeks of Guessing."
-          body="At this stage, you're not just studying, you're testing yourself seriously. You'll face the same format, timing, and pressure you'll see in the actual exam."
+          heading="50+ Certifications in One Preparation Platform"
+          body="From Azure to AWS find the mock tests and assessments built for the 
+certifications you are chasing. "
           features={[
-            "25+ exam-pattern mock tests, 90-min timed",
-            "Visual graphs & section-wise analytics",
-            "Topic-level error breakdown & insights",
-            "Unlimited retakes, track improvement every attempt",
           ]}
           cta="Enter Proving Ground →"
           onCta={() => router.push("/auth")}
-          mockup={<ProvingGroundDashboard />}
+          mockup={<ProvingGroundInteractiveMockup />}
           reverse
           rawMockup
+          rawMockupUnframed
           showMockupFromMd
           shiftMockupLeft
         />
@@ -3234,13 +3455,12 @@ export function Landing() {
         <ProductSection
           id="xone"
           tag="XONE"
-          heading="Interview Practice That Feels Real."
-          body="Xone simulates real interview conditions with relevant questions and clear feedback. Practice, refine your responses, and build confidence before it matters."
+          heading="The AI Interview Practice Built Around Real Hiring Standards."
+          body="A full interview simulation starts the second you're ready. Xone asks real 
+hiring-round questions, evaluates how you respond and tells you exactly what to 
+improve because the job offer goes to whoever prepared better, not whoever knew 
+more. "
           features={[
-            "Real interview questions, not theory",
-            "Clear, actionable feedback on your responses",
-            "Practice without limits, improve with each attempt",
-            "Builds confidence through repeated, realistic practice",
           ]}
           cta="Start Mock Interview →"
           onCta={() => router.push("/auth")}
@@ -3250,27 +3470,13 @@ export function Landing() {
         />
         <div className="mx-auto h-px max-w-[1200px]" style={{ background: "var(--color-border)" }} />
 
-        <ProductSection
-          id="walkways-section"
-          tag="WALKWAYS"
-          heading={<>Stop Figuring It Out Alone.<br />Your AI Career Guide Is Here.</>}
-          body="Most people waste months going in circles... watching videos, reading blogs, still not sure what to do next. WalkWays cuts through all of that. Tell it where you want to go, and it maps out exactly how to get there, certification by certification, step by step."
-          features={[
-            "Clear guidance based on how you actually perform",
-            "Roadmaps built around your goals",
-            "Adjusts to your pace as you improve",
-            "Takes you from basics to being fully exam-ready",
-          ]}
-          cta="Start Your WalkWay, Take Your Demo →"
-          onCta={() => router.push("/walkways")}
-          mockup={<WalkWaysMiniMockup />}
-          rawMockup
-          reverse
-          shiftMockupLeft
-        />
+
+        <StatisticsImpactSection />
 
         <WalkWaysRoadmap />
-        
+        <div className="mx-auto h-px max-w-[1200px]" style={{ background: "var(--color-border)" }} aria-hidden />
+        <UserDashboardSection />
+
         {/* Smooth Gradient Transition: Light Blue → Dark Blue */}
         {/* FAQ Section with Deep Dark Background */}
         <section
@@ -3280,9 +3486,8 @@ export function Landing() {
               linear-gradient(
                 to bottom,
                 #F0F6FF 0%,
-                #FFFFFF 4%,
-                #F0F6FF 8%,
-                #D8EBFF 12%,
+                #F0F6FF 6%,
+                #D8EBFF 14%,
                 #143C78 18%,
                 #0F172A 27%,
                 #091438 42%,
@@ -3292,8 +3497,19 @@ export function Landing() {
               )
             `,
             marginTop: 0,
+            position: "relative",
+            zIndex: 0,
           }}
         >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0"
+            style={{
+              height: 60,
+              background: "linear-gradient(to bottom, #F0F6FF, transparent)",
+              zIndex: 1,
+            }}
+          />
           <div aria-hidden className="pointer-events-none absolute" style={{
             width: 600, height: 600, top: -160, left: -120,
             background: "radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%)",

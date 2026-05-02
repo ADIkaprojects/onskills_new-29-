@@ -227,13 +227,13 @@ function LoginForm({ onSwitch }: { onSwitch: () => void }) {
         style={{
           background: "var(--color-accent)",
           color: "#fff",
-          borderRadius: "var(--radius-md)",
+          borderRadius: "var(--radius-full)",
           padding: "15px",
           fontFamily: "Sora, sans-serif",
           fontWeight: 600,
           fontSize: 15,
           marginTop: 12,
-          boxShadow: "0 8px 24px rgba(29,110,245,0.25)",
+          boxShadow: "0 8px 24px rgba(0,80,230,0.25)",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = "var(--color-accent-hover)";
@@ -488,13 +488,13 @@ function SignupForm({ onSwitch, onSuccess }: { onSwitch: () => void; onSuccess: 
         style={{
           background: !terms || !match ? "var(--color-gray-light)" : "var(--color-accent)",
           color: "#fff",
-          borderRadius: "var(--radius-md)",
+          borderRadius: "var(--radius-full)",
           padding: "15px",
           fontFamily: "Sora, sans-serif",
           fontWeight: 600,
           fontSize: 15,
           marginTop: 6,
-          boxShadow: !terms || !match ? "none" : "0 8px 24px rgba(29,110,245,0.25)",
+          boxShadow: !terms || !match ? "none" : "0 8px 24px rgba(0,80,230,0.25)",
           cursor: !terms || !match ? "not-allowed" : "pointer",
         }}
       >
